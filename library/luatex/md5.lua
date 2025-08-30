@@ -1,21 +1,49 @@
--- A helper table to better navigate through the documentation using the
--- outline: https://github.com/Josef-Friedrich/LuaTeX_Lua-API#navigation-table-_n
-
 ---
----https://github.com/TeX-Live/luatex/tree/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/luamd5
----https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/517487384d3b0b4b003fb3180ea415f52eeb5f5f/source/texk/web2c/luatexdir/lua/luatex-core.lua#L220-L241
----Changes to upstream:
+---Corresponding directory in the LuaTeX repository:
+---https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/master/source/texk/web2c/luatexdir/luamd5
+---Corresponding file in the LuaTeX repository:
+---https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/master/source/texk/web2c/luatexdir/luamd5/md5lib.c
+---
+---Changes to the upstream project:
 ---* local md5 table
 ---* additional function md5.sumHEXA()
+
+-- -----------------------------------------------------------------------------
+-- Copyright (c) 2023-2025 by Josef Friedrich <josef@friedrich.rocks>
+-- -----------------------------------------------------------------------------
+--
+-- MIT License
+--
+-- Permission is hereby granted, free of charge, to any person obtaining a copy
+-- of this software and associated documentation files (the "Software"), to deal
+-- in the Software without restriction, including without limitation the rights
+-- to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+-- copies of the Software, and to permit persons to whom the Software is
+-- furnished to do so, subject to the following conditions:
+--
+-- The above copyright notice and this permission notice shall be included in
+-- all copies or substantial portions of the Software.
+--
+-- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+-- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+-- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+-- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+-- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+-- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+-- SOFTWARE.
+--
+-- -----------------------------------------------------------------------------
 
 ---
 ---@meta
 ---The definitions are developed in this repository: https://github.com/LuaCATS/md5
 
 ---
----`md5`, by Roberto Ierusalimschy http://www.inf.puc-rio.br/~roberto/md5/md5-5/md5.html.
+---`md5`, by Roberto Ierusalimschy
+---http://www.inf.puc-rio.br/~roberto/md5/md5-5/md5.html.
 ---
----This library offers basic cryptographic facilities for Lua 5.0: a hash (digest) function, an a pair crypt/decrypt.
+---This library offers basic cryptographic facilities for Lua 5.0: a hash
+---(digest) function, an a pair crypt/decrypt.
 ---
 ---All functions are registered inside a table `md5`.
 ---
@@ -25,16 +53,13 @@ md5 = {}
 ---
 ---Compute the MD5 message-digest of the string `message`.
 ---
----This function takes as input a message of arbitrary length and content
----and returns as output a 128-bit "fingerprint" (or "message digest")
----of the input.
+---This function takes as input a message of arbitrary length and content and
+---returns as output a 128-bit "fingerprint" (or "message digest") of the input.
 ---
----The output is formated as a binary string with 16 characters.
----It is conjectured that it is computationally infeasible to produce
----two messages having the same message digest, or to produce any
----message having a given pre-specified target message digest.
----(see
----RFC 1321)
+---The output is formated as a binary string with 16 characters. It is
+---conjectured that it is computationally infeasible to produce two messages
+---having the same message digest, or to produce any message having a given
+---pre-specified target message digest. (see RFC 1321)
 ---
 ---__Example:__
 ---
@@ -56,10 +81,11 @@ md5 = {}
 function md5.sum(message) end
 
 ---
----Compute the MD5 lower case hexadecimal message-digest of the string `message`.
+---Compute the MD5 lower case hexadecimal message-digest of the string
+---`message`.
 ---
----Similar to `md5.sum()`,
----but returns its value as a string of 32 hexadecimal digits (lower case letters).
+---Similar to `md5.sum()`, but returns its value as a string of 32 hexadecimal
+---digits (lower case letters).
 ---
 ---__Example:__
 ---
@@ -76,39 +102,19 @@ function md5.sum(message) end
 function md5.sumhexa(message) end
 
 ---
----Compute the MD5 upper case hexadecimal message-digest of the string `message`.
----
----Similar to `md5.sum()`
----but returns its value as a string of 32 hexadecimal digits (upper case letters).
----
----__Example:__
----
----```lua
----local hash = md5.sumHEXA('test')
----assert(hash == '098F6BCD4621D373CADE4E832627B4F6')
----```
----
----@param message string
----
----@return string # for example `098F6BCD4621D373CADE4E832627B4F6`
-function md5.sumHEXA(message) end
-
----
 ---Encrypt a string, using MD5 in CFB (Cipher-feedback mode).
 ---
----`message` is an arbitrary binary string to be encrypted.
----`key` is an arbitrary binary string to be used as a key.
----`seed` is an arbitrary binary string to be used as a seed;
----Returns the cyphertext (as a binary string).
+---`message` is an arbitrary binary string to be encrypted. `key` is an
+---arbitrary binary string to be used as a key. `seed` is an arbitrary binary
+---string to be used as a seed; Returns the cyphertext (as a binary string).
 ---
----If no seed is provided,
----the function uses the result of `os.time()` as a seed.
----It is recommended that you use different seeds for each message;
----the seed itself is not private, and should contain no private data,
----because it goes plain in the beginning of the encrypted message.
+---If no seed is provided, the function uses the result of `os.time()` as a
+---seed. It is recommended that you use different seeds for each message; the
+---seed itself is not private, and should contain no private data, because it
+---goes plain in the beginning of the encrypted message.
 ---
----The length of the cyphertext is the length of the message plus the
----length of the seed plus one.
+---The length of the cyphertext is the length of the message plus the length of
+---the seed plus one.
 ---
 ---__Example:__
 ---
@@ -135,10 +141,8 @@ function md5.crypt(message, key, seed) end
 ---
 ---Decrypt a string.
 ---
----The input `message` must be the result of a previous call
----to `crypt`.
----For any `message`, `key`,
----and `seed`, we have that
+---The input `message` must be the result of a previous call to `crypt`. For any
+---`message`, `key`, and `seed`, we have that
 ---
 ---```lua
 ---local encrypted = md5.crypt('message', '123', 'seed')
@@ -157,8 +161,8 @@ function md5.decrypt(message, key) end
 ---
 ---Do a bit-a-bit exclusive `or` of strings `s1` and `s2`.
 ---
----Both strings must have the same length,
----which will be also the length of the resulting string.
+---Both strings must have the same length, which will be also the length of the
+---resulting string.
 ---
 ---__Example:__
 ---
@@ -174,3 +178,22 @@ function md5.decrypt(message, key) end
 ---
 ---😱 [Types](https://github.com/LuaCATS/md5/blob/main/library/md5.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/LuaCATS/md5/pulls)
 function md5.exor(s1, s2) end
+
+---
+---Compute the MD5 upper case hexadecimal message-digest of the string
+---`message`.
+---
+---Similar to `md5.sum()` but returns its value as a string of 32 hexadecimal
+---digits (upper case letters).
+---
+---__Example:__
+---
+---```lua
+---local hash = md5.sumHEXA('test')
+---assert(hash == '098F6BCD4621D373CADE4E832627B4F6')
+---```
+---
+---@param message string
+---
+---@return string # for example `098F6BCD4621D373CADE4E832627B4F6`
+function md5.sumHEXA(message) end

@@ -1,6 +1,3 @@
--- A helper table to better navigate through the documentation using the
--- outline: https://github.com/Josef-Friedrich/LuaTeX_Lua-API#navigation-table-_n
-
 ---
 ---@meta
 
@@ -11,12 +8,22 @@ gzip = {}
 ---
 ---Open a file name using `gzopen`.
 ---
----Behaviour is identical to the description
----given in the `zlib` library.
+---Behaviour is identical to the description given in the `zlib` library.
 ---
----The `mode` parameter is as in fopen (`rb` or `wb`) but can also include a compression level (`wb9`) or a strategy: 'f' for filtered data as in `wb6f`, `h` for Huffman-only compression as in `wb1h`, `R` for run-length encoding as in `wb1R`, or `F` for fixed code compression as in `wb9F`. (See the description of deflateInit2 for more information about the strategy parameter.) `T` will request transparent writing or appending with no compression and not using the gzip format.
+---The `mode` parameter is as in fopen (`rb` or `wb`) but can also include a
+---compression level (`wb9`) or a strategy: 'f' for filtered data as in `wb6f`,
+---`h` for Huffman-only compression as in `wb1h`, `R` for run-length encoding as
+---in `wb1R`, or `F` for fixed code compression as in `wb9F`. (See the
+---description of deflateInit2 for more information about the strategy
+---parameter.) `T` will request transparent writing or appending with no
+---compression and not using the gzip format.
 ---
----`a` can be used instead of `w` to request that the gzip stream that will be written be appended to the file. `+` will result in an error, since reading and writing to the same gzip file is not supported. The addition of `x` when writing will create the file exclusively, which fails if the file already exists. On systems that support it, the addition of `e` when reading or writing will set the flag to close the file on an `execve()` call.
+---`a` can be used instead of `w` to request that the gzip stream that will be
+---written be appended to the file. `+` will result in an error, since reading
+---and writing to the same gzip file is not supported. The addition of `x` when
+---writing will create the file exclusively, which fails if the file already
+---exists. On systems that support it, the addition of `e` when reading or
+---writing will set the flag to close the file on an `execve()` call.
 ---
 ---It returns a new file handle, or, in case of errors, `nil` plus an error
 ---message
@@ -45,9 +52,9 @@ gzip = {}
 function gzip.open(filename, mode) end
 
 ---
----Same behaviour as io.lines in the `io` standard library provided by lua
----with the aditional feature of working with gzip files. If a normal text
----file is read it will read it normaly (normal gzopen behaviour).
+---Same behaviour as io.lines in the `io` standard library provided by lua with
+---the aditional feature of working with gzip files. If a normal text file is
+---read it will read it normaly (normal gzopen behaviour).
 ---
 ---__Example:__
 ---
@@ -97,10 +104,10 @@ function gzip.close(file) end
 local GFile = {}
 
 ---
----This function takes no parameters and flushes all output to working file.
----The same as calling 'gzflush(file, Z_FINISH)' so writing to the file will
----most likely not work as expected. This is subject to change in the future
----if there is a strong reason for it to happen.
+---This function takes no parameters and flushes all output to working file. The
+---same as calling 'gzflush(file, Z_FINISH)' so writing to the file will most
+---likely not work as expected. This is subject to change in the future if there
+---is a strong reason for it to happen.
 ---
 ---__Reference:__
 ---
@@ -108,8 +115,8 @@ local GFile = {}
 function GFile:flush() end
 
 ---
----Reads the file file, according to the given formats, which specify what
----to read. For each format, the function returns a string with the characters
+---Reads the file file, according to the given formats, which specify what to
+---read. For each format, the function returns a string with the characters
 ---read, or nil if it cannot read data with the specified format. When called
 ---without formats, it uses a default format that reads the entire next line
 ---(see below).
@@ -117,12 +124,11 @@ function GFile:flush() end
 ---The available formats are
 ---
 ---`*a`   reads the whole file, starting at the current position. On end of
----file, it returns the empty string.
----`*l`   reads the next line (skipping the end of line), returning nil on
----end of file. This is the default format.
----number reads a string with up to that number of characters, returning
----nil on end of file. If number is zero, it reads nothing and
----returns an empty string, or nil on end of file.
+---file, it returns the empty string. `*l`   reads the next line (skipping the
+---end of line), returning nil on end of file. This is the default format.
+---number reads a string with up to that number of characters, returning nil on
+---end of file. If number is zero, it reads nothing and returns an empty string,
+---or nil on end of file.
 ---
 ---Unlink io.read, the `*n` format will not be available.
 ---
@@ -133,11 +139,10 @@ function GFile:flush() end
 function GFile:read(format1, ...) end
 
 ---
----Returns an iterator function that, each time it is called, returns a new
----line from the file. Therefore, the construction
----for line in file:lines() do ... end
----will iterate over all lines of the file. (Unlike gzip.lines, this function
----does not close the file when the loop ends.)
+---Returns an iterator function that, each time it is called, returns a new line
+---from the file. Therefore, the construction for line in file:lines() do ...
+---end will iterate over all lines of the file. (Unlike gzip.lines, this
+---function does not close the file when the loop ends.)
 ---
 ---__Reference:__
 ---
@@ -146,15 +151,21 @@ function GFile:read(format1, ...) end
 function GFile:lines() end
 
 ---
----Sets and gets the file position, measured from the beginning of the file,
----to the position given by offset plus a base specified by the string whence,
----as follows:
+---Sets and gets the file position, measured from the beginning of the file, to
+---the position given by offset plus a base specified by the string whence, as
+---follows:
 ---
----`set` base is position 0 (beginning of the file);
----`cur` base is current position;
+---`set` base is position 0 (beginning of the file); `cur` base is current
+---position;
 ---
----In case of success, function seek returns the final file position, measured in bytes from the beginning of ---the file. If this function fails, it returns nil, plus a string describing the error.
----The default value for whence is `cur`, and for offset is 0. Therefore, the call file:seek() returns the ---current file position, without changing it; the call file:seek("set") sets the position to the beginning of ---the file (and returns 0); and the call file:seek("end") sets the position to the end of the file, and ---returns its size.
+---In case of success, function seek returns the final file position, measured
+---in bytes from the beginning of ---the file. If this function fails, it
+---returns nil, plus a string describing the error. The default value for whence
+---is `cur`, and for offset is 0. Therefore, the call file:seek() returns the
+------current file position, without changing it; the call file:seek("set") sets
+---the position to the beginning of ---the file (and returns 0); and the call
+---file:seek("end") sets the position to the end of the file, and ---returns its
+---size.
 ---
 ---This function is subject to limitations imposed by `gzseek` function from
 ---`zlib` library, such as the inability to use `end` as the base for seeking
@@ -169,8 +180,7 @@ function GFile:seek(whence, offset) end
 ---
 ---Write the value of each of its arguments to the filehandle file.
 ---
----The
----arguments must be strings or numbers. To write other values, use tostring
+---The arguments must be strings or numbers. To write other values, use tostring
 ---or string.format before write
 ---
 ---__Example:__

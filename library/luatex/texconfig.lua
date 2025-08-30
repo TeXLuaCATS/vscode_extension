@@ -17,16 +17,13 @@
 --
 -- -----------------------------------------------------------------------------
 
--- A helper table to better navigate through the documentation using the
--- outline: https://github.com/Josef-Friedrich/LuaTeX_Lua-API#navigation-table-_n
-
 ---
 ---@meta
 
 ---
----This is a table that is created empty. A startup *Lua* script could
----fill this table with a number of settings that are read out by
----the executable after loading and executing the startup file.
+---This is a table that is created empty. A startup *Lua* script could fill this
+---table with a number of settings that are read out by the executable after
+---loading and executing the startup file.
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/texconfig.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 texconfig = {}
@@ -36,21 +33,23 @@ texconfig = {}
 ---interpretation of the following numeric key--value pairs. (only ever unset
 ---this if you implement {\it all\/} file find callbacks!)
 ---
----`shell_escape`  string  `'f'`  Use `'y'` or `'t'` or `'1'` to enable `\write18` unconditionally, `'p'`
----to enable the commands that are listed in `shell_escape_commands`
+---`shell_escape`  string  `'f'`  Use `'y'` or `'t'` or `'1'` to enable
+---`\write18` unconditionally, `'p'` to enable the commands that are listed in
+---`shell_escape_commands`
 ---
----shell_escape_commands  string   Comma-separated list of command
----names that may be executed by `\write18` even if `shell_escape`
----is set to `'p'`. Do {\it not\/} use spaces around commas, separate any
----required command arguments by using a space, and use the \ASCII\ double quote
----(`"`) for any needed argument or path quoting
+---shell_escape_commands  string   Comma-separated list of command names that
+---may be executed by `\write18` even if `shell_escape` is set to `'p'`. Do {\it
+---not\/} use spaces around commas, separate any required command arguments by
+---using a space, and use the \ASCII\ double quote (`"`) for any needed argument
+---or path quoting
 ---@type boolean
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/texconfig.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 texconfig.kpse_init = true
 
 ---
----Minimum pool space after TeX's own strings; must be at least 25000 less than pool_size, but doesn't need to be nearly that large.
+---Minimum pool space after TeX's own strings; must be at least 25000 less than
+---pool_size, but doesn't need to be nearly that large.
 ---
 ---__Reference:__
 ---
@@ -156,7 +155,8 @@ texconfig.save_size = 4000
 texconfig.stack_size = 300
 
 ---
----These work best if they are the same as the I/O buffer size, but it doesn't matter much.  Must be a multiple of 8.
+---These work best if they are the same as the I/O buffer size, but it doesn't
+---matter much.  Must be a multiple of 8.
 ---
 ---__Reference:__
 ---
@@ -169,11 +169,13 @@ texconfig.dvi_buf_size = 16384
 
 ---
 ---It's probably inadvisable to change these. At any rate, we must have:
----45 < error_line      < 255;
----30 < half_error_line < error_line - 15;
----60 <= max_print_line;
----These apply to TeX, Metafont, and MetaPost.
----"max_print_line" applies to BibTeX family
+---
+---* `45 < error_line < 255`;
+---* `30 < half_error_line < error_line - 15`;
+---* `60 <= max_print_line`;
+---
+---These apply to TeX, Metafont, and MetaPost. "max_print_line" applies to
+---BibTeX family
 ---
 ---__Reference:__
 ---
@@ -186,11 +188,13 @@ texconfig.error_line = 79
 
 ---
 ---It's probably inadvisable to change these. At any rate, we must have:
----45 < error_line      < 255;
----30 < half_error_line < error_line - 15;
----60 <= max_print_line;
----These apply to TeX, Metafont, and MetaPost.
----"max_print_line" applies to BibTeX family
+---
+---* `45 < error_line < 255`;
+---* `30 < half_error_line < error_line - 15`;
+---* `60 <= max_print_line`;
+---
+---These apply to TeX, Metafont, and MetaPost. "max_print_line" applies to
+---BibTeX family
 ---
 ---__Reference:__
 ---
@@ -203,11 +207,13 @@ texconfig.half_error_line = 50
 
 ---
 ---It's probably inadvisable to change these. At any rate, we must have:
----45 < error_line      < 255;
----30 < half_error_line < error_line - 15;
----60 <= max_print_line;
----These apply to TeX, Metafont, and MetaPost.
----"max_print_line" applies to BibTeX family
+---
+---* `45 < error_line < 255`;
+---* `30 < half_error_line < error_line - 15`;
+---* `60 <= max_print_line`;
+---
+---These apply to TeX, Metafont, and MetaPost. "max_print_line" applies to
+---BibTeX family
 ---
 ---__Reference:__
 ---
@@ -226,15 +232,16 @@ texconfig.max_print_line = 79
 texconfig.hash_extra = 0
 
 ---
----For pdftex and luatex: default resolution for bitmaps; commonly set via \pdfpkresolution when needed to be changed.
+---For pdftex and luatex: default resolution for bitmaps; commonly set via
+---\pdfpkresolution when needed to be changed.
 ---@type integer
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/texconfig.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 texconfig.pk_dpi = 72
 
 ---
----`false` disables *TeX*'s normal file open-close feedback (the
----assumption is that callbacks will take care of that)
+---`false` disables *TeX*'s normal file open-close feedback (the assumption is
+---that callbacks will take care of that)
 ---@type boolean
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/texconfig.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
@@ -255,8 +262,8 @@ texconfig.file_line_error = false
 texconfig.halt_on_error = false
 
 ---
----if no format name was given on the command line, this key will be tested first
----instead of simply quitting
+---if no format name was given on the command line, this key will be tested
+---first instead of simply quitting
 ---@type string
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/texconfig.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
@@ -280,10 +287,12 @@ texconfig.jobname = ""
 texconfig.level_chr = 0
 
 ---
----when larger than zero the input nesting level will be shown when `\tracingmacros` is set; levels above this value will be clipped with
----the level shown up front
+---when larger than zero the input nesting level will be shown when
+---`\tracingmacros` is set; levels above this value will be clipped with the
+---level shown up front
 ---
----Note: the numeric values that match web2c parameters are only used if `kpse_init` is explicitly set to `false`. In all other cases, the normal
+---Note: the numeric values that match web2c parameters are only used if
+---`kpse_init` is explicitly set to `false`. In all other cases, the normal
 ---values from `texmf.cnf` are used.
 ---
 ---You can kick in your own nesting level visualizer, for instance:

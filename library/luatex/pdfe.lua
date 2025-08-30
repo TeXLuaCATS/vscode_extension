@@ -17,9 +17,6 @@
 --
 -- -----------------------------------------------------------------------------
 
--- A helper table to better navigate through the documentation using the
--- outline: https://github.com/Josef-Friedrich/LuaTeX_Lua-API#navigation-table-_n
-
 ---
 ---@meta
 
@@ -455,9 +452,11 @@ function pdfe.getarray(dict_or_array, key_or_index) end
 function pdfe.getstream(dict_or_array, key_or_index) end
 
 ---
----Return a value of a pdf stream dictionary, including low level details about this value.
+---Return a value of a pdf stream dictionary, including low level details about
+---this value.
 ---
----Like `pdfe.getfromdictionary()` except that this functions works on a 'dictionary of a stream'.
+---Like `pdfe.getfromdictionary()` except that this functions works on a
+---'dictionary of a stream'.
 ---
 ---| Type | PDF type     | Lua type         | Details             |
 ---| ---- | ------------ | ---------------- | ------------------- |
@@ -532,8 +531,8 @@ function pdfe.closestream(stream) end
 function pdfe.readfromstream(stream) end
 
 ---
----Read stream object as a whole.
----Opening and closing the stream with `pdfe.openstream()` and `pdfe.closestream()` is not necessary.
+---Read stream object as a whole. Opening and closing the stream with
+---`pdfe.openstream()` and `pdfe.closestream()` is not necessary.
 ---
 ---@param stream PdfeStream # Pdfe stream object.
 ---@param decode boolean # `True`, if stream should be decompressed.
@@ -568,7 +567,8 @@ function pdfe.readwholestream(stream, decode) end
 function pdfe.pagestotable(doc) end
 
 ---
----Return a value of a pdf dictionary, including low level details about this value.
+---Return a value of a pdf dictionary, including low level details about this
+---value.
 ---
 ---| Type | PDF type     | Lua type         | Details             |
 ---| ---- | ------------ | ---------------- | ------------------- |
@@ -601,7 +601,8 @@ function pdfe.pagestotable(doc) end
 function pdfe.getfromdictionary(dict, key) end
 
 ---
----Return a value of a pdf dictionary, including low level details about this value.
+---Return a value of a pdf dictionary, including low level details about this
+---value.
 ---
 ---| Type | PDF type     | Lua type         | Details             |
 ---| ---- | ------------ | ---------------- | ------------------- |
@@ -664,7 +665,8 @@ function pdfe.dictionarytotable(dict) end
 function pdfe.arraytotable(array) end
 
 ---
----Return the value of a reference, including low level details about this value.
+---Return the value of a reference, including low level details about this
+---value.
 ---
 ---| Type | PDF type     | Lua type         | Details             |
 ---| ---- | ------------ | ---------------- | ------------------- |

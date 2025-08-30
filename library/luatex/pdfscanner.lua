@@ -17,34 +17,33 @@
 --
 -- -----------------------------------------------------------------------------
 
--- A helper table to better navigate through the documentation using the
--- outline: https://github.com/Josef-Friedrich/LuaTeX_Lua-API#navigation-table-_n
-
 ---
 ---@meta
 
 ---
 ---The `pdfscanner` library allows interpretation of *PDF* content streams and
----`/ToUnicode` (cmap) streams. You can get those streams from the `pdfe` library.
+---`/ToUnicode` (cmap) streams. You can get those streams from the `pdfe`
+---library.
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/pdfscanner.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 pdfscanner = {}
 
 ---
----The first argument should be a *Lua* string or a stream or array object coming
----from the `pdfe` library. The second argument, `operatortable`, should
----be a *Lua* table where the keys are *PDF* operator name strings and the values
----are *Lua* functions (defined by you) that are used to process those operators.
----The functions are called whenever the scanner finds one of these *PDF* operators
----in the content stream(s). The functions are called with two arguments: the `scanner` object itself, and the `info` table that was passed are the third
----argument to `pdfscanner.scan`.
+---The first argument should be a *Lua* string or a stream or array object
+---coming from the `pdfe` library. The second argument, `operatortable`, should
+---be a *Lua* table where the keys are *PDF* operator name strings and the
+---values are *Lua* functions (defined by you) that are used to process those
+---operators. The functions are called whenever the scanner finds one of these
+---*PDF* operators in the content stream(s). The functions are called with two
+---arguments: the `scanner` object itself, and the `info` table that was passed
+---are the third argument to `pdfscanner.scan`.
 ---
 ---Internally, `pdfscanner.scan` loops over the *PDF* operators in the
 ---stream(s), collecting operands on an internal stack until it finds a *PDF*
 ---operator. If that *PDF* operator's name exists in `operatortable`, then the
----associated function is executed. After the function has run (or when there is no
----function to execute) the internal operand stack is cleared in preparation for the
----next operator, and processing continues.
+---associated function is executed. After the function has run (or when there is
+---no function to execute) the internal operand stack is cleared in preparation
+---for the next operator, and processing continues.
 ---
 ---The `scanner` argument to the processing functions is needed because it
 ---offers various methods to get the actual operands from the internal operand

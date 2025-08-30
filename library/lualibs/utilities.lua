@@ -574,7 +574,9 @@ function utilities.parsers.array_to_string(a, separator) end
 function utilities.parsers.csvsplitter(specification) end
 
 ---
----Write `settings_to_hash` to an array with a metatable. A metatable is a sort of parent: when a table is accessed, undefined values will be looked up in the metatable.
+---Write `settings_to_hash` to an array with a metatable. A metatable is a sort
+---of parent: when a table is accessed, undefined values will be looked up in
+---the metatable.
 ---
 ---__Reference:__
 ---
@@ -595,15 +597,7 @@ function utilities.parsers.groupedsplitat(symbol, withaction) end
 ---* ConTeXt wiki: [ConTeXt and Lua programming/Extensions to the Lua IO library/String manipulation](https://wiki.contextgarden.net/ConTeXt_and_Lua_programming/Extensions_to_the_Lua_IO_library/String_manipulation)
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/Lualibs/blob/main/library/utilities.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/Lualibs/pulls)
-function utilities.parsers.hash_to_string(
-  h,
-  separator,
-  yes,
-  no,
-  strict,
-  omit
-)
-end
+function utilities.parsers.hash_to_string(h, separator, yes, no, strict, omit) end
 
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/Lualibs/blob/main/library/utilities.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/Lualibs/pulls)

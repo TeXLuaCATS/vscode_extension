@@ -17,20 +17,17 @@
 --
 -- -----------------------------------------------------------------------------
 
--- A helper table to better navigate through the documentation using the
--- outline: https://github.com/Josef-Friedrich/LuaTeX_Lua-API#navigation-table-_n
-
 ---
 ---@meta
 
 ---
 ---Binary input from strings with `sio` (string input-output)
 ---
----This library provides a set of functions for reading numbers from a string and
----in addition to the regular `io` library functions.
+---This library provides a set of functions for reading numbers from a string
+---and in addition to the regular `io` library functions.
 ---
----There are eight additional little endian variants for the `cardinal[1-4]`
----and `integer[1-4]` readers: `cardinal[1-4]le` and `integer[1-4]le`.
+---There are eight additional little endian variants for the `cardinal[1-4]` and
+---`integer[1-4]` readers: `cardinal[1-4]le` and `integer[1-4]le`.
 ---
 ---__Reference:__
 ---

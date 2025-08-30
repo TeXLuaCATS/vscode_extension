@@ -1,13 +1,32 @@
--- A helper table to better navigate through the documentation using the
--- outline: https://github.com/Josef-Friedrich/LuaTeX_Lua-API#navigation-table-_n
-
----
----Changes to upstream: global luaharfbuzz table
----
----The definitions are developed in this repository: https://github.com/LuaCATS/luaharfbuzz
+-- -----------------------------------------------------------------------------
+-- Copyright (c) 2023-2025 by Josef Friedrich <josef@friedrich.rocks>
+-- -----------------------------------------------------------------------------
+--
+-- MIT License
+--
+-- Permission is hereby granted, free of charge, to any person obtaining a copy
+-- of this software and associated documentation files (the "Software"), to deal
+-- in the Software without restriction, including without limitation the rights
+-- to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+-- copies of the Software, and to permit persons to whom the Software is
+-- furnished to do so, subject to the following conditions:
+--
+-- The above copyright notice and this permission notice shall be included in
+-- all copies or substantial portions of the Software.
+--
+-- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+-- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+-- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+-- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+-- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+-- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+-- SOFTWARE.
+--
+-- -----------------------------------------------------------------------------
 
 ---
 ---@meta
+---The definitions are developed in this repository: https://github.com/LuaCATS/luaharfbuzz
 
 ---
 ---https://github.com/ufyTeX/luaharfbuzz/blob/master/src/harfbuzz.luadoc
@@ -26,7 +45,9 @@ luaharfbuzz = {}
 ----- table of `Feature` objects
 
 ---
----Shapes `buffer` using `font` turning its Unicode characters content to positioned glyphs. If `features` is not `nil`, it will be used to control the features applied during shaping.
+---Shapes `buffer` using `font` turning its Unicode characters content to
+---positioned glyphs. If `features` is not `nil`, it will be used to control the
+---features applied during shaping.
 ---
 ---Wraps `hb_shape_full`.
 ---
@@ -72,7 +93,8 @@ function luaharfbuzz.shapers() end
 function luaharfbuzz.version() end
 
 ---
----Shape `buffer` using `font` turning its Unicode characters content to positioned glyphs.
+---Shape `buffer` using `font` turning its Unicode characters content to
+---positioned glyphs.
 ---
 ---__Reference:__
 ---
@@ -86,7 +108,10 @@ function luaharfbuzz.version() end
 function luaharfbuzz.shape(font, buffer, options) end
 
 ---
----Blobs wrap a chunk of binary data to handle lifecycle management of data while it is passed between client and HarfBuzz. Blobs are primarily used to create font faces, but also to access font face tables, as well as pass around other binary data.
+---Blobs wrap a chunk of binary data to handle lifecycle management of data
+---while it is passed between client and HarfBuzz. Blobs are primarily used to
+---create font faces, but also to access font face tables, as well as pass
+---around other binary data.
 ---
 ---Wraps `hb_blob_t`.
 ---
@@ -166,9 +191,12 @@ function Blob:get_length() end
 function Blob:get_data() end
 
 ---
----A font face is an object that represents a single face from within a font family.
+---A font face is an object that represents a single face from within a font
+---family.
 ---
----More precisely, a font face represents a single face in a binary font file. Font faces are typically built from a binary blob and a face index. Font faces are used to create fonts.
+---More precisely, a font face represents a single face in a binary font file.
+---Font faces are typically built from a binary blob and a face index. Font
+---faces are used to create fonts.
 ---
 ---Wraps `hb_face_t`.
 ---
@@ -183,9 +211,12 @@ local Face = {}
 luaharfbuzz.Face = Face
 
 ---
----Constructs a new face object from the specified blob and a face index into that blob.
+---Constructs a new face object from the specified blob and a face index into
+---that blob.
 ---
----The face index is used for blobs of file formats such as TTC and DFont that can contain more than one face. Face indices within such collections are zero-based.
+---The face index is used for blobs of file formats such as TTC and DFont that
+---can contain more than one face. Face indices within such collections are
+---zero-based.
 ---
 ---Wraps `hb_face_create`.
 ---
@@ -205,8 +236,8 @@ function Face.new_from_blob(blob, font_index) end
 ---
 ---Create a new `Face` from a file.
 ---
----Makes a call to `Face:new_from_blob` after creating a `Blob` from the
----file contents.
+---Makes a call to `Face:new_from_blob` after creating a `Blob` from the file
+---contents.
 ---
 ---Wraps `hb_face_create`.
 ---
@@ -281,7 +312,8 @@ function Face:get_glyph_count() end
 ---
 ---Fetch a font name from the OpenType 'name' table.
 ---
----If language is HB_LANGUAGE_INVALID, English ("en") is assumed. Returns string in UTF-8 encoding.
+---If language is HB_LANGUAGE_INVALID, English ("en") is assumed. Returns string
+---in UTF-8 encoding.
 ---
 ---Wraps `hb_ot_name_get_utf8`.
 ---
@@ -331,7 +363,8 @@ function Face:get_name(name_id, lang) end
 function Face:get_table(tag) end
 
 ---
----Fetch a list of all table tags for a face, if possible. The list returned will begin at the offset provided.
+---Fetch a list of all table tags for a face, if possible. The list returned
+---will begin at the offset provided.
 ---
 ---Wraps `hb_face_get_table_tags`.
 ---
@@ -348,7 +381,8 @@ function Face:get_table_tags() end
 ---
 ---Fetch the units-per-em (UPEM) value of the specified face object.
 ---
----Typical UPEM values for fonts are 1000, or 2048, but any value in between 16 and 16,384 is allowed for OpenType fonts.
+---Typical UPEM values for fonts are 1000, or 2048, but any value in between 16
+---and 16,384 is allowed for OpenType fonts.
 ---
 ---Wraps `hb_face_get_upem`.
 ---
@@ -446,7 +480,8 @@ function Face:ot_color_has_layers() end
 ---@field color_index integer
 
 ---
----Fetches a list of all color layers for the specified glyph index in the specified face. The list returned will begin at the offset provided.
+---Fetches a list of all color layers for the specified glyph index in the
+---specified face. The list returned will begin at the offset provided.
 ---
 ---Wraps `hb_ot_color_glyph_get_layers`.
 ---
@@ -477,7 +512,8 @@ function Face:ot_color_glyph_get_layers(glyph) end
 function Face:ot_color_has_png() end
 
 ---
----Fetch a list of all scripts enumerated in the specified face's GSUB table or GPOS table.
+---Fetch a list of all scripts enumerated in the specified face's GSUB table or
+---GPOS table.
 ---
 ---Wraps `hb_ot_layout_table_get_script_tags`.
 ---
@@ -494,7 +530,8 @@ function Face:ot_color_has_png() end
 function Face:ot_layout_get_script_tags(table_tag) end
 
 ---
----Fetch a list of language tags in the given face's GSUB or GPOS table, underneath the specified script index.
+---Fetch a list of language tags in the given face's GSUB or GPOS table,
+---underneath the specified script index.
 ---
 ---Wraps `hb_ot_layout_script_get_language_tags`.
 ---
@@ -526,15 +563,11 @@ function Face:ot_layout_get_language_tags(table_tag, script_index) end
 ---@return HbTag[] # The array of HbTag feature tags found for the query.
 ---
 ---😱 [Types](https://github.com/LuaCATS/luaharfbuzz/blob/main/library/luaharfbuzz.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/LuaCATS/luaharfbuzz/pulls)
-function Face:ot_layout_get_feature_tags(
-  table_tag,
-  script_index,
-  language_index
-)
-end
+function Face:ot_layout_get_feature_tags(table_tag, script_index, language_index) end
 
 ---
----Fetch the index if a given script tag in the specified face's GSUB table or GPOS table.
+---Fetch the index if a given script tag in the specified face's GSUB table or
+---GPOS table.
 ---
 ---Wraps `hb_ot_layout_table_find_script`.
 ---
@@ -555,7 +588,8 @@ end
 function Face:ot_layout_find_script(table_tag, script_tag) end
 
 ---
----Fetch the index of a given language tag in the specified face's GSUB table or GPOS table, underneath the specified script tag.
+---Fetch the index of a given language tag in the specified face's GSUB table or
+---GPOS table, underneath the specified script tag.
 ---
 ---Wraps `hb_ot_layout_script_find_language`.
 ---
@@ -575,7 +609,8 @@ function Face:ot_layout_find_script(table_tag, script_tag) end
 function Face:ot_layout_find_language(tag, script_index, language_tag) end
 
 ---
----Fetches the index of a given feature tag in the specified face's GSUB table or GPOS table, underneath the specified script and language.
+---Fetches the index of a given feature tag in the specified face's GSUB table
+---or GPOS table, underneath the specified script and language.
 ---
 ---Wraps `hb_ot_layout_language_find_feature`.
 ---
@@ -593,13 +628,7 @@ function Face:ot_layout_find_language(tag, script_index, language_tag) end
 ---@return integer index # The index of the requested feature.
 ---
 ---😱 [Types](https://github.com/LuaCATS/luaharfbuzz/blob/main/library/luaharfbuzz.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/LuaCATS/luaharfbuzz/pulls)
-function Face:ot_layout_find_feature(
-  tag,
-  script_index,
-  language_index,
-  feature
-)
-end
+function Face:ot_layout_find_feature(tag, script_index, language_index, feature) end
 
 ---
 ---Data type for holding fonts.
@@ -617,10 +646,10 @@ local Font = {}
 luaharfbuzz.Font = Font
 
 ---
----Set up some defaults for scale and shaping functions.
----Initializes a new `hb_font_t` from a `Face` object. Sets the default scale
----to the face’s upem value, and sets the font shaping functions by
----calling `hb_ot_font_set_funcs` on it.
+---Set up some defaults for scale and shaping functions. Initializes a new
+---`hb_font_t` from a `Face` object. Sets the default scale to the face’s upem
+---value, and sets the font shaping functions by calling `hb_ot_font_set_funcs`
+---on it.
 ---
 ---Wraps `hb_font_create`.
 ---
@@ -653,7 +682,10 @@ function Font:get_scale() end
 ---
 ---Sets the horizontal and vertical scale of a font.
 ---
----The font scale is a number related to, but not the same as, font size. Typically the client establishes a scale factor to be used between the two. For example, 64, or 256, which would be the fractional-precision part of the font scale.
+---The font scale is a number related to, but not the same as, font size.
+---Typically the client establishes a scale factor to be used between the two.
+---For example, 64, or 256, which would be the fractional-precision part of the
+---font scale.
 ---
 ---Wraps `hb_font_set_scale`.
 ---
@@ -817,7 +849,8 @@ function Font:get_nominal_glyph(codepoint) end
 function Font:ot_color_glyph_get_png() end
 
 ---
----The main structure holding the input text and its properties before shaping, and output glyphs and their information after shaping.
+---The main structure holding the input text and its properties before shaping,
+---and output glyphs and their information after shaping.
 ---
 ---Lua wrapper for `hb_buffer_t` type.
 ---
@@ -866,9 +899,19 @@ function Buffer:add_utf8(text, item_offset, item_length) end
 ---
 ---Appends characters from text array to buffer .
 ---
----The `item_offset` is the position of the first character from text that will be appended, and `item_length` is the number of character. When shaping part of a larger text (e.g. a run of text from a paragraph), instead of passing just the substring corresponding to the run, it is preferable to pass the whole paragraph and specify the run start and length as `item_offset` and `item_length`, respectively, to give HarfBuzz the full context to be able, for example, to do cross-run Arabic shaping or properly handle combining marks at stat of run.
+---The `item_offset` is the position of the first character from text that will
+---be appended, and `item_length` is the number of character. When shaping part
+---of a larger text (e.g. a run of text from a paragraph), instead of passing
+---just the substring corresponding to the run, it is preferable to pass the
+---whole paragraph and specify the run start and length as `item_offset` and
+---`item_length`, respectively, to give HarfBuzz the full context to be able,
+---for example, to do cross-run Arabic shaping or properly handle combining
+---marks at stat of run.
 ---
----This function does not check the validity of `text`, it is up to the caller to ensure it contains a valid Unicode scalar values. In contrast, `Buffer:add_utf8()` can be used that takes similar input but performs sanity-check on the input.
+---This function does not check the validity of `text`, it is up to the caller
+---to ensure it contains a valid Unicode scalar values. In contrast,
+---`Buffer:add_utf8()` can be used that takes similar input but performs
+---sanity-check on the input.
 ---
 ---Wraps `hb_buffer_add_codepoints`.
 ---
@@ -1024,8 +1067,8 @@ function Buffer:set_cluster_level(level) end
 function Buffer:guess_segment_properties() end
 
 ---
----containing data for each glyph, in a nested table. Each nested
----table contains the following:
+---containing data for each glyph, in a nested table. Each nested table contains
+---the following:
 ---
 ---😱 [Types](https://github.com/LuaCATS/luaharfbuzz/blob/main/library/luaharfbuzz.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/LuaCATS/luaharfbuzz/pulls)
 ---@class HbGlyph
@@ -1038,9 +1081,9 @@ function Buffer:guess_segment_properties() end
 ---@field flags number # glyph flags
 
 ---
----Helper method to get shaped glyph data.
----Calls `hb_buffer_get_glyph_infos`, `hb_buffer_get_glyph_positions` and
----`hb_glyph_info_get_glyph_flags`, and assembles the data into a Lua table.
+---Helper method to get shaped glyph data. Calls `hb_buffer_get_glyph_infos`,
+---`hb_buffer_get_glyph_positions` and `hb_glyph_info_get_glyph_flags`, and
+---assembles the data into a Lua table.
 ---
 ---__Reference:__
 ---
@@ -1052,9 +1095,9 @@ function Buffer:guess_segment_properties() end
 function Buffer:get_glyphs() end
 
 ---
----Cluster Levels.
----See [Harfbuzz docs](http://behdad.github.io/harfbuzz/clusters.html) for more details
----about what each of these levels mean.
+---Cluster Levels. See [Harfbuzz
+---docs](http://behdad.github.io/harfbuzz/clusters.html) for more details about
+---what each of these levels mean.
 ---
 ---Wraps `HB_BUFFER_CLUSTER_LEVEL_MONOTONE_GRAPHEMES`.
 ---
@@ -1116,7 +1159,8 @@ Buffer.GLYPH_FLAG_UNSAFE_TO_BREAK = 1
 Buffer.GLYPH_FLAG_DEFINED = 3
 
 ---
----The `Feature` is the structure that holds information about requested feature application.
+---The `Feature` is the structure that holds information about requested feature
+---application.
 ---
 ---Lua wrapper for `hb_feature_t` type.
 ---
@@ -1157,9 +1201,11 @@ function Feature.new(feature_string) end
 function Feature:__tostring() end
 
 ---
----Data type for tag identifiers. Tags are four byte integers, each byte representing a character.
+---Data type for tag identifiers. Tags are four byte integers, each byte
+---representing a character.
 ---
----Tags are used to identify tables, design-variation axes, scripts, languages, font features, and baselines with human-readable names.
+---Tags are used to identify tables, design-variation axes, scripts, languages,
+---font features, and baselines with human-readable names.
 ---
 ---Lua wrapper for `hb_tag_t` type.
 ---
@@ -1176,7 +1222,8 @@ luaharfbuzz.Tag = Tag
 ---
 ---Convert a string into an `Tag` object.
 ---
----Valid tags are four characters. Shorter input strings will be padded with spaces. Longer input strings will be truncated.
+---Valid tags are four characters. Shorter input strings will be padded with
+---spaces. Longer input strings will be truncated.
 ---
 ---Wraps `hb_tag_from_string`.
 ---
@@ -1219,7 +1266,8 @@ function Tag:__to_string() end
 function Tag:__eq() end
 
 ---
----Data type for scripts. Each `Script` 's value is an `Tag` corresponding to the four-letter values defined by ISO 15924.
+---Data type for scripts. Each `Script` 's value is an `Tag` corresponding to
+---the four-letter values defined by ISO 15924.
 ---
 ---Lua wrapper for `hb_script_t` type.
 ---
@@ -1234,8 +1282,8 @@ local Script = {}
 luaharfbuzz.Script = Script
 
 ---
----Convert a string representing an ISO 15924 script tag to a corresponding `Script` object.
----Wraps `hb_script_from_string`.
+---Convert a string representing an ISO 15924 script tag to a corresponding
+---`Script` object. Wraps `hb_script_from_string`.
 ---
 ---__Reference:__
 ---
@@ -1453,7 +1501,8 @@ function Direction:is_horizontal() end
 function Direction:is_vertical() end
 
 ---
----Test whether a text direction moves forward (from left to right, or from top to bottom).
+---Test whether a text direction moves forward (from left to right, or from top
+---to bottom).
 ---
 ---Requires that the direction be valid. Wraps `HB_DIRECTION_IS_FORWARD`.
 ---
@@ -1468,7 +1517,8 @@ function Direction:is_vertical() end
 function Direction:is_forward() end
 
 ---
----Test whether a text direction moves backward (from right to left, or from bottom to top).
+---Test whether a text direction moves backward (from right to left, or from
+---bottom to top).
 ---
 ---Requires that the direction be valid. Wraps `HB_DIRECTION_IS_BACKWARD`.
 ---
@@ -1485,7 +1535,8 @@ function Direction:is_backward() end
 ---
 ---Wraps `HB_DIRECTION_LTR`.
 ---
----Predefined directions that correspond to their original definitions in Harfbuzz.
+---Predefined directions that correspond to their original definitions in
+---Harfbuzz.
 ---
 ---__Reference:__
 ---
@@ -1499,7 +1550,8 @@ luaharfbuzz.Direction.LTR = 4
 ---
 ---Wraps `HB_DIRECTION_RTL`.
 ---
----Predefined directions that correspond to their original definitions in Harfbuzz.
+---Predefined directions that correspond to their original definitions in
+---Harfbuzz.
 ---
 ---__Reference:__
 ---
@@ -1513,7 +1565,8 @@ luaharfbuzz.Direction.RTL = 0
 ---
 ---Wraps `HB_DIRECTION_TTB`.
 ---
----Predefined directions that correspond to their original definitions in Harfbuzz.
+---Predefined directions that correspond to their original definitions in
+---Harfbuzz.
 ---
 ---__Reference:__
 ---
@@ -1527,7 +1580,8 @@ luaharfbuzz.Direction.TTB = 0
 ---
 ---Wraps `HB_DIRECTION_LTR`.
 ---
----Predefined directions that correspond to their original definitions in Harfbuzz.
+---Predefined directions that correspond to their original definitions in
+---Harfbuzz.
 ---
 ---__Reference:__
 ---
@@ -1539,7 +1593,8 @@ luaharfbuzz.Direction.TTB = 0
 luaharfbuzz.Direction.BTT = 0
 
 ---
----Data type for languages. Each lanauge object corresponds to a BCP 47 language tag.
+---Data type for languages. Each lanauge object corresponds to a BCP 47 language
+---tag.
 ---
 ---Lua wrapper for `hb_language_t` type.
 ---
@@ -1553,7 +1608,8 @@ local Language = {}
 luaharfbuzz.Language = Language
 
 ---
----Convert a string representing a BCP 47 language tag to the corresponding language object.
+---Convert a string representing a BCP 47 language tag to the corresponding
+---language object.
 ---
 ---Wraps `hb_language_from_string`.
 ---
@@ -1635,8 +1691,7 @@ luaharfbuzz.unicode = unicode
 function unicode.script(char) end
 
 ---
----Predefined Name IDs.
----Predefined OpenType 'name' table name identifier.
+---Predefined Name IDs. Predefined OpenType 'name' table name identifier.
 ---
 ---😱 [Types](https://github.com/LuaCATS/luaharfbuzz/blob/main/library/luaharfbuzz.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/LuaCATS/luaharfbuzz/pulls)
 ---@class ot
@@ -1736,7 +1791,8 @@ local ot = {}
 luaharfbuzz.ot = ot
 
 ---
----Data type for holding variation data. Registered OpenType variation-axis tags are listed in OpenType Axis Tag Registry.
+---Data type for holding variation data. Registered OpenType variation-axis tags
+---are listed in OpenType Axis Tag Registry.
 ---
 ---Wraps `hb_variation_t`.
 ---

@@ -156,9 +156,11 @@ function lpeg.setutfcasers() end
 function lpeg.splitter() end
 
 ---
----Return a pattern that produces a list of substrings delimited by delimiter (which can be a pattern or a string).
+---Return a pattern that produces a list of substrings delimited by delimiter
+---(which can be a pattern or a string).
 ---
----The optional boolean single determines whether the string should be split only at the first match.
+---The optional boolean single determines whether the string should be split
+---only at the first match.
 ---
 ---__Example:__
 ---
@@ -191,7 +193,8 @@ function lpeg.splitter() end
 function lpeg.splitat(delimiter, single) end
 
 ---
----Return a pattern that matches the substring until the first occurrence of separator
+---Return a pattern that matches the substring until the first occurrence of
+---separator
 ---
 ---__Example:__
 ---
@@ -214,7 +217,8 @@ function lpeg.splitat(delimiter, single) end
 function lpeg.firstofsplit(separator) end
 
 ---
----Match the whole rest after that regardless of any further occurrences of separator.
+---Match the whole rest after that regardless of any further occurrences of
+---separator.
 ---
 ---__Example:__
 ---
@@ -253,7 +257,9 @@ function lpeg.split() end
 function lpeg.checkedsplit() end
 
 ---
----Return a pattern that removes either, if the argument is a string, all occurrences of every character of that string or, if the argument is a pattern, all occurrences of that pattern.
+---Return a pattern that removes either, if the argument is a string, all
+---occurrences of every character of that string or, if the argument is a
+---pattern, all occurrences of that pattern.
 ---
 ---__Example:__
 ---
@@ -279,7 +285,9 @@ function lpeg.checkedsplit() end
 function lpeg.stripper(pattern) end
 
 ---
----Remove anything but the string or pattern respectively. Note: `string.keeper` does not seem to work as expected with patterns consisting of more than one byte, e.g. lpeg.P("camel").
+---Remove anything but the string or pattern respectively. Note: `string.keeper`
+---does not seem to work as expected with patterns consisting of more than one
+---byte, e.g. lpeg.P("camel").
 ---
 ---__Reference:__
 ---
@@ -295,11 +303,15 @@ function lpeg.stripper(pattern) end
 function lpeg.keeper(pattern) end
 
 ---
----Returns a pattern that substitutes any first elements of a given pair by its second element.
+---Returns a pattern that substitutes any first elements of a given pair by its
+---second element.
 ---
----The latter can be a string, a hashtable, or a function (whatever fits with lpeg.Cs).
+---The latter can be a string, a hashtable, or a function (whatever fits with
+---lpeg.Cs).
 ---
----Note: Choose the order of elements in table with care. Due to LPEG's matching the leftmost element of disjunction first it might turn out to be as crucial as in the following example:
+---Note: Choose the order of elements in table with care. Due to LPEG's matching
+---the leftmost element of disjunction first it might turn out to be as crucial
+---as in the following example:
 ---
 ---__Example:__
 ---

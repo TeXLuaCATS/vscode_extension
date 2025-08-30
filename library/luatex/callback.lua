@@ -23,23 +23,21 @@
 --
 -- -----------------------------------------------------------------------------
 
--- A helper table to better navigate through the documentation using the
--- outline: https://github.com/Josef-Friedrich/LuaTeX_Lua-API#navigation-table-_n
-
 ---
 ---@meta
 
 ---
----This library has functions that register, find and list callbacks. Callbacks are
----*Lua* functions that are called in well defined places. There are two kind of
----callbacks: those that mix with existing functionality, and those that (when
----enabled) replace functionality. In mosty cases the second category is expected to
----behave similar to the built in functionality because in a next step specific
----data is expected. For instance, you can replace the hyphenation routine. The
----function gets a list that can be hyphenated (or not). The final list should be
----valid and is (normally) used for constructing a paragraph. Another function can
----replace the ligature builder and/or kerner. Doing something else is possible
----but in the end might not give the user the expected outcome.
+---This library has functions that register, find and list callbacks. Callbacks
+---are *Lua* functions that are called in well defined places. There are two
+---kind of callbacks: those that mix with existing functionality, and those that
+---(when enabled) replace functionality. In mosty cases the second category is
+---expected to behave similar to the built in functionality because in a next
+---step specific data is expected. For instance, you can replace the hyphenation
+---routine. The function gets a list that can be hyphenated (or not). The final
+---list should be valid and is (normally) used for constructing a paragraph.
+---Another function can replace the ligature builder and/or kerner. Doing
+---something else is possible but in the end might not give the user the
+---expected outcome.
 ---
 ---__Reference:__
 ---
@@ -144,22 +142,24 @@ callback = {}
 -- #define CALLBACK_DIR            'D'
 
 ---
----Register a callback. Passing `nil` removes an existing callback. Returns `nil`, `error` on failure.
+---Register a callback. Passing `nil` removes an existing callback. Returns
+---`nil`, `error` on failure.
 ---
 ---The first thing you need to do is registering a callback:
 ---
 ---Here the `callback_name` is a predefined callback name, see below.
 ---
----*LuaTeX* internalizes the callback function in such a way that it does not matter
----if you redefine a function accidentally.
+---*LuaTeX* internalizes the callback function in such a way that it does not
+---matter if you redefine a function accidentally.
 ---
 ---Callback assignments are always global. You can use the special value `nil`
 ---instead of a function for clearing the callback.
 ---
----For some minor speed gain, you can assign the boolean `false` to the
----non-file related callbacks, doing so will prevent *LuaTeX* from executing
----whatever it would execute by default (when no callback function is registered at
----all). Be warned: this may cause all sorts of grief unless you know `exactly` what you are doing!
+---For some minor speed gain, you can assign the boolean `false` to the non-file
+---related callbacks, doing so will prevent *LuaTeX* from executing whatever it
+---would execute by default (when no callback function is registered at all). Be
+---warned: this may cause all sorts of grief unless you know `exactly` what you
+---are doing!
 ---
 ---__Reference:__
 ---
@@ -178,8 +178,8 @@ function callback.register(callback_name, func) end
 ---
 ---Produce a list of all known callback names.
 ---
----The keys in the table are the known callback names, the value is a boolean where
----`true` means that the callback is currently set (active).
+---The keys in the table are the known callback names, the value is a boolean
+---where `true` means that the callback is currently set (active).
 ---
 ---__Reference:__
 ---
@@ -213,24 +213,24 @@ function callback.find(callback_name) end
 ---
 ---__id_number__
 ---
----This number is zero for the log or `input` files. For *TeX*'s `read`
----or `write` the number is incremented by one, so `\read0` becomes 1.
+---This number is zero for the log or `input` files. For *TeX*'s `read` or
+---`write` the number is incremented by one, so `\read0` becomes 1.
 ---
 ---__asked_name__
 ---
----This is the user-supplied filename, as found by `input`, `openin`
----or `openout`.
+---This is the user-supplied filename, as found by `input`, `openin` or
+---`openout`.
 ---
 ---Return value:
 ---
 ---__actual_name__
 ---
----This is the filename used. For the very first file that is read in by *TeX*, you
----have to make sure you return an `actual_name` that has an extension and
+---This is the filename used. For the very first file that is read in by *TeX*,
+---you have to make sure you return an `actual_name` that has an extension and
 ---that is suitable for use as `jobname`. If you don't, you will have to
----manually fix the name of the log file and output file after *LuaTeX* is finished,
----and an eventual format filename will become mangled. That is because these file
----names depend on the jobname.
+---manually fix the name of the log file and output file after *LuaTeX* is
+---finished, and an eventual format filename will become mangled. That is
+---because these file names depend on the jobname.
 ---
 ---You have to return `nil` if the file cannot be found.
 ---
@@ -238,7 +238,8 @@ function callback.find(callback_name) end
 ---@alias FindReadFileCallback fun(id_number: integer, asked_name: string): actual_name: string|nil
 
 ---
----Find a file for writing to the log file (0) or with `write` (higher integers).
+---Find a file for writing to the log file (0) or with `write` (higher
+---integers).
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/callback.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 ---@alias FindWriteFileCallback fun(id_number: integer, asked_name: string): actual_name: string|nil
@@ -262,8 +263,8 @@ function callback.find(callback_name) end
 ---
 ---Find the format file.
 ---
----The `asked_name` is a format file for reading (the format file for writing
----is always opened in the current directory).
+---The `asked_name` is a format file for reading (the format file for writing is
+---always opened in the current directory).
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/callback.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 ---@alias FindFormatFileCallback fun(asked_name: string): actual_name: string|nil
@@ -295,8 +296,7 @@ function callback.find(callback_name) end
 ---Find a PK font bitmap file.
 ---
 ---Like `find_font_file`, but for pk bitmap files. This callback takes two
----arguments: `name` and `dpi`. In your callback you can decide to
----look for:
+---arguments: `name` and `dpi`. In your callback you can decide to look for:
 ---
 ---```
 ---<base res>dpi/<fontname>.<actual res>pk
@@ -329,10 +329,10 @@ function callback.find(callback_name) end
 ---
 ---The `asked_name` is a font file. This callback is called while *LuaTeX* is
 ---building its internal list of needed font files, so the actual timing may
----surprise you. Your return value is later fed back into the matching `read_file` callback.
+---surprise you. Your return value is later fed back into the matching
+---`read_file` callback.
 ---
----Strangely enough, `find_type1_file` is also used for *OpenType* (OTF)
----fonts.
+---Strangely enough, `find_type1_file` is also used for *OpenType* (OTF) fonts.
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/callback.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 ---@alias FindTruetypeFileCallback fun(asked_name: string): actual_name: string|nil
@@ -342,10 +342,10 @@ function callback.find(callback_name) end
 ---
 ---The `asked_name` is a font file. This callback is called while *LuaTeX* is
 ---building its internal list of needed font files, so the actual timing may
----surprise you. Your return value is later fed back into the matching `read_file` callback.
+---surprise you. Your return value is later fed back into the matching
+---`read_file` callback.
 ---
----Strangely enough, `find_type1_file` is also used for *OpenType* (OTF)
----fonts.
+---Strangely enough, `find_type1_file` is also used for *OpenType* (OTF) fonts.
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/callback.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 ---@alias FindType1FileCallback fun(asked_name: string): actual_name: string|nil
@@ -354,34 +354,37 @@ function callback.find(callback_name) end
 ---Find an image file for inclusion.
 ---
 ---The `asked_name` is an image file. Your return value is used to open a file
----from the hard disk, so make sure you return something that is considered the name
----of a valid file by your operating system.
+---from the hard disk, so make sure you return something that is considered the
+---name of a valid file by your operating system.
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/callback.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 ---@alias FindImageFileCallback fun(asked_name: string): actual_name: string|nil
 
 ---
----*LuaTeX* never looks at the rest of the table, so you can use it to store your
----private per-file data. Both the callback functions will receive the table as
----their only argument.
+---*LuaTeX* never looks at the rest of the table, so you can use it to store
+---your private per-file data. Both the callback functions will receive the
+---table as their only argument.
 ---
 ---@class OpenReadFileEnv
 local OpenReadFileEnv = {}
 
 ---
----Read a line from a file opened with the `open_read_file` callback. The argument is the return value from `open_read_file`
+---Read a line from a file opened with the `open_read_file` callback. The
+---argument is the return value from `open_read_file`
 ---
----*LuaTeX* will run this function whenever it needs a new input line from the file.
+---*LuaTeX* will run this function whenever it needs a new input line from the
+---file.
 ---
----Your function should return either a string or `nil`. The value `nil`
----signals that the end of file has occurred, and will make *TeX* call the optional
+---Your function should return either a string or `nil`. The value `nil` signals
+---that the end of file has occurred, and will make *TeX* call the optional
 ---@param env OpenReadFileEnv
 ---
 ---@return string|nil line
 function OpenReadFileEnv.reader(env) end
 
 ---
----Close a file opened with the `open_read_file` callback. The argument is the return value from the `open_read_file`.
+---Close a file opened with the `open_read_file` callback. The argument is the
+---return value from the `open_read_file`.
 ---
 ---*LuaTeX* will run this optional function when it decides to close the file.
 ---
@@ -390,7 +393,8 @@ function OpenReadFileEnv.reader(env) end
 function OpenReadFileEnv.close(env) end
 
 ---
----Open a file for reading. The returned table should define key functions for  `reader` and `close`.
+---Open a file for reading. The returned table should define key functions for
+---`reader` and `close`.
 ---
 ---The filename returned by a previous `find_read_file` or the return value of
 ---`kpse.find_file()` if there was no such callback defined.
@@ -398,9 +402,9 @@ function OpenReadFileEnv.close(env) end
 ---@alias OpenReadFileCallback fun(file_name: string): OpenReadFileEnv
 
 ---
----callback for the loading of binary data files.
----The `name` will normally be a full path name as it is returned by either
----one of the file discovery callbacks or the internal version of `kpse.find_file()`.
+---callback for the loading of binary data files. The `name` will normally be a
+---full path name as it is returned by either one of the file discovery
+---callbacks or the internal version of `kpse.find_file()`.
 ---
 ---__success__
 ---
@@ -415,12 +419,13 @@ function OpenReadFileEnv.close(env) end
 ---
 ---The length of the `data`, in bytes.
 ---
----Return an empty string and zero if the file was found but there was a
----reading problem.
+---Return an empty string and zero if the file was found but there was a reading
+---problem.
 ---@alias ReadFileCallback fun(file_name: string): success: boolean, data: string, data_size: integer
 
 ---
----Read a TFM metrics file. Return `true`,  the data, and the data length for success, `false` otherwise
+---Read a TFM metrics file. Return `true`,  the data, and the data length for
+---success, `false` otherwise
 ---
 ---ofm or tfm files
 ---@alias ReadFontFileCallback ReadFileCallback
@@ -456,8 +461,7 @@ function OpenReadFileEnv.close(env) end
 ---@alias ReadDataFileCallback ReadFileCallback
 
 ---
----Read a TrueType font.
----*TrueType* font files
+---Read a TrueType font. *TrueType* font files
 ---@alias ReadTruetypeFileCallback ReadFileCallback
 
 ---
@@ -478,9 +482,9 @@ function OpenReadFileEnv.close(env) end
 ---This callback allows you to change the contents of the line input buffer just
 ---before *LuaTeX* actually starts looking at it.
 ---
----If you return `nil`, *LuaTeX* will pretend like your callback never
----happened. You can gain a small amount of processing time from that. This callback
----does not replace any internal code.
+---If you return `nil`, *LuaTeX* will pretend like your callback never happened.
+---You can gain a small amount of processing time from that. This callback does
+---not replace any internal code.
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/callback.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 ---@alias ProcessInputBufferCallback fun(buffer: string): string|nil
@@ -488,13 +492,14 @@ function OpenReadFileEnv.close(env) end
 ---
 ---Modify the encoding of the output buffer.
 ---
----This callback allows you to change the contents of the line output buffer just
----before *LuaTeX* actually starts writing it to a file as the result of a `write` command. It is only called for output to an actual file (that is,
+---This callback allows you to change the contents of the line output buffer
+---just before *LuaTeX* actually starts writing it to a file as the result of a
+---`write` command. It is only called for output to an actual file (that is,
 ---excluding the log, the terminal, and so called `write` 18 calls).
 ---
----If you return `nil`, *LuaTeX* will pretend like your callback never
----happened. You can gain a small amount of processing time from that. This callback
----does not replace any internal code.
+---If you return `nil`, *LuaTeX* will pretend like your callback never happened.
+---You can gain a small amount of processing time from that. This callback does
+---not replace any internal code.
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/callback.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 ---@alias ProcessOutputBufferCallback fun(buffer: string): adjusted_buffer: string|nil
@@ -527,8 +532,8 @@ function OpenReadFileEnv.close(env) end
 ---
 ---This callback is called when *LuaTeX* adds contents to list:
 ---
----The string reports the group code. From this you can deduce from
----what list you can give a treat.
+---The string reports the group code. From this you can deduce from what list
+---you can give a treat.
 ---
 ---__Reference:__
 ---
@@ -552,11 +557,12 @@ function OpenReadFileEnv.close(env) end
 ---|'end' # *LuaTeX* is terminating (it's all over)
 
 ---
----Process objects as they are added to the main vertical list. The string argument gives some context.
+---Process objects as they are added to the main vertical list. The string
+---argument gives some context.
 ---
 ---This callback is called whenever *LuaTeX* is ready to move stuff to the main
----vertical list. You can use this callback to do specialized manipulation of the
----page building stage like imposition or column balancing.
+---vertical list. You can use this callback to do specialized manipulation of
+---the page building stage like imposition or column balancing.
 ---
 ---The string `extrainfo` gives some additional information about what *TeX*'s
 ---state is with respect to the “current page”.
@@ -569,10 +575,10 @@ function OpenReadFileEnv.close(env) end
 ---@alias BuildpageFilterCallback fun(extrainfo: ContributeFilterExtrainfo)
 
 ---
----This callback is called when the pagebuilder adds an insert. There is not much
----control over this mechanism but this callback permits some last minute
----manipulations of the spacing before an insert, something that might be handy when
----for instance multiple inserts (types) are appended in a row.
+---This callback is called when the pagebuilder adds an insert. There is not
+---much control over this mechanism but this callback permits some last minute
+---manipulations of the spacing before an insert, something that might be handy
+---when for instance multiple inserts (types) are appended in a row.
 ---
 ---__Reference:__
 ---
@@ -580,9 +586,10 @@ function OpenReadFileEnv.close(env) end
 ---* `i`  the order of the insert
 ---
 ---The return value is a number indicating the skip register to use for the
----prepended spacing. This permits for instance a different top space (when `i` equals one) and intermediate space (when `i` is larger than one). Of
----course you can mess with the insert box but you need to make sure that *LuaTeX*
----is happy afterwards.
+---prepended spacing. This permits for instance a different top space (when `i`
+---equals one) and intermediate space (when `i` is larger than one). Of course
+---you can mess with the insert box but you need to make sure that *LuaTeX* is
+---happy afterwards.
 ---
 ---__Reference:__
 ---
@@ -593,10 +600,10 @@ function OpenReadFileEnv.close(env) end
 
 ---
 ---The string called `groupcode` identifies the nodelist's context within
----*TeX*'s processing. The range of possibilities is given in the table below, but
----not all of those can actually appear in `pre_linebreak_filter`, some are
----for the `hpack_filter` and `vpack_filter` callbacks that will be
----explained in the next two paragraphs.
+---*TeX*'s processing. The range of possibilities is given in the table below,
+---but not all of those can actually appear in `pre_linebreak_filter`, some are
+---for the `hpack_filter` and `vpack_filter` callbacks that will be explained in
+---the next two paragraphs.
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/callback.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 ---@alias PreLinebreakFilterGroupCode
@@ -631,10 +638,11 @@ function OpenReadFileEnv.close(env) end
 ---@alias NodeCallbackReturn true|false|Node
 
 ---
----Alter a node list before linebreaking takes place. The string argument gives some context.
+---Alter a node list before linebreaking takes place. The string argument gives
+---some context.
 ---
----This callback is called just before *LuaTeX* starts converting a list of nodes
----into a stack of `hbox`es, after the addition of `parfillskip`.
+---This callback is called just before *LuaTeX* starts converting a list of
+---nodes into a stack of `hbox`es, after the addition of `parfillskip`.
 ---
 ---```lua
 ------@type PreLinebreakFilter
@@ -654,19 +662,20 @@ function OpenReadFileEnv.close(env) end
 ---@alias PreLinebreakFilterCallback fun(head: Node, groupcode: PreLinebreakFilterGroupCode): NodeCallbackReturn
 
 ---
----Override the linebreaking algorithm. The boolean is `true` if this is a pre-display break.
+---Override the linebreaking algorithm. The boolean is `true` if this is a
+---pre-display break.
 ---
 ---This callback replaces *LuaTeX*'s line breaking algorithm.
 ---
----The returned node is the head of the list that will be added to the main vertical
----list, the boolean argument is true if this paragraph is interrupted by a
----following math display.
+---The returned node is the head of the list that will be added to the main
+---vertical list, the boolean argument is true if this paragraph is interrupted
+---by a following math display.
 ---
 ---If you return something that is not a `<node>`, *LuaTeX* will apply the
----internal linebreak algorithm on the list that starts at `<head>`.
----Otherwise, the `<node>` you return is supposed to be the head of a list of
----nodes that are all allowed in vertical mode, and at least one of those has to
----represent a hbox. Failure to do so will result in a fatal error.
+---internal linebreak algorithm on the list that starts at `<head>`. Otherwise,
+---the `<node>` you return is supposed to be the head of a list of nodes that
+---are all allowed in vertical mode, and at least one of those has to represent
+---a hbox. Failure to do so will result in a fatal error.
 ---
 ---Setting this callback to `false` is possible, but dangerous, because it is
 ---possible you will end up in an unfixable “deadcycles loop”.
@@ -691,8 +700,9 @@ function OpenReadFileEnv.close(env) end
 ---
 ---This callback is called whenever *LuaTeX* adds a box to a vertical list.
 ---
----It is ok to return nothing in which case you also need to flush the box or deal
----with it yourself. The prevdepth is also optional. You can pass `nil` instead of a node.
+---It is ok to return nothing in which case you also need to flush the box or
+---deal with it yourself. The prevdepth is also optional. You can pass `nil`
+---instead of a node.
 ---
 ---__Reference:__
 ---
@@ -702,10 +712,11 @@ function OpenReadFileEnv.close(env) end
 ---@alias AppendToVlistFilterCallback fun(box: Node, locationcode: AppendToVlistFilterLocationcode, prevdepth: integer, mirrored: boolean): list: Node, prevdepth: integer
 
 ---
----Alter a node list afer linebreaking has taken place. The string argument gives some context.
+---Alter a node list afer linebreaking has taken place. The string argument
+---gives some context.
 ---
----This callback is called just after *LuaTeX* has converted a list of nodes into a
----stack of `\hbox`es.
+---This callback is called just after *LuaTeX* has converted a list of nodes
+---into a stack of `\hbox`es.
 ---
 ---This callback does not replace any internal code.
 ---
@@ -717,16 +728,17 @@ function OpenReadFileEnv.close(env) end
 ---@alias PostLinebreakFilterCallback fun(head: Node, groupcode: string): NodeCallbackReturn
 
 ---
----Alter a node list before horizontal packing takes place. The first string gives some context,
----the number is the desired size, the second string is either `exact` or `additional` (modifies the first string),
----the third string is the desired direction
+---Alter a node list before horizontal packing takes place. The first string
+---gives some context, the number is the desired size, the second string is
+---either `exact` or `additional` (modifies the first string), the third string
+---is the desired direction
 ---
----This callback is called when *TeX* is ready to start boxing some horizontal mode
----material. Math items and line boxes are ignored at the moment.
+---This callback is called when *TeX* is ready to start boxing some horizontal
+---mode material. Math items and line boxes are ignored at the moment.
 ---
----The `packtype` is either `additional` or `exactly`. If `additional`, then the `size` is a `\hbox spread ...` argument. If
----`exactly`, then the `size` is a `\hbox to ...`. In both cases,
----the number is in scaled points.
+---The `packtype` is either `additional` or `exactly`. If `additional`, then the
+---`size` is a `\hbox spread ...` argument. If `exactly`, then the `size` is a
+---`\hbox to ...`. In both cases, the number is in scaled points.
 ---
 ---The `direction` is either one of the three-letter direction specifier
 ---strings, or `nil`.
@@ -741,13 +753,14 @@ function OpenReadFileEnv.close(env) end
 ---@alias HpackFilterCallback fun(head: Node, groupcode: string, size: integer, packtype: 'additional'|'exactly', direction?: DirectionSpecifier, attributelist?: Node): NodeCallbackReturn
 
 ---
----Alter a node list before vertical packing takes place. The second number is the desired max depth.
+---Alter a node list before vertical packing takes place. The second number is
+---the desired max depth.
 ---
----This callback is called when *TeX* is ready to start boxing some vertical mode
----material. Math displays are ignored at the moment.
+---This callback is called when *TeX* is ready to start boxing some vertical
+---mode material. Math displays are ignored at the moment.
 ---
----This function is very similar to the `hpack_filter`. Besides the fact
----that it is called at different moments, there is an extra variable that matches
+---This function is very similar to the `hpack_filter`. Besides the fact that it
+---is called at different moments, there is an extra variable that matches
 ---*TeX*'s `maxdepth` setting.
 ---
 ---This callback does not replace any internal code.
@@ -760,14 +773,15 @@ function OpenReadFileEnv.close(env) end
 ---@alias VpackFilterCallback fun(head: Node, groupcode: string, size: integer, packtype: 'additional'|'exactly', maxdepth: integer, direction?: DirectionSpecifier, attributelist?: Node): NodeCallbackReturn
 
 ---
----This callback can be used to intercept the overfull messages that can result from
----packing a horizontal list (as happens in the par builder).
+---This callback can be used to intercept the overfull messages that can result
+---from packing a horizontal list (as happens in the par builder).
 ---
----The incident is one of `overfull`, `underfull`, `loose` or
----`tight`. The detail is either the amount of overflow in case of `overfull`, or the badness otherwise. The head is the list that is constructed
----(when protrusion or expansion is enabled, this is an intermediate list).
----Optionally you can return a node, for instance an overfull rule indicator. That
----node will be appended to the list (just like *TeX*'s own rule would).
+---The incident is one of `overfull`, `underfull`, `loose` or `tight`. The
+---detail is either the amount of overflow in case of `overfull`, or the badness
+---otherwise. The head is the list that is constructed (when protrusion or
+---expansion is enabled, this is an intermediate list). Optionally you can
+---return a node, for instance an overfull rule indicator. That node will be
+---appended to the list (just like *TeX*'s own rule would).
 ---
 ---__Reference:__
 ---
@@ -778,11 +792,12 @@ function OpenReadFileEnv.close(env) end
 ---@alias HpackQualityCallback fun(incident: 'overfull'|'underfull'|'loose'|'tight', detail: integer, head: Node, first: integer, last: integer): Node
 
 ---
----This callback can be used to intercept the overfull messages that can result from
----packing a vertical list (as happens in the page builder).
+---This callback can be used to intercept the overfull messages that can result
+---from packing a vertical list (as happens in the page builder).
 ---
----The incident is one of `overfull`, `underfull`, `loose` or
----`tight`. The detail is either the amount of overflow in case of `overfull`, or the badness otherwise. The head is the list that is constructed.
+---The incident is one of `overfull`, `underfull`, `loose` or `tight`. The
+---detail is either the amount of overflow in case of `overfull`, or the badness
+---otherwise. The head is the list that is constructed.
 ---
 ---__Reference:__
 ---
@@ -795,8 +810,8 @@ function OpenReadFileEnv.close(env) end
 ---
 ---This is an experimental callback. It can be used with rules of subtype 4
 ---(user). The callback gets three arguments: the node, the width and the
----height. The callback can use `pdf.print` to write code to the *PDF*
----file but beware of not messing up the final result. No checking is done.
+---height. The callback can use `pdf.print` to write code to the *PDF* file but
+---beware of not messing up the final result. No checking is done.
 ---
 ---__Reference:__
 ---
@@ -808,7 +823,8 @@ function OpenReadFileEnv.close(env) end
 ---
 ---Alter a node list before boxing to `outputbox` takes place.
 ---
----This callback is called when *TeX* is ready to start boxing the box 255 for `output`.
+---This callback is called when *TeX* is ready to start boxing the box 255 for
+---`output`.
 ---
 ---This callback does not replace any internal code.
 ---
@@ -841,19 +857,21 @@ function OpenReadFileEnv.close(env) end
 ---You don't have to worry about return values because the `head` node that is
 ---passed on to the callback is guaranteed not to be a glyph_node (if need be, a
 ---temporary node will be prepended), and therefore it cannot be affected by the
----mutations that take place. After the callback, the internal value of the “tail of the list” will be recalculated.
+---mutations that take place. After the callback, the internal value of the
+---“tail of the list” will be recalculated.
 ---
 ---The `next` of `head` is guaranteed to be non-nil.
 ---
----The `next` of `tail` is guaranteed to be nil, and therefore the
----second callback argument can often be ignored. It is provided for orthogonality,
----and because it can sometimes be handy when special processing has to take place.
+---The `next` of `tail` is guaranteed to be nil, and therefore the second
+---callback argument can often be ignored. It is provided for orthogonality, and
+---because it can sometimes be handy when special processing has to take place.
 ---
----Setting this callback to `false` will prevent the internal ligature
----creation pass.
+---Setting this callback to `false` will prevent the internal ligature creation
+---pass.
 ---
----You must not ruin the node list. For instance, the head normally is a local par node,
----and the tail a glue. Messing too much can push *LuaTeX* into panic mode.
+---You must not ruin the node list. For instance, the head normally is a local
+---par node, and the tail a glue. Messing too much can push *LuaTeX* into panic
+---mode.
 ---
 ---__Reference:__
 ---
@@ -871,8 +889,9 @@ function OpenReadFileEnv.close(env) end
 ---Setting this callback to `false` will prevent the internal kern insertion
 ---pass.
 ---
----You must not ruin the node list. For instance, the head normally is a local par node,
----and the tail a glue. Messing too much can push *LuaTeX* into panic mode.
+---You must not ruin the node list. For instance, the head normally is a local
+---par node, and the tail a glue. Messing too much can push *LuaTeX* into panic
+---mode.
 ---
 ---__Reference:__
 ---
@@ -898,10 +917,11 @@ function OpenReadFileEnv.close(env) end
 ---
 ---Convert a math node list into a horizontal node list.
 ---
----This callback replaces *LuaTeX*'s math list to node list conversion algorithm.
+---This callback replaces *LuaTeX*'s math list to node list conversion
+---algorithm.
 ---
----The returned node is the head of the list that will be added to the vertical or
----horizontal list, the string argument is either “text” or “display”
+---The returned node is the head of the list that will be added to the vertical
+---or horizontal list, the string argument is either “text” or “display”
 ---depending on the current math mode, the boolean argument is `true` if
 ---penalties have to be inserted in this list, `false` otherwise.
 ---
@@ -918,8 +938,8 @@ function OpenReadFileEnv.close(env) end
 ---
 ---Run actions just before format dumping takes place.
 ---
----This function is called just before dumping to a format file starts. It does not
----replace any code and there are neither arguments nor return values.
+---This function is called just before dumping to a format file starts. It does
+---not replace any code and there are neither arguments nor return values.
 ---
 ---__Reference:__
 ---
@@ -932,8 +952,8 @@ function OpenReadFileEnv.close(env) end
 ---Run actions at the start of the typesetting run.
 ---
 ---This callback replaces the code that prints *LuaTeX*'s banner. Note that for
----successful use, this callback has to be set in the *Lua* initialization script,
----otherwise it will be seen only after the run has already started.
+---successful use, this callback has to be set in the *Lua* initialization
+---script, otherwise it will be seen only after the run has already started.
 ---
 ---__Reference:__
 ---
@@ -946,8 +966,9 @@ function OpenReadFileEnv.close(env) end
 ---
 ---Run actions just before the end of the typesetting run.
 ---
----This callback replaces the code that prints *LuaTeX*'s statistics and “output written to” messages. The engine can still do housekeeping and therefore
----you should not rely on this hook for postprocessing the *PDF* or log file.
+---This callback replaces the code that prints *LuaTeX*'s statistics and “output
+---written to” messages. The engine can still do housekeeping and therefore you
+---should not rely on this hook for postprocessing the *PDF* or log file.
 ---
 ---__Reference:__
 ---
@@ -988,8 +1009,9 @@ function OpenReadFileEnv.close(env) end
 ---Run action at error reporting time.
 ---
 ---This callback is run from inside the *TeX* error function, and the idea is to
----allow you to do some extra reporting on top of what *TeX* already does (none of
----the normal actions are removed). You may find some of the values in the `status` table useful. This callback does not replace any internal code.
+---allow you to do some extra reporting on top of what *TeX* already does (none
+---of the normal actions are removed). You may find some of the values in the
+---`status` table useful. This callback does not replace any internal code.
 ---
 ---__Reference:__
 ---
@@ -1030,8 +1052,8 @@ function OpenReadFileEnv.close(env) end
 ---|5 # a fully embedded font
 
 ---
----This callback replaces the code that prints *LuaTeX*'s when a file is opened like
----`(filename` for regular files.
+---This callback replaces the code that prints *LuaTeX*'s when a file is opened
+---like `(filename` for regular files.
 ---
 ---__Reference:__
 ---
@@ -1041,8 +1063,8 @@ function OpenReadFileEnv.close(env) end
 ---@alias StartFileCallback fun(category: StartFileCallbackCategory, filename: string)
 
 ---
----This callback replaces the code that prints *LuaTeX*'s when a file is closed like
----the `)` for regular files.
+---This callback replaces the code that prints *LuaTeX*'s when a file is closed
+---like the `)` for regular files.
 ---
 ---__Reference:__
 ---
@@ -1052,8 +1074,8 @@ function OpenReadFileEnv.close(env) end
 ---@alias StopFileCallback fun(category: integer)
 
 ---
----This callback replaces the call to an external editor when “E” is pressed
----in reply to an error message. Processing will end immediately after the callback
+---This callback replaces the call to an external editor when “E” is pressed in
+---reply to an error message. Processing will end immediately after the callback
 ---returns control to the main program.
 ---
 ---__Reference:__
@@ -1076,8 +1098,8 @@ function OpenReadFileEnv.close(env) end
 ---@alias FinishSynctexCallback fun()
 
 ---
----This callback is called after the *PDF* and log files are closed. Use it at your own
----risk.
+---This callback is called after the *PDF* and log files are closed. Use it at
+---your own risk.
 ---
 ---__Reference:__
 ---
@@ -1089,11 +1111,11 @@ function OpenReadFileEnv.close(env) end
 ---
 ---Run actions just before the PDF closing takes place.
 ---
----This callback is called when all document pages are already written to the *PDF*
----file and *LuaTeX* is about to finalize the output document structure. Its
----intended use is final update of *PDF* dictionaries such as `/Catalog` or
----`/Info`. The callback does not replace any code. There are neither
----arguments nor return values.
+---This callback is called when all document pages are already written to the
+---*PDF* file and *LuaTeX* is about to finalize the output document structure.
+---Its intended use is final update of *PDF* dictionaries such as `/Catalog` or
+---`/Info`. The callback does not replace any code. There are neither arguments
+---nor return values.
 ---
 ---__Reference:__
 ---
@@ -1108,8 +1130,8 @@ function OpenReadFileEnv.close(env) end
 ---end
 ---```
 ---
----This callback is called after the *PDF* page stream has been assembled and before
----the page object gets finalized.
+---This callback is called after the *PDF* page stream has been assembled and
+---before the page object gets finalized.
 ---
 ---* Corresponding C source code: [pdfgen.c#L1788](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/pdf/pdfgen.c#L1788)
 ---
@@ -1133,9 +1155,9 @@ function OpenReadFileEnv.close(env) end
 ---end)
 ---```
 ---
----This will swap the first two and last two pages. You need to know the number of
----pages which is a side effect of the implementation. When you mess things up
----\unknown\ don't complain.
+---This will swap the first two and last two pages. You need to know the number
+---of pages which is a side effect of the implementation. When you mess things
+---up \unknown\ don't complain.
 ---
 ---__Reference:__
 ---
@@ -1146,10 +1168,10 @@ function OpenReadFileEnv.close(env) end
 
 ---
 ---When a page from a *PDF* file is embedded its page stream as well as related
----objects are copied to the target file. However, it can be that the page stream
----has operators that assume additional resources, for instance marked text. You can
----decide to filter that for which *LuaTeX* provides a callback. Here is a simple
----demonstration of use:
+---objects are copied to the target file. However, it can be that the page
+---stream has operators that assume additional resources, for instance marked
+---text. You can decide to filter that for which *LuaTeX* provides a callback.
+---Here is a simple demonstration of use:
 ---
 ---```lua
 ---pdf.setrecompress(1)
@@ -1160,8 +1182,8 @@ function OpenReadFileEnv.close(env) end
 ---end)
 ---```
 ---
----You need to explicitly enable recompression because otherwise the content stream
----gets just passed on in its original compressed form.
+---You need to explicitly enable recompression because otherwise the content
+---stream gets just passed on in its original compressed form.
 ---
 ---__Reference:__
 ---
@@ -1173,10 +1195,11 @@ function OpenReadFileEnv.close(env) end
 ---
 ---Define a font from within lua code.
 ---
----The arguments are the user-supplied information, with negative numbers indicating `scaled`, positive numbers `at`
+---The arguments are the user-supplied information, with negative numbers
+---indicating `scaled`, positive numbers `at`
 ---
----The string `name` is the filename part of the font specification, as given
----by the user.
+---The string `name` is the filename part of the font specification, as given by
+---the user.
 ---
 ---The number `size` is a bit special:
 ---
@@ -1187,13 +1210,13 @@ function OpenReadFileEnv.close(env) end
 ---The `id` is the internal number assigned to the font.
 ---
 ---The internal structure of the `font` table that is to be returned is
----explained in chapter fonts. That table is saved internally, so you can
----put extra fields in the table for your later *Lua* code to use. In alternative,
+---explained in chapter fonts. That table is saved internally, so you can put
+---extra fields in the table for your later *Lua* code to use. In alternative,
 ---`retval` can be a previously defined fontid. This is useful if a previous
 ---definition can be reused instead of creating a whole new font structure.
 ---
----Setting this callback to `false` is pointless as it will prevent font
----loading completely but will nevertheless generate errors.
+---Setting this callback to `false` is pointless as it will prevent font loading
+---completely but will nevertheless generate errors.
 ---
 ---__Reference:__
 ---
@@ -1217,9 +1240,9 @@ function OpenReadFileEnv.close(env) end
 ---The `glyph_info` callback can be set to report a useful representation of a
 ---glyph.
 ---
----When `nil` is returned the character code is printed, otherwise the
----returned string is used. By default the *UTF-8* representation is shown which is
----not always that useful, especially when there is no real representation. Keep in
+---When `nil` is returned the character code is printed, otherwise the returned
+---string is used. By default the *UTF-8* representation is shown which is not
+---always that useful, especially when there is no real representation. Keep in
 ---mind that setting this callback can change the log in an incompatible way.
 ---
 ---__Reference:__

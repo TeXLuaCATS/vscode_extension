@@ -7,9 +7,8 @@
 luatexbase = {}
 
 ---
----Registers the `function` into the `callback` with a textual
----`description` of the function. Functions are inserted into the callback
----in the order loaded.
+---Registers the `function` into the `callback` with a textual `description` of
+---the function. Functions are inserted into the callback in the order loaded.
 ---
 ---__Reference:__
 ---
@@ -23,9 +22,9 @@ luatexbase = {}
 function luatexbase.add_to_callback(callback, func, description) end
 
 ---
----Removes the callback function with `description` from the `callback`.
----The removed function and its description
----are returned as the results of this function.
+---Removes the callback function with `description` from the `callback`. The
+---removed function and its description are returned as the results of this
+---function.
 ---
 ---__Reference:__
 ---
@@ -41,8 +40,8 @@ function luatexbase.add_to_callback(callback, func, description) end
 function luatexbase.remove_from_callback(callback, description) end
 
 ---
----Check if the `description` matches one of the functions added
----to the list for the `callback`, returning a boolean value.
+---Check if the `description` matches one of the functions added to the list for
+---the `callback`, returning a boolean value.
 ---
 ---__Reference:__
 ---
@@ -57,12 +56,11 @@ function luatexbase.remove_from_callback(callback, description) end
 function luatexbase.in_callback(callback, description) end
 
 ---
----Set the `callback` to `false` as described in the LuaTeX
----manual for the underlying `callback.register` built-in.
+---Set the `callback` to `false` as described in the LuaTeX manual for the
+---underlying `callback.register` built-in.
 ---
----Callbacks
----will only be set to false (and thus be skipped entirely) if there are
----no functions registered using the callback.
+---Callbacks will only be set to false (and thus be skipped entirely) if there
+---are no functions registered using the callback.
 ---
 ---__Reference:__
 ---
@@ -96,8 +94,8 @@ function luatexbase.callback_descriptions(callback) end
 ---@alias CallbackType "list"|"data"|"exclusive"|"simple"|"reverselist"
 
 ---
----Define a user defined callback. The last argument is a default
----function or false.
+---Define a user defined callback. The last argument is a default function or
+---false.
 ---
 ---__Reference:__
 ---
@@ -135,17 +133,18 @@ function luatexbase.call_callback(name, ...) end
 ---|"unrelated" # Any previously declared callback rule between `first` and `second` gets disabled.
 
 ---
----Add an ordering constraint between two callback functions for callback `name`.
+---Add an ordering constraint between two callback functions for callback
+---`name`.
 ---
 ---The kind of constraint added depends on `relation`:
 ---
----Every call to `declare_callback_rule` with a specific callback `name`
----and descriptions `first` and `second` overwrites all previous calls with
----same callback and descriptions.
+---Every call to `declare_callback_rule` with a specific callback `name` and
+---descriptions `first` and `second` overwrites all previous calls with same
+---callback and descriptions.
 ---
----The callback functions do not have to be registered yet when the functions is called.
----Ony the constraints for which both callback descriptions refer to callbacks
----registered at the time the callback is called will have an effect.
+---The callback functions do not have to be registered yet when the functions is
+---called. Ony the constraints for which both callback descriptions refer to
+---callbacks registered at the time the callback is called will have an effect.
 ---
 ---__Reference:__
 ---
@@ -160,11 +159,10 @@ function luatexbase.call_callback(name, ...) end
 function luatexbase.declare_callback_rule(name, first, relation, second) end
 
 ---
----The `info` should be
----a table containing information about the module. The required field
----`name` must contain the name of the module. It is recommended to provide a
----field `date` in the usual LaTeX format `yyyy/mm/dd`. Optional fields
----`version` (a string) and `description` may be used if present. This
+---The `info` should be a table containing information about the module. The
+---required field `name` must contain the name of the module. It is recommended
+---to provide a field `date` in the usual LaTeX format `yyyy/mm/dd`. Optional
+---fields `version` (a string) and `description` may be used if present. This
 ---information will be recorded in the log. Other fields are ignored.
 ---
 ---@class LualatexModule
@@ -189,14 +187,14 @@ function luatexbase.provides_module(module) end
 ---
 ---Raise a info message.
 ---
----These functions are similar to LaTeX's `\PackageError`, `\PackageWarning`
----and `\PackageInfo` in the way they format the output.  No automatic line
----breaking is done, you may still use `\n` as usual for that, and the name of
----the package will be prepended to each output line.
+---These functions are similar to LaTeX's `\PackageError`, `\PackageWarning` and
+---`\PackageInfo` in the way they format the output.  No automatic line breaking
+---is done, you may still use `\n` as usual for that, and the name of the
+---package will be prepended to each output line.
 ---
----Note that `luatexbase.module_error` raises an actual Lua error with `error()`,
----which currently means a call stack will be dumped. While this may not
----look pretty, at least it provides useful information for tracking the
+---Note that `luatexbase.module_error` raises an actual Lua error with
+---`error()`, which currently means a call stack will be dumped. While this may
+---not look pretty, at least it provides useful information for tracking the
 ---error down.
 ---
 ---__Reference:__
@@ -213,14 +211,14 @@ function luatexbase.module_info(module, text) end
 ---
 ---Raise a warning message.
 ---
----These functions are similar to LaTeX's `\PackageError`, `\PackageWarning`
----and `\PackageInfo` in the way they format the output.  No automatic line
----breaking is done, you may still use `\n` as usual for that, and the name of
----the package will be prepended to each output line.
+---These functions are similar to LaTeX's `\PackageError`, `\PackageWarning` and
+---`\PackageInfo` in the way they format the output.  No automatic line breaking
+---is done, you may still use `\n` as usual for that, and the name of the
+---package will be prepended to each output line.
 ---
----Note that `luatexbase.module_error` raises an actual Lua error with `error()`,
----which currently means a call stack will be dumped. While this may not
----look pretty, at least it provides useful information for tracking the
+---Note that `luatexbase.module_error` raises an actual Lua error with
+---`error()`, which currently means a call stack will be dumped. While this may
+---not look pretty, at least it provides useful information for tracking the
 ---error down.
 ---
 ---__Reference:__
@@ -237,14 +235,14 @@ function luatexbase.module_warning(module, text) end
 ---
 ---Raise an error.
 ---
----These functions are similar to LaTeX's `\PackageError`, `\PackageWarning`
----and `\PackageInfo` in the way they format the output.  No automatic line
----breaking is done, you may still use `\n` as usual for that, and the name of
----the package will be prepended to each output line.
+---These functions are similar to LaTeX's `\PackageError`, `\PackageWarning` and
+---`\PackageInfo` in the way they format the output.  No automatic line breaking
+---is done, you may still use `\n` as usual for that, and the name of the
+---package will be prepended to each output line.
 ---
----Note that `luatexbase.module_error` raises an actual Lua error with `error()`,
----which currently means a call stack will be dumped. While this may not
----look pretty, at least it provides useful information for tracking the
+---Note that `luatexbase.module_error` raises an actual Lua error with
+---`error()`, which currently means a call stack will be dumped. While this may
+---not look pretty, at least it provides useful information for tracking the
 ---error down.
 ---
 ---__Reference:__
@@ -259,14 +257,13 @@ function luatexbase.module_warning(module, text) end
 function luatexbase.module_error(module, text) end
 
 ---
----Returns an allocation number for the `attribute`, indexed from 1.
----The attribute will be initialised with the marker value `-"7FFFFFFF`
----(`unset'). The attribute allocation sequence is shared with the TeX
----code but this function does `not` define a token using
----`\attributedef`.
----The attribute name is recorded in the `attributes` table. A
----metatable is provided so that the table syntax can be used
----consistently for attributes declared in \TeX\ or Lua.
+---Returns an allocation number for the `attribute`, indexed from 1. The
+---attribute will be initialised with the marker value `-"7FFFFFFF` (`unset').
+---The attribute allocation sequence is shared with the TeX code but this
+---function does `not` define a token using `\attributedef`. The attribute name
+---is recorded in the `attributes` table. A metatable is provided so that the
+---table syntax can be used consistently for attributes declared in \TeX\ or
+---Lua.
 ---
 ---__Reference:__
 ---
@@ -276,8 +273,8 @@ function luatexbase.module_error(module, text) end
 function luatexbase.new_attribute() end
 
 ---
----Returns an allocation number for a bytecode register, indexed from 1.
----The optional `name` argument is just used for logging.
+---Returns an allocation number for a bytecode register, indexed from 1. The
+---optional `name` argument is just used for logging.
 ---
 ---@param name? string
 ---
@@ -292,11 +289,11 @@ function luatexbase.new_attribute() end
 function luatexbase.new_bytecode(name) end
 
 ---
----Return an allocation number for a Lua chunk name for use with
----`\directlua` and `\latelua`, indexed from 1.
+---Return an allocation number for a Lua chunk name for use with `\directlua`
+---and `\latelua`, indexed from 1.
 ---
----The number is returned and also `name` argument is added to the
----`lua.name` array at that index.
+---The number is returned and also `name` argument is added to the `lua.name`
+---array at that index.
 ---
 ---__Reference:__
 ---
@@ -311,12 +308,10 @@ function luatexbase.new_bytecode(name) end
 function luatexbase.new_chunkname(name) end
 
 ---
----Return an allocation number for a lua function for use
----with `\luafunction`, `\lateluafunction`, and `\luadef`,
----indexed from 1.
+---Return an allocation number for a lua function for use with `\luafunction`,
+---`\lateluafunction`, and `\luadef`, indexed from 1.
 ---
----The optional `name` argument
----is just used for logging.
+---The optional `name` argument is just used for logging.
 ---
 ---__Reference:__
 ---
@@ -346,14 +341,13 @@ function luatexbase.new_luafunction(name) end
 function luatexbase.new_whatsit(name) end
 
 ---
----Sometimes (notably in the case of Lua attributes) it is necessary to
----access a register `by number` that has been allocated by TeX.
----This package provides a function to look up the relevant number
----using LuaTeX's internal tables. After for example
----`\newattribute\myattrib`, `\myattrib` would be defined by (say)
----`\myattrib=\attribute15`.  `luatexbase.registernumer("myattrib")`
----would then return the register number, $15$ in this case. If the string passed
----as argument does not correspond to a token defined by `\attributedef`,
+---Sometimes (notably in the case of Lua attributes) it is necessary to access a
+---register `by number` that has been allocated by TeX. This package provides a
+---function to look up the relevant number using LuaTeX's internal tables. After
+---for example `\newattribute\myattrib`, `\myattrib` would be defined by (say)
+---`\myattrib=\attribute15`.  `luatexbase.registernumer("myattrib")` would then
+---return the register number, $15$ in this case. If the string passed as
+---argument does not correspond to a token defined by `\attributedef`,
 ---`\countdef` or similar commands, the Lua value `false` is returned.
 ---
 ---__Reference:__

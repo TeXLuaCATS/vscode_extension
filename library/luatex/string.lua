@@ -17,9 +17,6 @@
 --
 -- -----------------------------------------------------------------------------
 
--- A helper table to better navigate through the documentation using the
--- outline: https://github.com/Josef-Friedrich/LuaTeX_Lua-API#navigation-table-_n
-
 ---
 ---@meta
 
@@ -32,15 +29,14 @@ string = {}
 ---
 ---Break a string into pieces.
 ---
----This functions splits a stringa into sub-strings based
----on the value of the string argument `separator`.
----The second argument is a string that is either empty (this splits the string into
----characters), a single character (this splits on each occurrence of that
----character, possibly introducing empty strings), or a single character followed by
----the plus sign `+` (this special version does not create empty sub-strings).
----The default value for `separator` is ` +` (multiple spaces). Note:
----`separator` is not hidden by surrounding braces as it would be if this function was
----written in *TeX* macros.
+---This functions splits a stringa into sub-strings based on the value of the
+---string argument `separator`. The second argument is a string that is either
+---empty (this splits the string into characters), a single character (this
+---splits on each occurrence of that character, possibly introducing empty
+---strings), or a single character followed by the plus sign `+` (this special
+---version does not create empty sub-strings). The default value for `separator`
+---is ` +` (multiple spaces). Note: `separator` is not hidden by surrounding
+---braces as it would be if this function was written in *TeX* macros.
 ---
 ---__Example:__
 ---
@@ -112,8 +108,8 @@ function string.explode(text, separator) end
 function string.utfvalue(text) end
 
 ---
----Provide an iterator function that iterates over each character of the
----string by returning an integer value in the Unicode range.
+---Provide an iterator function that iterates over each character of the string
+---by returning an integer value in the Unicode range.
 ---
 ---__Example:__
 ---
@@ -125,6 +121,7 @@ function string.utfvalue(text) end
 ----- 98
 ----- 99
 ---```
+---
 ---__Reference:__
 ---
 ---* Corresponding C source code: [lstrlibext.c#L183-L189](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/lstrlibext.c#L183-L189)
@@ -161,8 +158,8 @@ function string.utfvalues(text) end
 function string.utfcharacter(code_point, ...) end
 
 ---
----Provide an iterator function that iterates over each character of the
----string by returning a string with a single UTF-8 token in it.
+---Provide an iterator function that iterates over each character of the string
+---by returning a string with a single UTF-8 token in it.
 ---
 ---__Example:__
 ---
@@ -210,8 +207,8 @@ function string.utfcharacters(text) end
 function string.utflength(text) end
 
 ---
----Provide an iterator function that iterates over each character of the
----string by returning a string containing __one byte__.
+---Provide an iterator function that iterates over each character of the string
+---by returning a string containing __one byte__.
 ---
 ---__Example:__
 ---
@@ -249,11 +246,11 @@ function string.utflength(text) end
 function string.characters(text) end
 
 ---
----Provide an iterator function that iterates over each character of the
----string by returning two strings.
+---Provide an iterator function that iterates over each character of the string
+---by returning two strings.
 ---
----Each of these returned strings contains __one byte__ or an __empty__
----second string if the input string length was odd.
+---Each of these returned strings contains __one byte__ or an __empty__ second
+---string if the input string length was odd.
 ---
 ---__Example:__
 ---
@@ -290,8 +287,8 @@ function string.characters(text) end
 function string.characterpairs(text) end
 
 ---
----Provide an iterator function that iterates over each character of the
----string by returning a single byte value.
+---Provide an iterator function that iterates over each character of the string
+---by returning a single byte value.
 ---
 ---__Example:__
 ---
@@ -329,8 +326,8 @@ function string.characterpairs(text) end
 function string.bytes(text) end
 
 ---
----Provide an iterator function that iterates over each character of the
----string by returning two byte values or `nil`.
+---Provide an iterator function that iterates over each character of the string
+---by returning two byte values or `nil`.
 ---
 ---If the input string has an odd length, `nil` is returned.
 ---

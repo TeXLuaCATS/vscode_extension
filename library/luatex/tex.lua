@@ -17,9 +17,6 @@
 --
 -- -----------------------------------------------------------------------------
 
--- A helper table to better navigate through the documentation using the
--- outline: https://github.com/Josef-Friedrich/LuaTeX_Lua-API#navigation-table-_n
-
 ---
 ---@meta
 
@@ -191,8 +188,8 @@ tex = {}
 ---| 'textdir' # The direction for text and hboxes. Default: `TLT`.
 
 ---
----The glue parameters accept and return a userdata object that
----represents a `glue_spec` node.
+---The glue parameters accept and return a userdata object that represents a
+---`glue_spec` node.
 ---
 ---__Reference:__
 ---
@@ -215,7 +212,8 @@ tex = {}
 ---| 'xspaceskip' # Interword glue if non-zero and `\spacefactor` ≥ 2000.
 
 ---
----All muglue (math units) parameters are to be used read-only and return a Lua string.
+---All muglue (math units) parameters are to be used read-only and return a Lua
+---string.
 ---
 ---__Reference:__
 ---
@@ -227,10 +225,10 @@ tex = {}
 
 ---
 ---The tokenlist parameters accept and return Lua strings. Lua strings are
----converted to and from token lists using `\the\toks` style expansion:
----all category codes are either space (10) or other (12). It follows that assigning
----to some of these, like `tex.output`, is actually useless, but it feels bad
----to make exceptions in view of a coming extension that will accept full-blown
+---converted to and from token lists using `\the\toks` style expansion: all
+---category codes are either space (10) or other (12). It follows that assigning
+---to some of these, like `tex.output`, is actually useless, but it feels bad to
+---make exceptions in view of a coming extension that will accept full-blown
 ---token strings.
 ---
 ---__Reference:__
@@ -274,7 +272,8 @@ function tex.set(global, parameter, ...) end
 ---
 ---Set the given TeX parameter.
 ---
----When you set a glue quantity you can either pass a `glue_spec` or upto five numbers.
+---When you set a glue quantity you can either pass a `glue_spec` or upto five
+---numbers.
 ---
 ---__Reference:__
 ---
@@ -299,16 +298,7 @@ function tex.set(parameter, ...) end
 ---@param stretch_order? integer # Factor applied to stretch amount.
 ---@param shrink? integer # An extra (negative) displacement or shrink amount.
 ---@param shrink_order? integer # Factor applied to shrink amount.
-function tex.set(
-  global,
-  parameter,
-  width,
-  stretch,
-  stretch_order,
-  shrink,
-  shrink_order
-)
-end
+function tex.set(global, parameter, width, stretch, stretch_order, shrink, shrink_order) end
 
 ---
 ---Set the given glue parameter by specifying the `width`, `stretch`,
@@ -324,15 +314,7 @@ end
 ---@param stretch_order? integer # Factor applied to stretch amount.
 ---@param shrink? integer # An extra (negative) displacement or shrink amount.
 ---@param shrink_order? integer # Factor applied to shrink amount.
-function tex.set(
-  parameter,
-  width,
-  stretch,
-  stretch_order,
-  shrink,
-  shrink_order
-)
-end
+function tex.set(parameter, width, stretch, stretch_order, shrink, shrink_order) end
 
 ---
 ---Set the given glue parameter globally using a `glue_spec` node.
@@ -376,16 +358,14 @@ function tex.get(parameter, opts) end
 ---
 ---The exact return values differ depending on the actual parameter.
 ---
----Glue is kind of special:
----The return value
----is a `glue_spec` node but when you pass `false` as last argument to
----`tex.get` you get the width of the glue and when you pass `true` you
----get all five values. Otherwise you get a node which is a copy of the internal
----value so you are responsible for its freeing at the *Lua* end.
+---Glue is kind of special: The return value is a `glue_spec` node but when you
+---pass `false` as last argument to `tex.get` you get the width of the glue and
+---when you pass `true` you get all five values. Otherwise you get a node which
+---is a copy of the internal value so you are responsible for its freeing at the
+---*Lua* end.
 ---
----If
----you pass `true` to `get` you get 5 values returned for a glue and
----when you pass `false` you only get the width returned.
+---If you pass `true` to `get` you get 5 values returned for a glue and when you
+---pass `false` you only get the width returned.
 ---
 ---__Reference:__
 ---
@@ -402,16 +382,14 @@ function tex.get(parameter) end
 ---
 ---The exact return values differ depending on the actual parameter.
 ---
----Glue is kind of special:
----The return value
----is a `glue_spec` node but when you pass `false` as last argument to
----`tex.get` you get the width of the glue and when you pass `true` you
----get all five values. Otherwise you get a node which is a copy of the internal
----value so you are responsible for its freeing at the *Lua* end.
+---Glue is kind of special: The return value is a `glue_spec` node but when you
+---pass `false` as last argument to `tex.get` you get the width of the glue and
+---when you pass `true` you get all five values. Otherwise you get a node which
+---is a copy of the internal value so you are responsible for its freeing at the
+---*Lua* end.
 ---
----If
----you pass `true` to `get` you get 5 values returned for a glue and
----when you pass `false` you only get the width returned.
+---If you pass `true` to `get` you get 5 values returned for a glue and when you
+---pass `false` you only get the width returned.
 ---
 ---__Reference:__
 ---
@@ -431,16 +409,14 @@ function tex.get(parameter, all) end
 ---
 ---The exact return values differ depending on the actual parameter.
 ---
----Glue is kind of special:
----The return value
----is a `glue_spec` node but when you pass `false` as last argument to
----`tex.get` you get the width of the glue and when you pass `true` you
----get all five values. Otherwise you get a node which is a copy of the internal
----value so you are responsible for its freeing at the *Lua* end.
+---Glue is kind of special: The return value is a `glue_spec` node but when you
+---pass `false` as last argument to `tex.get` you get the width of the glue and
+---when you pass `true` you get all five values. Otherwise you get a node which
+---is a copy of the internal value so you are responsible for its freeing at the
+---*Lua* end.
 ---
----If
----you pass `true` to `get` you get 5 values returned for a glue and
----when you pass `false` you only get the width returned.
+---If you pass `true` to `get` you get 5 values returned for a glue and when you
+---pass `false` you only get the width returned.
 ---
 ---__Reference:__
 ---
@@ -452,8 +428,8 @@ function tex.get(parameter, all) end
 function tex.get(parameter, all) end
 
 ---
----`\adjdemerits`: Penalty for adjacent visually incompatible lines.
----Default: `10000`.
+---`\adjdemerits`: Penalty for adjacent visually incompatible lines. Default:
+---`10000`.
 ---
 ---__Reference:__
 ---
@@ -465,8 +441,8 @@ function tex.get(parameter, all) end
 tex.adjdemerits = 0
 
 ---
----`\binoppenalty`: Penalty for breaking after a binary operator not
----enclosed in a subformula. Default: `700`
+---`\binoppenalty`: Penalty for breaking after a binary operator not enclosed in
+---a subformula. Default: `700`
 ---
 ---__Reference:__
 ---
@@ -478,8 +454,8 @@ tex.adjdemerits = 0
 tex.binoppenalty = 0
 
 ---
----`\brokenpenalty`: Additional penalty for breaking a page after a
----hyphenated line. Default: `100`.
+---`\brokenpenalty`: Additional penalty for breaking a page after a hyphenated
+---line. Default: `100`.
 ---
 ---__Reference:__
 ---
@@ -491,8 +467,8 @@ tex.binoppenalty = 0
 tex.brokenpenalty = 0
 
 ---
----Catcode tables are a new feature that allows you to switch to a
----predefined catcode regime in a single statement.
+---Catcode tables are a new feature that allows you to switch to a predefined
+---catcode regime in a single statement.
 ---
 ---@type integer # A readable and writable integer parameter that accepts and returns Lua numbers.
 ---
@@ -500,12 +476,11 @@ tex.brokenpenalty = 0
 tex.catcodetable = 0
 
 ---
----`\clubpenalty`: Extra penalty for breaking a page after the first
----line of a paragraph. In Plain TeX this is `150`. This amount, and the
----following penalties, are added to the `\interlinepenalty`, and a
----penalty of the resulting size is inserted after the `\hbox`
----containing the first line of a paragraph instead of the
----`\interlinepenalty`.
+---`\clubpenalty`: Extra penalty for breaking a page after the first line of a
+---paragraph. In Plain TeX this is `150`. This amount, and the following
+---penalties, are added to the `\interlinepenalty`, and a penalty of the
+---resulting size is inserted after the `\hbox` containing the first line of a
+---paragraph instead of the `\interlinepenalty`.
 ---
 ---__Reference:__
 ---
@@ -529,8 +504,8 @@ tex.clubpenalty = 0
 tex.day = 0
 
 ---
----`\defaulthyphenchar`: Value of `\hyphenchar` when a font is loaded.
----Default: `‘\-`.
+---`\defaulthyphenchar`: Value of `\hyphenchar` when a font is loaded. Default:
+---`‘\-`.
 ---
 ---__Reference:__
 ---
@@ -554,8 +529,8 @@ tex.defaulthyphenchar = 0
 tex.defaultskewchar = 0
 
 ---
----`\delimiterfactor`: `1000` times the fraction of a delimited formula
----that should be covered by a delimiter. Default: `901`.
+---`\delimiterfactor`: `1000` times the fraction of a delimited formula that
+---should be covered by a delimiter. Default: `901`.
 ---
 ---__Reference:__
 ---
@@ -567,9 +542,8 @@ tex.defaultskewchar = 0
 tex.delimiterfactor = 0
 
 ---
----`\displaywidowpenalty`: Extra penalty for breaking a page before the
----last line above a display formula. The default value in Plain TeX
----is `50`.
+---`\displaywidowpenalty`: Extra penalty for breaking a page before the last
+---line above a display formula. The default value in Plain TeX is `50`.
 ---
 ---__Reference:__
 ---
@@ -581,8 +555,8 @@ tex.delimiterfactor = 0
 tex.displaywidowpenalty = 0
 
 ---
----`\doublehyphendemerits`: Penalty for consecutive lines ending with a
----hyphen. Default: `10000`.
+---`\doublehyphendemerits`: Penalty for consecutive lines ending with a hyphen.
+---Default: `10000`.
 ---
 ---__Reference:__
 ---
@@ -594,8 +568,8 @@ tex.displaywidowpenalty = 0
 tex.doublehyphendemerits = 0
 
 ---
----`\endlinechar`: The character code of the end-of-line character
----appended to input lines. IniTEX default: `13`.
+---`\endlinechar`: The character code of the end-of-line character appended to
+---input lines. IniTEX default: `13`.
 ---
 ---@type integer # A readable and writable integer parameter that accepts and returns Lua numbers.
 ---
@@ -603,8 +577,8 @@ tex.doublehyphendemerits = 0
 tex.endlinechar = 0
 
 ---
----`\errorcontextlines`: (TeX3 only) Number of additional context lines
----shown in error messages.
+---`\errorcontextlines`: (TeX3 only) Number of additional context lines shown in
+---error messages.
 ---
 ---__Reference:__
 ---
@@ -616,9 +590,9 @@ tex.endlinechar = 0
 tex.errorcontextlines = 0
 
 ---
----`\escapechar`: Number of the character that is to be used for the
----escape character when control sequences are being converted into
----character tokens. IniTEX default: `92` (`\`).
+---`\escapechar`: Number of the character that is to be used for the escape
+---character when control sequences are being converted into character tokens.
+---IniTEX default: `92` (`\`).
 ---
 ---__Reference:__
 ---
@@ -630,9 +604,8 @@ tex.errorcontextlines = 0
 tex.escapechar = 0
 
 ---
----`\exhyphenpenalty`: Penalty for breaking a horizontal line at a
----discretionary item in the special case where the prebreak text is
----empty. Default: `50`.
+---`\exhyphenpenalty`: Penalty for breaking a horizontal line at a discretionary
+---item in the special case where the prebreak text is empty. Default: `50`.
 ---
 ---__Reference:__
 ---
@@ -681,17 +654,16 @@ tex.finalhyphendemerits = 0
 tex.floatingpenalty = 0
 
 ---
----`\globaldefs`: Parameter for overriding \global prefixes.
----IniTEX default: `0`.
+---`\globaldefs`: Parameter for overriding \global prefixes. IniTEX default:
+---`0`.
 ---
----`\globaldefs` is a TeX internal parameter. Normally set to `0`. If
----set equal to a positive number, all following definitions and
----assignments are treated as if preceded by `\global`. If set equal to
----a negative number, none of the following definitions or assignments
----are global, meaning that an explicit `\global` is ignored. This
----remains in effect until `\globaldefs` is explicitly set to `0`
----again, or the group containing the `\globaldefs` reassignment ends
----(assuming it was not made global as well).
+---`\globaldefs` is a TeX internal parameter. Normally set to `0`. If set equal
+---to a positive number, all following definitions and assignments are treated
+---as if preceded by `\global`. If set equal to a negative number, none of the
+---following definitions or assignments are global, meaning that an explicit
+---`\global` is ignored. This remains in effect until `\globaldefs` is
+---explicitly set to `0` again, or the group containing the `\globaldefs`
+---reassignment ends (assuming it was not made global as well).
 ---
 ---__Reference:__
 ---
@@ -704,10 +676,9 @@ tex.floatingpenalty = 0
 tex.globaldefs = 0
 
 ---
----`\hangafter`: If positive, this denotes the number of lines before
----indenting starts; if negative, the absolute value of this is the
----number of indented lines starting with the first line of the
----paragraph. Default: `1`.
+---`\hangafter`: If positive, this denotes the number of lines before indenting
+---starts; if negative, the absolute value of this is the number of indented
+---lines starting with the first line of the paragraph. Default: `1`.
 ---
 ---__Reference:__
 ---
@@ -719,8 +690,8 @@ tex.globaldefs = 0
 tex.hangafter = 0
 
 ---
----`\hbadness`: Amount of tolerance before TEX reports an underfull or
----overfull horizontal box.
+---`\hbadness`: Amount of tolerance before TEX reports an underfull or overfull
+---horizontal box.
 ---
 ---__Reference:__
 ---
@@ -732,8 +703,8 @@ tex.hangafter = 0
 tex.hbadness = 0
 
 ---
----`\holdinginserts` (TeX3 only) If this is positive, insertions are
----not placed in their boxes at output time.
+---`\holdinginserts` (TeX3 only) If this is positive, insertions are not placed
+---in their boxes at output time.
 ---
 ---__Reference:__
 ---
@@ -745,8 +716,8 @@ tex.hbadness = 0
 tex.holdinginserts = 0
 
 ---
----`\hyphenpenalty`: Penalty associated with break at a discretionary
----item in the general case. Default: `50`.
+---`\hyphenpenalty`: Penalty associated with break at a discretionary item in
+---the general case. Default: `50`.
 ---
 ---__Reference:__
 ---
@@ -802,8 +773,7 @@ tex.lastlinefit = 0
 tex.lefthyphenmin = 0
 
 ---
----`\linepenalty`: Penalty value associated with each line break.
----Default: `10`.
+---`\linepenalty`: Penalty value associated with each line break. Default: `10`.
 ---
 ---__Reference:__
 ---
@@ -817,7 +787,8 @@ tex.linepenalty = 0
 ---
 ---Local broken penalty (from `\localbrokenpenalty`)
 ---
-------@type integer # A readable and writable integer parameter that accepts and returns Lua numbers.
+------@type integer # A readable and writable integer parameter that accepts and
+---returns Lua numbers.
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 tex.localbrokenpenalty = 0
@@ -831,8 +802,8 @@ tex.localbrokenpenalty = 0
 tex.localinterlinepenalty = 0
 
 ---
----`\looseness`: Number of lines by which this paragraph has to be made
----longer than it would be ideally.
+---`\looseness`: Number of lines by which this paragraph has to be made longer
+---than it would be ideally.
 ---
 ---__Reference:__
 ---
@@ -856,9 +827,8 @@ tex.looseness = 0
 tex.mag = 0
 
 ---
----`\maxdeadcycles`: The maximum number of times that the output
----routine is allowed to be called without a `\shipout` occurring.
----IniTEX default: `25`.
+---`\maxdeadcycles`: The maximum number of times that the output routine is
+---allowed to be called without a `\shipout` occurring. IniTEX default: `25`.
 ---
 ---__Reference:__
 ---
@@ -882,8 +852,8 @@ tex.maxdeadcycles = 0
 tex.month = 0
 
 ---
----`\newlinechar`: Number of the character that triggers a new line
----in `\write` statements.
+---`\newlinechar`: Number of the character that triggers a new line in `\write`
+---statements.
 ---
 ---__Reference:__
 ---
@@ -895,8 +865,8 @@ tex.month = 0
 tex.newlinechar = 0
 
 ---
----`\outputpenalty`: Value of the penalty at the current page break,
----or `10000` if the break was not at a penalty.
+---`\outputpenalty`: Value of the penalty at the current page break, or `10000`
+---if the break was not at a penalty.
 ---
 ---__Reference:__
 ---
@@ -908,8 +878,8 @@ tex.newlinechar = 0
 tex.outputpenalty = 0
 
 ---
----`\pausing`: Specify that TEX should pause after each line that is
----read from a file.
+---`\pausing`: Specify that TEX should pause after each line that is read from a
+---file.
 ---
 ---__Reference:__
 ---
@@ -921,8 +891,8 @@ tex.outputpenalty = 0
 tex.pausing = 0
 
 ---
----`\postdisplaypenalty`: Penalty placed in the vertical list below a
----display. Default: `0`
+---`\postdisplaypenalty`: Penalty placed in the vertical list below a display.
+---Default: `0`
 ---
 ---__Reference:__
 ---
@@ -934,10 +904,10 @@ tex.pausing = 0
 tex.postdisplaypenalty = 0
 
 ---
----`\predisplaydirection`: An internal read/write integer, to indicate
----the direction of the last partial paragraph before a display; it is
----used to control the placement of elements such as equation numbers,
----and can be explictly set to affect this placement.
+---`\predisplaydirection`: An internal read/write integer, to indicate the
+---direction of the last partial paragraph before a display; it is used to
+---control the placement of elements such as equation numbers, and can be
+---explictly set to affect this placement.
 ---
 ---__Reference:__
 ---
@@ -950,8 +920,8 @@ tex.postdisplaypenalty = 0
 tex.predisplaydirection = 0
 
 ---
----`\predisplaypenalty`: Penalty placed in the vertical list above a
----display. Default: `10000`.
+---`\predisplaypenalty`: Penalty placed in the vertical list above a display.
+---Default: `10000`.
 ---
 ---__Reference:__
 ---
@@ -963,8 +933,8 @@ tex.predisplaydirection = 0
 tex.predisplaypenalty = 0
 
 ---
----`\pretolerance`: Tolerance value for a paragraph without
----hyphenation. Default: `100`.
+---`\pretolerance`: Tolerance value for a paragraph without hyphenation.
+---Default: `100`.
 ---
 ---__Reference:__
 ---
@@ -976,8 +946,8 @@ tex.predisplaypenalty = 0
 tex.pretolerance = 0
 
 ---
----`\relpenalty`: Penalty for breaking after a binary relation not
----enclosed in a subformula. Default: `500`
+---`\relpenalty`: Penalty for breaking after a binary relation not enclosed in a
+---subformula. Default: `500`
 ---
 ---__Reference:__
 ---
@@ -1002,9 +972,9 @@ tex.relpenalty = 0
 tex.righthyphenmin = 0
 
 ---
----When a `\patterns` command is executed and \savinghyphcodes has a
----positive value, the current `\lccode` values are saved as
----hyphenation codes for the current language.
+---When a `\patterns` command is executed and \savinghyphcodes has a positive
+---value, the current `\lccode` values are saved as hyphenation codes for the
+---current language.
 ---
 ---__Reference:__
 ---
@@ -1016,11 +986,10 @@ tex.righthyphenmin = 0
 tex.savinghyphcodes = 0
 
 ---
----When ε-TEX’s parameter `\savingvdiscards` has been assigned a
----positive value, these ‘discarded items’ are saved in two lists and
----can be recovered by the commands `\pagediscards` and `\splitdiscards`
----that act like ‘unvboxing’ hypothetical box registers containing a
----vbox with the discarded items.
+---When ε-TEX’s parameter `\savingvdiscards` has been assigned a positive value,
+---these ‘discarded items’ are saved in two lists and can be recovered by the
+---commands `\pagediscards` and `\splitdiscards` that act like ‘unvboxing’
+---hypothetical box registers containing a vbox with the discarded items.
 ---
 ---__Reference:__
 ---
@@ -1032,8 +1001,8 @@ tex.savinghyphcodes = 0
 tex.savingvdiscards = 0
 
 ---
----`\showboxbreadth`: Number of successive elements on each level that
----are shown when boxes are displayed.
+---`\showboxbreadth`: Number of successive elements on each level that are shown
+---when boxes are displayed.
 ---
 ---__Reference:__
 ---
@@ -1045,8 +1014,8 @@ tex.savingvdiscards = 0
 tex.showboxbreadth = 0
 
 ---
----`\showboxdepth`: The number of levels of box dump that are shown when
----boxes are displayed.
+---`\showboxdepth`: The number of levels of box dump that are shown when boxes
+---are displayed.
 ---
 ---__Reference:__
 ---
@@ -1058,8 +1027,7 @@ tex.showboxbreadth = 0
 tex.showboxdepth = 0
 
 ---
----`\time`: Number of minutes after midnight that the current job
----started.
+---`\time`: Number of minutes after midnight that the current job started.
 ---
 ---__Reference:__
 ---
@@ -1071,8 +1039,8 @@ tex.showboxdepth = 0
 tex.time = 0
 
 ---
----`\tolerance`: Tolerance value for lines in a paragraph with
----hyphenation. Default: `200`.
+---`\tolerance`: Tolerance value for lines in a paragraph with hyphenation.
+---Default: `200`.
 ---
 ---__Reference:__
 ---
@@ -1084,7 +1052,9 @@ tex.time = 0
 tex.tolerance = 0
 
 ---
----When the program is compiled with the code for collecting statistics and `\tracingassigns` has a value of `1` or more, all assignments subject to TeX’s grouping mechanism are traced.
+---When the program is compiled with the code for collecting statistics and
+---`\tracingassigns` has a value of `1` or more, all assignments subject to
+---TeX’s grouping mechanism are traced.
 ---
 ---__Reference:__
 ---
@@ -1096,9 +1066,8 @@ tex.tolerance = 0
 tex.tracingassigns = 0
 
 ---
----`\tracingcommands`: If this is `1` TEX displays primitive commands
----executed; if this is `2` or more the outcome of conditionals is also
----recorded.
+---`\tracingcommands`: If this is `1` TEX displays primitive commands executed;
+---if this is `2` or more the outcome of conditionals is also recorded.
 ---
 ---__Reference:__
 ---
@@ -1110,9 +1079,8 @@ tex.tracingassigns = 0
 tex.tracingcommands = 0
 
 ---
----When `\tracinggroups` has a value of `1` or more, the start and end
----of each save group is traced, together with the starting line and
----grouping level.
+---When `\tracinggroups` has a value of `1` or more, the start and end of each
+---save group is traced, together with the starting line and grouping level.
 ---
 ---__Reference:__
 ---
@@ -1124,9 +1092,9 @@ tex.tracingcommands = 0
 tex.tracinggroups = 0
 
 ---
----When `\tracingifs` has a value of `1` or more, all conditionals
----(including `\unless`, `\or`, `\else`, and `\fi`) are traced,
----together with the starting line and nesting level.
+---When `\tracingifs` has a value of `1` or more, all conditionals (including
+---`\unless`, `\or`, `\else`, and `\fi`) are traced, together with the starting
+---line and nesting level.
 ---
 ---__Reference:__
 ---
@@ -1138,9 +1106,9 @@ tex.tracinggroups = 0
 tex.tracingifs = 0
 
 ---
----`\tracinglostchars`: If this parameter is positive, TeX gives
----diagnostic messages whenever a character is accessed that is not
----present in a font. Plain default: `1`.
+---`\tracinglostchars`: If this parameter is positive, TeX gives diagnostic
+---messages whenever a character is accessed that is not present in a font.
+---Plain default: `1`.
 ---
 ---__Reference:__
 ---
@@ -1152,10 +1120,9 @@ tex.tracingifs = 0
 tex.tracinglostchars = 0
 
 ---
----`\tracingmacros`: If this is `1`, the log file shows expansion of
----macros that are performed and the actual values of the arguments;
----if this is `2` or more token parameters such as `\output` and
----`\everypar` are also traced.
+---`\tracingmacros`: If this is `1`, the log file shows expansion of macros that
+---are performed and the actual values of the arguments; if this is `2` or more
+---token parameters such as `\output` and `\everypar` are also traced.
 ---
 ---__Reference:__
 ---
@@ -1167,9 +1134,9 @@ tex.tracinglostchars = 0
 tex.tracingmacros = 0
 
 ---
----When `\tracingnesting` has a value of `1` or more, these anomalies
----are shown; when `\tracingnesting` has a value of `2` or more, the
----current context (traceback) is shown as well.
+---When `\tracingnesting` has a value of `1` or more, these anomalies are shown;
+---when `\tracingnesting` has a value of `2` or more, the current context
+---(traceback) is shown as well.
 ---
 ---__Reference:__
 ---
@@ -1180,8 +1147,8 @@ tex.tracingmacros = 0
 tex.tracingnesting = 0
 
 ---
----`\tracingonline`: If this parameter is positive, TeX will write
----trace information to the terminal in addition to the log file.
+---`\tracingonline`: If this parameter is positive, TeX will write trace
+---information to the terminal in addition to the log file.
 ---
 ---__Reference:__
 ---
@@ -1193,8 +1160,8 @@ tex.tracingnesting = 0
 tex.tracingonline = 0
 
 ---
----`\tracingoutput`: If this is positive, the log file shows a dump of
----boxes that are shipped to the dvi file.
+---`\tracingoutput`: If this is positive, the log file shows a dump of boxes
+---that are shipped to the dvi file.
 ---
 ---__Reference:__
 ---
@@ -1206,8 +1173,8 @@ tex.tracingonline = 0
 tex.tracingoutput = 0
 
 ---
----`\tracingpages`: If this parameter is positive, TeX generates a
----trace of the page breaking algorithm.
+---`\tracingpages`: If this parameter is positive, TeX generates a trace of the
+---page breaking algorithm.
 ---
 ---__Reference:__
 ---
@@ -1219,8 +1186,8 @@ tex.tracingoutput = 0
 tex.tracingpages = 0
 
 ---
----`\tracingparagraphs`: If this parameter is positive, TeX
----generates a trace of the line breaking algorithm.
+---`\tracingparagraphs`: If this parameter is positive, TeX generates a trace of
+---the line breaking algorithm.
 ---
 ---__Reference:__
 ---
@@ -1232,8 +1199,8 @@ tex.tracingpages = 0
 tex.tracingparagraphs = 0
 
 ---
----`\tracingrestores`: If this parameter is positive, TeX will report
----all values that are restored when a group ends.
+---`\tracingrestores`: If this parameter is positive, TeX will report all values
+---that are restored when a group ends.
 ---
 ---__Reference:__
 ---
@@ -1245,9 +1212,9 @@ tex.tracingparagraphs = 0
 tex.tracingrestores = 0
 
 ---
----When `\tracingscantokens` has a value of `1` or more, the opening
----and closing of pseudo-files (generated by `\scantokens`) is recorded
----as for any other file, with ‘␣’ as filename.
+---When `\tracingscantokens` has a value of `1` or more, the opening and closing
+---of pseudo-files (generated by `\scantokens`) is recorded as for any other
+---file, with ‘␣’ as filename.
 ---
 ---__Reference:__
 ---
@@ -1259,9 +1226,9 @@ tex.tracingrestores = 0
 tex.tracingscantokens = 0
 
 ---
----`\tracingstats`: If this parameter is `1`, TeX reports at the end
----of the job the usage of various internal arrays; if it is `2`, the
----memory demands are given whenever a page is shipped out.
+---`\tracingstats`: If this parameter is `1`, TeX reports at the end of the job
+---the usage of various internal arrays; if it is `2`, the memory demands are
+---given whenever a page is shipped out.
 ---
 ---__Reference:__
 ---
@@ -1273,8 +1240,8 @@ tex.tracingscantokens = 0
 tex.tracingstats = 0
 
 ---
----`\uchyph`: Positive to allow hyphenation of words starting with a
----capital letter. Default: `1`.
+---`\uchyph`: Positive to allow hyphenation of words starting with a capital
+---letter. Default: `1`.
 ---
 ---__Reference:__
 ---
@@ -1286,8 +1253,8 @@ tex.tracingstats = 0
 tex.uchyph = 0
 
 ---
----`\vbadness`: Amount of tolerance before TeX reports an underfull or
----overfull vertical box.
+---`\vbadness`: Amount of tolerance before TeX reports an underfull or overfull
+---vertical box.
 ---
 ---__Reference:__
 ---
@@ -1299,8 +1266,8 @@ tex.uchyph = 0
 tex.vbadness = 0
 
 ---
----`\widowpenalty`: Additional penalty for breaking a page before the
----last line of a paragraph. Default: `150`
+---`\widowpenalty`: Additional penalty for breaking a page before the last line
+---of a paragraph. Default: `150`
 ---
 ---__Reference:__
 ---
@@ -1324,8 +1291,8 @@ tex.widowpenalty = 0
 tex.year = 0
 
 ---
----`\deadcycles`: Counter that keeps track of how many times the output
----routine has been called without a `\shipout` taking place.
+---`\deadcycles`: Counter that keeps track of how many times the output routine
+---has been called without a `\shipout` taking place.
 ---
 ---__Reference:__
 ---
@@ -1337,8 +1304,8 @@ tex.year = 0
 tex.deadcycles = 0
 
 ---
----`\insertpenalties`: Total of penalties for split insertions.
----Inside the output routine, the number of held-over insertions.
+---`\insertpenalties`: Total of penalties for split insertions. Inside the
+---output routine, the number of held-over insertions.
 ---
 ---__Reference:__
 ---
@@ -1362,12 +1329,11 @@ tex.insertpenalties = 0
 tex.parshape = 0
 
 ---
----An extension to `\interlinepenalty` that allows different penalties
----to be added after each line. It takes a space separated list of
----numbers as value. If `n` is positive interlinepenalties
----`n i_1 ... i_n` specifies the penalty to be used after each of the
----lines in a paragraph, with the last value being repeated as often as
----needed if the paragraph has more then `n` lines.
+---An extension to `\interlinepenalty` that allows different penalties to be
+---added after each line. It takes a space separated list of numbers as value.
+---If `n` is positive interlinepenalties `n i_1 ... i_n` specifies the penalty
+---to be used after each of the lines in a paragraph, with the last value being
+---repeated as often as needed if the paragraph has more then `n` lines.
 ---
 ---__Reference:__
 ---
@@ -1380,12 +1346,11 @@ tex.parshape = 0
 tex.interlinepenalties = 0
 
 ---
----An extension to `\clubpenalty` that allows different penalties to be
----added after each line. It takes a space separated list of numbers as
----value. If `n` is positive clubpenalties `n i_1 ... i_n` specifies the
----penalty to be used after each of the lines in a paragraph, with the
----last value being repeated as often as needed if the paragraph has
----more then `n` lines.
+---An extension to `\clubpenalty` that allows different penalties to be added
+---after each line. It takes a space separated list of numbers as value. If `n`
+---is positive clubpenalties `n i_1 ... i_n` specifies the penalty to be used
+---after each of the lines in a paragraph, with the last value being repeated as
+---often as needed if the paragraph has more then `n` lines.
 ---
 ---__Reference:__
 ---
@@ -1398,13 +1363,12 @@ tex.interlinepenalties = 0
 tex.clubpenalties = 0
 
 ---
----An extension to `\widowpenalty` that allows different penalties to be
----added after each line. It takes a space separated list of numbers as
----value. If `n` is positive widowpenalties `n i_1 ... i_n` specifies
----the penalty to be used after each of the lines in a paragraph, with
----the last value being repeated as often as needed if the paragraph
----has more then `n` lines. Lines are counted backwards from the last
----line in this case.
+---An extension to `\widowpenalty` that allows different penalties to be added
+---after each line. It takes a space separated list of numbers as value. If `n`
+---is positive widowpenalties `n i_1 ... i_n` specifies the penalty to be used
+---after each of the lines in a paragraph, with the last value being repeated as
+---often as needed if the paragraph has more then `n` lines. Lines are counted
+---backwards from the last line in this case.
 ---
 ---__Reference:__
 ---
@@ -1417,13 +1381,12 @@ tex.clubpenalties = 0
 tex.widowpenalties = 0
 
 ---
----An extension to `\widowpenalty` that allows different penalties to be
----added after each line. It takes a space separated list of numbers as
----value. If `n` is positive displaywidowpenalties `n i_1 ... i_n`
----specifies the penalty to be used after each of the lines in a
----paragraph, with the last value being repeated as often as needed if
----the paragraph has more then `n` lines. Lines counted backwards from
----each display math within a paragraph.
+---An extension to `\widowpenalty` that allows different penalties to be added
+---after each line. It takes a space separated list of numbers as value. If `n`
+---is positive displaywidowpenalties `n i_1 ... i_n` specifies the penalty to be
+---used after each of the lines in a paragraph, with the last value being
+---repeated as often as needed if the paragraph has more then `n` lines. Lines
+---counted backwards from each display math within a paragraph.
 ---
 ---__Reference:__
 ---
@@ -1436,8 +1399,8 @@ tex.widowpenalties = 0
 tex.displaywidowpenalties = 0
 
 ---
----`\prevgraf`: The number of lines in the paragraph last added to the
----vertical list.
+---`\prevgraf`: The number of lines in the paragraph last added to the vertical
+---list.
 ---
 ---__Reference:__
 ---
@@ -1474,8 +1437,8 @@ tex.spacefactor = 0
 tex.boxmaxdepth = 0
 
 ---
----`\delimitershortfall`: Size of the part of a delimited formula that
----is allowed to go uncovered by a delimiter. Default: `5pt`.
+---`\delimitershortfall`: Size of the part of a delimited formula that is
+---allowed to go uncovered by a delimiter. Default: `5pt`.
 ---
 ---__Reference:__
 ---
@@ -1487,8 +1450,8 @@ tex.boxmaxdepth = 0
 tex.delimitershortfall = 0
 
 ---
----`\displayindent`: Distance by which the box, in which the display is
----centred, is indented owing to hanging indentation.
+---`\displayindent`: Distance by which the box, in which the display is centred,
+---is indented owing to hanging indentation.
 ---
 ---__Reference:__
 ---
@@ -1512,8 +1475,8 @@ tex.displayindent = 0
 tex.displaywidth = 0
 
 ---
----`\emergencystretch` (TeX3 only) Assumed extra stretchability in
----lines of a paragraph.
+---`\emergencystretch` (TeX3 only) Assumed extra stretchability in lines of a
+---paragraph.
 ---
 ---__Reference:__
 ---
@@ -1525,9 +1488,8 @@ tex.displaywidth = 0
 tex.emergencystretch = 0
 
 ---
----`\hangindent`: If positive, this indicates indentation from the
----left margin; if negative, this is the negative of the indentation
----from the right margin.
+---`\hangindent`: If positive, this indicates indentation from the left margin;
+---if negative, this is the negative of the indentation from the right margin.
 ---
 ---__Reference:__
 ---
@@ -1539,8 +1501,8 @@ tex.emergencystretch = 0
 tex.hangindent = 0
 
 ---
----`\hfuzz`: Excess size that TeX tolerates before it considers a
----horizontal box overfull.
+---`\hfuzz`: Excess size that TeX tolerates before it considers a horizontal box
+---overfull.
 ---
 ---__Reference:__
 ---
@@ -1552,8 +1514,8 @@ tex.hangindent = 0
 tex.hfuzz = 0
 
 ---
----`\hoffset`:  Distance by which the page is shifted right with respect
----to the reference point.
+---`\hoffset`:  Distance by which the page is shifted right with respect to the
+---reference point.
 ---
 ---__Reference:__
 ---
@@ -1565,8 +1527,7 @@ tex.hfuzz = 0
 tex.hoffset = 0
 
 ---
----`\hsize`: Line width used for typesetting a paragraph.
----Default: `6.5in`.
+---`\hsize`: Line width used for typesetting a paragraph. Default: `6.5in`.
 ---
 ---__Reference:__
 ---
@@ -1578,8 +1539,8 @@ tex.hoffset = 0
 tex.hsize = 0
 
 ---
----`\lineskiplimit`: Distance to be maintained between the bottom and
----top of neighbouring boxes on a vertical list. Default: `0pt`.
+---`\lineskiplimit`: Distance to be maintained between the bottom and top of
+---neighbouring boxes on a vertical list. Default: `0pt`.
 ---
 ---__Reference:__
 ---
@@ -1591,8 +1552,7 @@ tex.hsize = 0
 tex.lineskiplimit = 0
 
 ---
----`\mathsurround`: Kern amount placed before and after in-line
----formulas.
+---`\mathsurround`: Kern amount placed before and after in-line formulas.
 ---
 ---__Reference:__
 ---
@@ -1616,8 +1576,7 @@ tex.mathsurround = 0
 tex.maxdepth = 0
 
 ---
----`\nulldelimiterspace`: Width taken for empty delimiters.
----Default: `1.2pt`.
+---`\nulldelimiterspace`: Width taken for empty delimiters. Default: `1.2pt`.
 ---
 ---__Reference:__
 ---
@@ -1629,8 +1588,8 @@ tex.maxdepth = 0
 tex.nulldelimiterspace = 0
 
 ---
----`\overfullrule`: Width of the rule that is printed to indicate
----overfull horizontal boxes.
+---`\overfullrule`: Width of the rule that is printed to indicate overfull
+---horizontal boxes.
 ---
 ---__Reference:__
 ---
@@ -1654,8 +1613,8 @@ tex.overfullrule = 0
 tex.pagebottomoffset = 0
 
 ---
----`\pageheight`: The page height of the PDF output (the screen, the
----paper, etc.).
+---`\pageheight`: The page height of the PDF output (the screen, the paper,
+---etc.).
 ---
 ---__Reference:__
 ---
@@ -1703,8 +1662,7 @@ tex.pagerightoffset = 0
 tex.pagetopoffset = 0
 
 ---
----`\pagewidth`: The page width of the PDF output (the screen,
----the paper, etc.).
+---`\pagewidth`: The page width of the PDF output (the screen, the paper, etc.).
 ---
 ---__Reference:__
 ---
@@ -1716,8 +1674,8 @@ tex.pagetopoffset = 0
 tex.pagewidth = 0
 
 ---
----`\parindent`: Width of the indentation box added in front of a
----paragraph. Default: `20pt`.
+---`\parindent`: Width of the indentation box added in front of a paragraph.
+---Default: `20pt`.
 ---
 ---__Reference:__
 ---
@@ -1741,8 +1699,8 @@ tex.parindent = 0
 tex.predisplaysize = 0
 
 ---
----`\scriptspace`: Extra space after subscripts and superscripts.
----Default: `0.5pt`.
+---`\scriptspace`: Extra space after subscripts and superscripts. Default:
+---`0.5pt`.
 ---
 ---__Reference:__
 ---
@@ -1754,8 +1712,8 @@ tex.predisplaysize = 0
 tex.scriptspace = 0
 
 ---
----`\splitmaxdepth`: Maximum depth of a box split off by a `\vsplit`
----operation. Default: `\maxdimen`.
+---`\splitmaxdepth`: Maximum depth of a box split off by a `\vsplit` operation.
+---Default: `\maxdimen`.
 ---
 ---__Reference:__
 ---
@@ -1767,8 +1725,8 @@ tex.scriptspace = 0
 tex.splitmaxdepth = 0
 
 ---
----`\vfuzz`: Excess size that TeX tolerates before it considers a
----vertical box overfull.
+---`\vfuzz`: Excess size that TeX tolerates before it considers a vertical box
+---overfull.
 ---
 ---__Reference:__
 ---
@@ -1780,8 +1738,8 @@ tex.splitmaxdepth = 0
 tex.vfuzz = 0
 
 ---
----`\voffset`: Distance by which the page is shifted right/down with
----respect to the reference point.
+---`\voffset`: Distance by which the page is shifted right/down with respect to
+---the reference point.
 ---
 ---__Reference:__
 ---
@@ -1805,8 +1763,8 @@ tex.voffset = 0
 tex.vsize = 0
 
 ---
----`\prevdepth`: Depth of the last box added to a vertical list as
----it is perceived by TeX.
+---`\prevdepth`: Depth of the last box added to a vertical list as it is
+---perceived by TeX.
 ---
 ---__Reference:__
 ---
@@ -1818,8 +1776,8 @@ tex.vsize = 0
 tex.prevdepth = 0
 
 ---
----`\prevgraf`: The number of lines in the paragraph last added to the
----vertical list.
+---`\prevgraf`: The number of lines in the paragraph last added to the vertical
+---list.
 ---
 ---__Reference:__
 ---
@@ -1851,63 +1809,65 @@ tex.spacefactor = 0
 ---
 ---* [TeX by Topic, page 226](http://mirrors.ctan.org/info/texbytopic/TeXbyTopic.pdf)
 ---
----A read only dimension parameter. The result is always a number in scaled points.
+---A read only dimension parameter. The result is always a number in scaled
+---points.
 ---@type integer
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 tex.pagedepth = 0
 
 ---
----`\pagefilllstretch`: Accumulated third-order stretch of the current
----page.
+---`\pagefilllstretch`: Accumulated third-order stretch of the current page.
 ---
 ---__Reference:__
 ---
 ---* [TeX by Topic, page 226](http://mirrors.ctan.org/info/texbytopic/TeXbyTopic.pdf)
 ---
----A read only dimension parameter. The result is always a number in scaled points.
+---A read only dimension parameter. The result is always a number in scaled
+---points.
 ---@type integer
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 tex.pagefilllstretch = 0
 
 ---
----`\pagefillstretch`: Accumulated second-order stretch of the current
----page.
+---`\pagefillstretch`: Accumulated second-order stretch of the current page.
 ---
 ---__Reference:__
 ---
 ---* [TeX by Topic, page 226](http://mirrors.ctan.org/info/texbytopic/TeXbyTopic.pdf)
 ---
----A read only dimension parameter. The result is always a number in scaled points.
+---A read only dimension parameter. The result is always a number in scaled
+---points.
 ---@type integer
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 tex.pagefillstretch = 0
 
 ---
----`\pagefilstretch`: Accumulated first-order stretch of the current
----page.
+---`\pagefilstretch`: Accumulated first-order stretch of the current page.
 ---
 ---__Reference:__
 ---
 ---* [TeX by Topic, page 226](http://mirrors.ctan.org/info/texbytopic/TeXbyTopic.pdf)
 ---
----A read only dimension parameter. The result is always a number in scaled points.
+---A read only dimension parameter. The result is always a number in scaled
+---points.
 ---@type integer
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 tex.pagefilstretch = 0
 
 ---
----`\pagegoal`: Goal height of the page box. This starts at `\vsize`,
----and is diminished by heights of insertion items.
+---`\pagegoal`: Goal height of the page box. This starts at `\vsize`, and is
+---diminished by heights of insertion items.
 ---
 ---__Reference:__
 ---
 ---* [TeX by Topic, page 226](http://mirrors.ctan.org/info/texbytopic/TeXbyTopic.pdf)
 ---
----A read only dimension parameter. The result is always a number in scaled points.
+---A read only dimension parameter. The result is always a number in scaled
+---points.
 ---@type integer
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
@@ -1919,8 +1879,8 @@ tex.pagegoal = 0
 ---__Reference:__
 ---
 ---* [TeX by Topic, page 226](http://mirrors.ctan.org/info/texbytopic/TeXbyTopic.pdf)
-------
----A read only dimension parameter. The result is always a number in scaled points.
+------ A read only dimension parameter. The result is always a number in scaled
+---points.
 ---@type integer
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
@@ -1933,7 +1893,8 @@ tex.pageshrink = 0
 ---
 ---* [TeX by Topic, page ](http://mirrors.ctan.org/info/texbytopic/TeXbyTopic.pdf)
 ---
----A read only dimension parameter. The result is always a number in scaled points.
+---A read only dimension parameter. The result is always a number in scaled
+---points.
 ---@type integer
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
@@ -1946,15 +1907,15 @@ tex.pagestretch = 0
 ---
 ---* [TeX by Topic, page ](http://mirrors.ctan.org/info/texbytopic/TeXbyTopic.pdf)
 ---
----A read only dimension parameter. The result is always a number in scaled points.
+---A read only dimension parameter. The result is always a number in scaled
+---points.
 ---@type integer
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 tex.pagetotal = 0
 
 ---
----The direction for vboxes, including the main body of text.
----Default: `TLT`.
+---The direction for vboxes, including the main body of text. Default: `TLT`.
 ---
 ---__Reference:__
 ---
@@ -2014,8 +1975,8 @@ tex.pardir = "TLT"
 tex.textdir = "TLT"
 
 ---
----`\abovedisplayshortskip`: Glue above a display if the line preceding
----the display was short. Default: `0pt plus 3pt`.
+---`\abovedisplayshortskip`: Glue above a display if the line preceding the
+---display was short. Default: `0pt plus 3pt`.
 ---
 ---__Reference:__
 ---
@@ -2027,8 +1988,8 @@ tex.textdir = "TLT"
 tex.abovedisplayshortskip = nil
 
 ---
----`\abovedisplayskip`: Glue above a display.
----Default: `12pt plus 3pt minus 9pt`.
+---`\abovedisplayskip`: Glue above a display. Default: `12pt plus 3pt minus
+---9pt`.
 ---
 ---__Reference:__
 ---
@@ -2040,8 +2001,8 @@ tex.abovedisplayshortskip = nil
 tex.abovedisplayskip = nil
 
 ---
----`\baselineskip`: The ‘ideal’ baseline distance between neighbouring
----boxes on a vertical list. Default: `12pt`.
+---`\baselineskip`: The ‘ideal’ baseline distance between neighbouring boxes on
+---a vertical list. Default: `12pt`.
 ---
 ---__Reference:__
 ---
@@ -2053,9 +2014,9 @@ tex.abovedisplayskip = nil
 tex.baselineskip = nil
 
 ---
----`\belowdisplayshortskip`: Glue above/below a display if the line
----preceding the display was short. Default: `0pt plus 3pt` and
----`7pt plus 3pt minus 4pt` respectively.
+---`\belowdisplayshortskip`: Glue above/below a display if the line preceding
+---the display was short. Default: `0pt plus 3pt` and `7pt plus 3pt minus 4pt`
+---respectively.
 ---
 ---__Reference:__
 ---
@@ -2067,8 +2028,8 @@ tex.baselineskip = nil
 tex.belowdisplayshortskip = nil
 
 ---
----`\belowdisplayskip`: Glue below a display.
----Default: `12pt plus 3pt minus 9pt`.
+---`\belowdisplayskip`: Glue below a display. Default: `12pt plus 3pt minus
+---9pt`.
 ---
 ---__Reference:__
 ---
@@ -2080,8 +2041,7 @@ tex.belowdisplayshortskip = nil
 tex.belowdisplayskip = nil
 
 ---
----`\leftskip`: Glue that is placed to the left of all lines of a
----paragraph.
+---`\leftskip`: Glue that is placed to the left of all lines of a paragraph.
 ---
 ---__Reference:__
 ---
@@ -2106,8 +2066,8 @@ tex.leftskip = nil
 tex.lineskip = nil
 
 ---
----`\parfillskip`: Glue that is placed between the last element of the
----paragraph and the line end. Default: `0pt plus 1fil`.
+---`\parfillskip`: Glue that is placed between the last element of the paragraph
+---and the line end. Default: `0pt plus 1fil`.
 ---
 ---__Reference:__
 ---
@@ -2119,8 +2079,8 @@ tex.lineskip = nil
 tex.parfillskip = nil
 
 ---
----`\parskip`: Amount of glue added to the surrounding vertical list
----when a paragraph starts. Default: `0pt plus 1pt`.
+---`\parskip`: Amount of glue added to the surrounding vertical list when a
+---paragraph starts. Default: `0pt plus 1pt`.
 ---
 ---__Reference:__
 ---
@@ -2132,8 +2092,7 @@ tex.parfillskip = nil
 tex.parskip = nil
 
 ---
----`\rightskip`: Glue that is placed to the right of all lines of a
----paragraph.
+---`\rightskip`: Glue that is placed to the right of all lines of a paragraph.
 ---
 ---__Reference:__
 ---
@@ -2157,9 +2116,8 @@ tex.rightskip = nil
 tex.spaceskip = nil
 
 ---
----`\splittopskip`: Minimum distance between the top of what remains
----after a `\vsplit` operation, and the first item in that box.
----Default: `10pt`.
+---`\splittopskip`: Minimum distance between the top of what remains after a
+---`\vsplit` operation, and the first item in that box. Default: `10pt`.
 ---
 ---__Reference:__
 ---
@@ -2171,8 +2129,8 @@ tex.spaceskip = nil
 tex.splittopskip = nil
 
 ---
----`\tabskip`: Amount of glue in between columns (rows) of an
----`\halign` (`\valign`).
+---`\tabskip`: Amount of glue in between columns (rows) of an `\halign`
+---(`\valign`).
 ---
 ---__Reference:__
 ---
@@ -2184,8 +2142,8 @@ tex.splittopskip = nil
 tex.tabskip = nil
 
 ---
----`\topskip`: Minimum distance between the top of the page box and the
----baseline of the first box on the page. Default: `10pt`.
+---`\topskip`: Minimum distance between the top of the page box and the baseline
+---of the first box on the page. Default: `10pt`.
 ---
 ---__Reference:__
 ---
@@ -2245,14 +2203,13 @@ tex.thickmuskip = ""
 tex.thinmuskip = ""
 
 ---
----`\errhelp`: Tokens that will be displayed if the user asks further
----help after an `\errmessage`.
+---`\errhelp`: Tokens that will be displayed if the user asks further help after
+---an `\errmessage`.
 ---
 ---A `tokenlist` parameters that accepts and returns a *Lua* string.
 ---
----The *Lua* string is
----converted to and from a token list using `\the` `\toks` style expansion:
----all category codes are either space (10) or other (12).
+---The *Lua* string is converted to and from a token list using `\the` `\toks`
+---style expansion: all category codes are either space (10) or other (12).
 ---
 ---__Reference:__
 ---
@@ -2264,19 +2221,17 @@ tex.thinmuskip = ""
 tex.errhelp = ""
 
 ---
----`\everycr`: Token list inserted after every `\cr` or
----non-redundant `\crcr`.
+---`\everycr`: Token list inserted after every `\cr` or non-redundant `\crcr`.
 ---
 ---A `tokenlist` parameters that accepts and returns a *Lua* string.
 ---
----The *Lua* string is
----converted to and from a token list using `\the` `\toks` style expansion:
----all category codes are either space (10) or other (12).
+---The *Lua* string is converted to and from a token list using `\the` `\toks`
+---style expansion: all category codes are either space (10) or other (12).
 ---
 ---__Reference:__
 ---
 ---* [TeX by Topic, page 215](http://mirrors.ctan.org/info/texbytopic/TeXbyTopic.pdf)
------
+---
 ---@type string
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
@@ -2287,9 +2242,8 @@ tex.everycr = ""
 ---
 ---A `tokenlist` parameters that accepts and returns a *Lua* string.
 ---
----The *Lua* string is
----converted to and from a token list using `\the` `\toks` style expansion:
----all category codes are either space (10) or other (12).
+---The *Lua* string is converted to and from a token list using `\the` `\toks`
+---style expansion: all category codes are either space (10) or other (12).
 ---
 ---__Reference:__
 ---
@@ -2302,14 +2256,12 @@ tex.everycr = ""
 tex.everydisplay = ""
 
 ---
----`\everyeof`: The content of this token list is injected when a
----file ends.
+---`\everyeof`: The content of this token list is injected when a file ends.
 ---
 ---A `tokenlist` parameters that accepts and returns a *Lua* string.
 ---
----The *Lua* string is
----converted to and from a token list using `\the` `\toks` style expansion:
----all category codes are either space (10) or other (12).
+---The *Lua* string is converted to and from a token list using `\the` `\toks`
+---style expansion: all category codes are either space (10) or other (12).
 ---
 ---__Reference:__
 ---
@@ -2325,9 +2277,8 @@ tex.everyeof = ""
 ---
 ---A `tokenlist` parameters that accepts and returns a *Lua* string.
 ---
----The *Lua* string is
----converted to and from a token list using `\the` `\toks` style expansion:
----all category codes are either space (10) or other (12).
+---The *Lua* string is converted to and from a token list using `\the` `\toks`
+---style expansion: all category codes are either space (10) or other (12).
 ---
 ---__Reference:__
 ---
@@ -2339,14 +2290,12 @@ tex.everyeof = ""
 tex.everyhbox = ""
 
 ---
----`\everyjob`: Token list that is inserted at the start of each new
----job.
+---`\everyjob`: Token list that is inserted at the start of each new job.
 ---
 ---A `tokenlist` parameters that accepts and returns a *Lua* string.
 ---
----The *Lua* string is
----converted to and from a token list using `\the` `\toks` style expansion:
----all category codes are either space (10) or other (12).
+---The *Lua* string is converted to and from a token list using `\the` `\toks`
+---style expansion: all category codes are either space (10) or other (12).
 ---
 ---__Reference:__
 ---
@@ -2362,9 +2311,8 @@ tex.everyjob = ""
 ---
 ---A `tokenlist` parameters that accepts and returns a *Lua* string.
 ---
----The *Lua* string is
----converted to and from a token list using `\the` `\toks` style expansion:
----all category codes are either space (10) or other (12).
+---The *Lua* string is converted to and from a token list using `\the` `\toks`
+---style expansion: all category codes are either space (10) or other (12).
 ---
 ---__Reference:__
 ---
@@ -2380,9 +2328,8 @@ tex.everymath = ""
 ---
 ---A `tokenlist` parameters that accepts and returns a *Lua* string.
 ---
----The *Lua* string is
----converted to and from a token list using `\the` `\toks` style expansion:
----all category codes are either space (10) or other (12).
+---The *Lua* string is converted to and from a token list using `\the` `\toks`
+---style expansion: all category codes are either space (10) or other (12).
 ---
 ---__Reference:__
 ---
@@ -2398,9 +2345,8 @@ tex.everypar = ""
 ---
 ---A `tokenlist` parameters that accepts and returns a *Lua* string.
 ---
----The *Lua* string is
----converted to and from a token list using `\the` `\toks` style expansion:
----all category codes are either space (10) or other (12).
+---The *Lua* string is converted to and from a token list using `\the` `\toks`
+---style expansion: all category codes are either space (10) or other (12).
 ---
 ---__Reference:__
 ---
@@ -2416,9 +2362,8 @@ tex.everyvbox = ""
 ---
 ---A `tokenlist` parameters that accepts and returns a *Lua* string.
 ---
----The *Lua* string is
----converted to and from a token list using `\the` `\toks` style expansion:
----all category codes are either space (10) or other (12).
+---The *Lua* string is converted to and from a token list using `\the` `\toks`
+---style expansion: all category codes are either space (10) or other (12).
 ---
 ---__Reference:__
 ---
@@ -2592,6 +2537,8 @@ tex.currentifbranch = 0
 tex.attribute = {}
 
 ---
+---__Reference:__
+---
 ---* Corresponding C source code: [ltexlib.c#L1087-L1102](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L1087-L1102)
 ---
 ---@param global 'global' # It is possible to define values globally by using the string `global` as the first function argument.
@@ -2602,6 +2549,8 @@ tex.attribute = {}
 function tex.setattribute(global, register, value) end
 
 ---
+---__Reference:__
+---
 ---* Corresponding C source code: [ltexlib.c#L1087-L1102](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L1087-L1102)
 ---
 ---@param register string|integer # A register number or a predefined csname string from `\attributedef`.
@@ -2610,6 +2559,8 @@ function tex.setattribute(global, register, value) end
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 function tex.setattribute(register, value) end
 
+---
+---__Reference:__
 ---
 ---* Corresponding C source code: [ltexlib.c#L1104-L1114](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L1104-L1114)
 ---
@@ -2620,6 +2571,8 @@ function tex.setattribute(register, value) end
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 function tex.getattribute(register) end
 
+---
+---__Reference:__
 ---
 ---* Corresponding C source code: [ltexlib.c#L1080-L1083](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L1080-L1083)
 ---* Corresponding C source code: [ltexlib.c#L350-L358](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L350-L358)
@@ -2655,6 +2608,8 @@ tex.count = {}
 function tex.setcount(global, register, value) end
 
 ---
+---__Reference:__
+---
 ---* Corresponding C source code: [ltexlib.c#L1051-L1066](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L1051-L1066)
 ---
 ---@param register string|integer # A register number or a predefined csname string from `\countdef`.
@@ -2663,6 +2618,8 @@ function tex.setcount(global, register, value) end
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 function tex.setcount(register, value) end
 
+---
+---__Reference:__
 ---
 ---* Corresponding C source code: [ltexlib.c#L1068-L1078](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L1068-L1078)
 ---
@@ -2673,6 +2630,8 @@ function tex.setcount(register, value) end
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 function tex.getcount(register) end
 
+---
+---__Reference:__
 ---
 ---* Corresponding C source code: [ltexlib.c#L1046-L1049](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L1046-L1049)
 ---* Corresponding C source code: [ltexlib.c#L350-L358](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L350-L358)
@@ -2685,10 +2644,9 @@ function tex.getcount(register) end
 function tex.iscount(register) end
 
 ---
----The dimension registers accept *Lua* numbers (in scaled points) or
----strings (with an included absolute dimension; `em` and `ex`
----and `px` are forbidden). The result is always a number in scaled
----points.
+---The dimension registers accept *Lua* numbers (in scaled points) or strings
+---(with an included absolute dimension; `em` and `ex` and `px` are forbidden).
+---The result is always a number in scaled points.
 ---
 ---see `LuaTeX` manual: 10.3.5 Accessing registers: `set*`, `get*` and `is*`
 ---
@@ -2702,6 +2660,8 @@ function tex.iscount(register) end
 tex.dimen = {}
 
 ---
+---__Reference:__
+---
 ---* Corresponding C source code: [ltexlib.c#L818-L834](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L818-L834)
 ---
 ---@param global 'global' # It is possible to define values globally by using the string `global` as the first function argument.
@@ -2711,6 +2671,8 @@ tex.dimen = {}
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 function tex.setdimen(global, register, value) end
 
+---
+---__Reference:__
 ---
 ---* Corresponding C source code: [ltexlib.c#L836-L846](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L836-L846)
 ---
@@ -2722,6 +2684,8 @@ function tex.setdimen(global, register, value) end
 function tex.getdimen(register) end
 
 ---
+---__Reference:__
+---
 ---* Corresponding C source code: [ltexlib.c#L813-L816](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L813-L816)
 ---* Corresponding C source code: [ltexlib.c#L350-L358](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L350-L358)
 ---
@@ -2732,8 +2696,8 @@ function tex.getdimen(register) end
 function tex.isdimen(register) end
 
 ---
----The glue registers are just skip registers but instead of userdata
----are verbose.
+---The glue registers are just skip registers but instead of userdata are
+---verbose.
 ---
 ---see `LuaTeX` manual: 10.3.5 Accessing registers: `set*`, `get*` and `is*`
 ---
@@ -2747,6 +2711,8 @@ function tex.isdimen(register) end
 tex.glue = {}
 
 ---
+---__Reference:__
+---
 ---* Corresponding C source code: [ltexlib.c#L884-L903](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L884-L903)
 ---
 ---@param global 'global' # It is possible to define values globally by using the string `global` as the first function argument.
@@ -2758,17 +2724,10 @@ tex.glue = {}
 ---@param shrink_order? integer
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
-function tex.setglue(
-  global,
-  register,
-  width,
-  stretch,
-  shrink,
-  stretch_order,
-  shrink_order
-)
-end
+function tex.setglue(global, register, width, stretch, shrink, stretch_order, shrink_order) end
 
+---
+---__Reference:__
 ---
 ---* Corresponding C source code: [ltexlib.c#L884-L903](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L884-L903)
 ---
@@ -2780,16 +2739,10 @@ end
 ---@param shrink_order? integer
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
-function tex.setglue(
-  register,
-  width,
-  stretch,
-  shrink,
-  stretch_order,
-  shrink_order
-)
-end
+function tex.setglue(register, width, stretch, shrink, stretch_order, shrink_order) end
 
+---
+---__Reference:__
 ---
 ---* Corresponding C source code: [ltexlib.c#L905-L949](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L905-L949)
 ---
@@ -2814,6 +2767,7 @@ function tex.getglue(register) end
 ---@param register string|integer # A register number or a predefined csname string from `\skipdef`.
 ---
 ---@return false|integer
+---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 function tex.isglue(register) end
 
@@ -2830,6 +2784,8 @@ function tex.isglue(register) end
 tex.muglue = {}
 
 ---
+---__Reference:__
+---
 ---* Corresponding C source code: [ltexlib.c#L979-L998](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L979-L998)
 ---
 ---@param global 'global' # It is possible to define values globally by using the string `global` as the first function argument.
@@ -2841,17 +2797,10 @@ tex.muglue = {}
 ---@param shrink_order? integer
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
-function tex.setmuglue(
-  global,
-  register,
-  width,
-  stretch,
-  shrink,
-  stretch_order,
-  shrink_order
-)
-end
+function tex.setmuglue(global, register, width, stretch, shrink, stretch_order, shrink_order) end
 
+---
+---__Reference:__
 ---
 ---* Corresponding C source code: [ltexlib.c#L979-L998](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L979-L998)
 ---
@@ -2863,16 +2812,10 @@ end
 ---@param shrink_order? integer
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
-function tex.setmuglue(
-  register,
-  width,
-  stretch,
-  shrink,
-  stretch_order,
-  shrink_order
-)
-end
+function tex.setmuglue(register, width, stretch, shrink, stretch_order, shrink_order) end
 
+---
+---__Reference:__
 ---
 ---* Corresponding C source code: [ltexlib.c#L1000-L1044](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L1000-L1044)
 ---
@@ -2889,6 +2832,8 @@ function tex.getmuglue(register) end
 
 ---
 ---Alias of tex.ismuskip()
+---
+---__Reference:__
 ---
 ---* Corresponding C source code: [ltexlib.c#L951-L954](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L951-L954)
 ---* Corresponding C source code: [ltexlib.c#L350-L358](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L350-L358)
@@ -2912,6 +2857,8 @@ function tex.ismuglue(register) end
 tex.muskip = {}
 
 ---
+---__Reference:__
+---
 ---* Corresponding C source code: [ltexlib.c#L956-L965](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L956-L965)
 ---
 ---@param global 'global' # It is possible to define values globally by using the string `global` as the first function argument.
@@ -2922,6 +2869,8 @@ tex.muskip = {}
 function tex.setmuskip(global, register, value) end
 
 ---
+---__Reference:__
+---
 ---* Corresponding C source code: [ltexlib.c#L956-L965](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L956-L965)
 ---
 ---@param register string|integer # A register number or a predefined csname string from `\muskipdef`.
@@ -2930,6 +2879,8 @@ function tex.setmuskip(global, register, value) end
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 function tex.setmuskip(register, value) end
 
+---
+---__Reference:__
 ---
 ---* Corresponding C source code: [ltexlib.c#L967-L977](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L967-L977)
 ---
@@ -2941,18 +2892,20 @@ function tex.setmuskip(register, value) end
 function tex.getmuskip(register) end
 
 ---
+---__Reference:__
+---
 ---* Corresponding C source code: [ltexlib.c#L951-L954](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L951-L954)
 ---* Corresponding C source code: [ltexlib.c#L350-L358](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L350-L358)
 ---
 ---@param register string|integer # A register number or a predefined csname string from `\muskipdef`.
 ---
 ---@return false|integer
+---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 function tex.ismuskip(register) end
 
 ---
----The skip registers accept and return `glue_spec` userdata node
----objects.
+---The skip registers accept and return `glue_spec` userdata node objects.
 ---
 ---see `LuaTeX` manual: 10.3.5 Accessing registers: `set*`, `get*` and `is*`
 ---
@@ -2966,6 +2919,8 @@ function tex.ismuskip(register) end
 tex.skip = {}
 
 ---
+---__Reference__:
+---
 ---* Corresponding C source code: [ltexlib.c#L853-L866](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L853-L866)
 ---
 ---@param global 'global' # It is possible to define values globally by using the string `global` as the first function argument.
@@ -2974,6 +2929,8 @@ tex.skip = {}
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 function tex.setskip(global, register, skip) end
 
+---
+---__Reference__:
 ---
 ---* Corresponding C source code: [ltexlib.c#L853-L866](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L853-L866)
 ---
@@ -2992,6 +2949,8 @@ function tex.setskip(register, skip) end
 function tex.getskip(register) end
 
 ---
+---__Reference__:
+---
 ---* Corresponding C source code: [ltexlib.c#L848-L851](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L848-L851)
 ---* Corresponding C source code: [ltexlib.c#L350-L358](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L350-L358)
 ---
@@ -3003,8 +2962,8 @@ function tex.isskip(register) end
 
 ---
 ---The token registers accept and return *Lua* strings. *Lua* strings are
----converted to and from token lists using `\the` `\toks` style
----expansion: all category codes are either space (10) or other (12).
+---converted to and from token lists using `\the` `\toks` style expansion: all
+---category codes are either space (10) or other (12).
 ---
 ---see `LuaTeX` manual: 10.3.5 Accessing registers: `set*`, `get*` and `is*`
 ---
@@ -3020,6 +2979,8 @@ tex.toks = {}
 ---
 ---Set a toks register. Also accepts a predefined csname string.
 ---
+---__Reference__:
+---
 ---* Corresponding C source code: [ltexlib.c#L1125-L1158](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L1125-L1158)
 ---
 ---@param global 'global' # It is possible to define values globally by using the string `global` as the first function argument.
@@ -3030,7 +2991,22 @@ tex.toks = {}
 function tex.settoks(global, register, toks) end
 
 ---
+---Set a toks register. Also accepts a predefined csname string.
+---
+---__Reference__:
+---
+---* Corresponding C source code: [ltexlib.c#L1125-L1158](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L1125-L1158)
+---
+---@param register string|integer # A register number or a predefined csname string from `\toksdef`.
+---@param toks string
+---
+---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
+function tex.settoks(register, toks) end
+
+---
 ---Get a toks register. Also accepts a predefined csname string.
+---
+---__Reference__:
 ---
 ---* Corresponding C source code: [ltexlib.c#L1197-L1209](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L1197-L1209)
 ---
@@ -3042,6 +3018,8 @@ function tex.settoks(global, register, toks) end
 function tex.gettoks(register) end
 
 ---
+---__Reference__:
+---
 ---* Corresponding C source code: [ltexlib.c#L1120-L1123](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L1120-L1123)
 ---* Corresponding C source code: [ltexlib.c#L350-L358](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L350-L358)
 ---
@@ -3052,12 +3030,15 @@ function tex.gettoks(register) end
 function tex.istoks(register) end
 
 ---
----For tokens registers we have an alternative where a catcode table is specified:
+---For tokens registers we have an alternative where a catcode table is
+---specified:
 ---
 ---```lua
 ---tex.scantoks(0,3,"$e=mc^2$")
 ---tex.scantoks("global",0,"$\\int\\limits^1_2$")
 ---```
+---
+---__Reference__:
 ---
 ---* Corresponding C source code: [ltexlib.c#L1160-L1195](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L1160-L1195)
 ---
@@ -3070,7 +3051,30 @@ function tex.istoks(register) end
 function tex.scantoks(global, register, catcodetable, toks) end
 
 ---
----When no arguments are given the current maximum number of classes is returned.
+---For tokens registers we have an alternative where a catcode table is
+---specified:
+---
+---```lua
+---tex.scantoks(0,3,"$e=mc^2$")
+---tex.scantoks("global",0,"$\\int\\limits^1_2$")
+---```
+---
+---__Reference__:
+---
+---* Corresponding C source code: [ltexlib.c#L1160-L1195](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L1160-L1195)
+---
+---@param register integer
+---@param catcodetable integer
+---@param toks string
+---
+---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
+function tex.scantoks(register, catcodetable, toks) end
+
+---
+---When no arguments are given the current maximum number of classes is
+---returned.
+---
+---__Reference__:
 ---
 ---* Corresponding C source code: [ltexlib.c#L1211-L1242](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L1211-L1242)
 ---
@@ -3083,8 +3087,8 @@ function tex.scantoks(global, register, catcodetable, toks) end
 function tex.getmark(position, class) end
 
 ---
----The *TeX*'s character code table `lccode` (lower case code) can be accessed and written to using
----a virtual subtable of the `tex` table.
+---The *TeX*'s character code table `lccode` (lower case code) can be accessed
+---and written to using a virtual subtable of the `tex` table.
 ---
 ---```lua
 ---for i = 0, 1024 do
@@ -3122,8 +3126,8 @@ function tex.getmark(position, class) end
 tex.lccode = {}
 
 ---
----Set the `lccode` (lower case code) and additionally
----the associated sibling for a character code at the same time.
+---Set the `lccode` (lower case code) and additionally the associated sibling
+---for a character code at the same time.
 ---
 ---__Reference:__
 ---
@@ -3139,8 +3143,8 @@ tex.lccode = {}
 function tex.setlccode(global, char_code, lower_case, upper_case) end
 
 ---
----Set the `lccode` (lower case code) and additionally
----the associated sibling for a character code at the same time.
+---Set the `lccode` (lower case code) and additionally the associated sibling
+---for a character code at the same time.
 ---
 ---__Reference:__
 ---
@@ -3163,12 +3167,13 @@ function tex.setlccode(char_code, lower_case, upper_case) end
 ---@param char_code integer # A Unicode code point for which a lowercase variant of the character should be returned, for example `65` stands for an uppercase `A` and `97` for a lowercase `a`.
 ---
 ---@return integer lower_case # The Unicode code point for the lowercase variant of the character.
+---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 function tex.getlccode(char_code) end
 
 ---
----*TeX*'s character code table `uccode` (upper case code) can be accessed and written to using
----a virtual subtable of the `tex` table.
+---*TeX*'s character code table `uccode` (upper case code) can be accessed and
+---written to using a virtual subtable of the `tex` table.
 ---
 ---```lua
 ---for i = 0, 1024 do
@@ -3242,7 +3247,8 @@ function tex.setuccode(global, char_code, upper_case, lower_case) end
 function tex.setuccode(char_code, upper_case, lower_case) end
 
 ---
----Corresponding plain TeX control sequence: [\uccode](https://www.tug.org/utilities/plain/cseq.html#uccode-rp)
+---Corresponding plain TeX control sequence:
+---[\uccode](https://www.tug.org/utilities/plain/cseq.html#uccode-rp)
 ---
 ---__Reference:__
 ---
@@ -3252,21 +3258,22 @@ function tex.setuccode(char_code, upper_case, lower_case) end
 ---@param char_code integer # A Unicode code point for which a uppercase variant of the character should be returned, for example `65` stands for an uppercase `A` and `97` for a lowercase `a`.
 ---
 ---@return integer upper_case # The Unicode code point for the uppercase variant of the character.
+---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 function tex.getuccode(char_code) end
 
 ---
----Each character in a font has a space factor code that is an integer
----between `0` and `32767`. The code is used to adjust the space factor
----in a horizontal list. The uppercase letters `A-Z` have space factor
----code `999`. Most other characters have code `1000` [Donald E. Knuth, The TeXbook, page 76]. However,
----Plain TeX makes `)', `'', and `]' have space factor code `0`.
----Also, the `\frenchspacing` and `\nonfrenchspacing` modes in Plain
----TeX work by changing the `\sfcode` for: `.`, `?`, `!`, `:`, `;`,
----and `,` [Donald E. Knuth, The TeXbook, 351].
+---Each character in a font has a space factor code that is an integer between
+---`0` and `32767`. The code is used to adjust the space factor in a horizontal
+---list. The uppercase letters `A-Z` have space factor code `999`. Most other
+---characters have code `1000` [Donald E. Knuth, The TeXbook, page 76]. However,
+---Plain TeX makes `)', `'', and `]' have space factor code `0`. Also, the
+---`\frenchspacing` and `\nonfrenchspacing` modes in Plain TeX work by changing
+---the `\sfcode` for: `.`, `?`, `!`, `:`, `;`, and `,` [Donald E. Knuth, The
+---TeXbook, 351].
 ---
----*TeX*'s character code table `sfcode` (space factor code) can be
----accessed and written to using a virtual subtable of the `tex` table.
+---*TeX*'s character code table `sfcode` (space factor code) can be accessed and
+---written to using a virtual subtable of the `tex` table.
 ---
 ---```lua
 ---for i = 0, 1024 do
@@ -3369,7 +3376,8 @@ function tex.setsfcode(char_code, space_factor) end
 function tex.getsfcode(char_code) end
 
 ---
----A virtual subtable of the `tex` table called `catcode` (category code) can be used to access and write to TeX's character code table.
+---A virtual subtable of the `tex` table called `catcode` (category code) can be
+---used to access and write to TeX's character code table.
 ---
 ---The category codes are indexed by the character code.
 ---
@@ -3497,6 +3505,8 @@ function tex.getsfcode(char_code) end
 ---* `14`: Comment character, normally `%`
 ---* `15`: Invalid character, normally `<delete>`
 ---
+---__Reference:__
+---
 ---* Corresponding C source code: [ltexlib.c#L3710](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L3710)
 ---
 ---@type table<integer, integer>
@@ -3504,9 +3514,10 @@ function tex.getsfcode(char_code) end
 tex.catcode = {}
 
 ---
----Specify a
----category table to use on assignment or on query (default in both cases is the
----current one).
+---Specify a category table to use on assignment or on query (default in both
+---cases is the current one).
+---
+---__Reference:__
 ---
 ---* Corresponding C source code: [ltexlib.c#L1438-L1464](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L1438-L1464)
 ---
@@ -3518,9 +3529,8 @@ tex.catcode = {}
 function tex.setcatcode(global, char_code, cat_code) end
 
 ---
----Specify a
----category table to use on assignment or on query (default in both cases is the
----current one).
+---Specify a category table to use on assignment or on query (default in both
+---cases is the current one).
 ---
 ---## Category codes:
 ---
@@ -3551,9 +3561,8 @@ function tex.setcatcode(global, char_code, cat_code) end
 function tex.setcatcode(char_code, cat_code) end
 
 ---
----Specify a
----category table to use on assignment or on query (default in both cases is the
----current one).
+---Specify a category table to use on assignment or on query (default in both
+---cases is the current one).
 ---
 ---## Category codes:
 ---
@@ -3582,13 +3591,13 @@ function tex.setcatcode(char_code, cat_code) end
 ---@param cat_table integer
 ---@param char_code integer # The character code, for example ASCII or UNICODE character code.
 ---@param cat_code integer # The category code (`0` stands for the escape character, normally `\`, `1` stands for begin grouping, normally `{` and so on).
+---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 function tex.setcatcode(global, cat_table, char_code, cat_code) end
 
 ---
----Specify a
----category table to use on assignment or on query (default in both cases is the
----current one).
+---Specify a category table to use on assignment or on query (default in both
+---cases is the current one).
 ---
 ---## Category codes:
 ---
@@ -3620,9 +3629,39 @@ function tex.setcatcode(global, cat_table, char_code, cat_code) end
 function tex.setcatcode(global, cat_table, char_code, cat_code) end
 
 ---
----The function call interface for `catcode` (category code) also allows you to specify a
----category table to use on assignment or on query (default in both cases is the
----current one):
+---## Category codes:
+---
+---* `0`: Escape character, normally `\`
+---* `1`: Begin grouping, normally `{`
+---* `2`: End grouping, normally `}`
+---* `3`: Math shift, normally `$`
+---* `4`: Alignment tab, normally `&`
+---* `5`: End of line, normally `<return>`
+---* `6`: Parameter, normally `#`
+---* `7`: Superscript, normally `^`
+---* `8`: Subscript, normally `_`
+---* `9`: Ignored character, normally `<null>`
+---* `10`: Space, normally `<space>` and `<tab>`
+---* `11`: Letter, normally only contains the letters `a,...,z` and `A,...,Z`. These characters can be used in command names
+---* `12`: Other, normally everything else not listed in the other categories
+---* `13`: Active character, for example `~`
+---* `14`: Comment character, normally `%`
+---* `15`: Invalid character, normally `<delete>`
+---
+---__Reference:__
+---
+---* https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L1466-1476
+---
+---@param char_code integer # The character code, for example ASCII or UNICODE character code.
+---
+---@return integer cat_code # The category code (`0` stands for the escape character, normally `\`, `1` stands for begin grouping, normally `{` and so on).
+---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
+function tex.getcatcode(char_code) end
+
+---
+---The function call interface for `catcode` (category code) also allows you to
+---specify a category table to use on assignment or on query (default in both
+---cases is the current one):
 ---
 ---## Category codes:
 ---
@@ -3643,16 +3682,21 @@ function tex.setcatcode(global, cat_table, char_code, cat_code) end
 ---* `14`: Comment character, normally `%`
 ---* `15`: Invalid character, normally `<delete>`
 ---
+---__Reference:__
+---
+---* https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L1466-1476
+---
 ---@param cat_table integer
 ---@param char_code integer # The character code, for example ASCII or UNICODE character code.
 ---
 ---@return integer cat_code # The category code (`0` stands for the escape character, normally `\`, `1` stands for begin grouping, normally `{` and so on).
+---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 function tex.getcatcode(cat_table, char_code) end
 
 ---
----The *TeX*'s character code table `mathcode` can be accessed and written to using
----a virtual subtable of the `tex` table.
+---The *TeX*'s character code table `mathcode` can be accessed and written to
+---using a virtual subtable of the `tex` table.
 ---
 ---```lua
 ---for i = 1, 128 do
@@ -3794,26 +3838,25 @@ function tex.getcatcode(cat_table, char_code) end
 ---128		0	0	128
 ---```
 ---
----In math mode, the math atoms require more structure. Each symbol
----originates from a different font and receives different spacing
----based on its class (operator, binary infix, relation, etc.).
----Following the typical style of the 1970s, these properties are
----compactly packed into bit fields within a single integer called a
----mathcode. The mathcode is usually expressed in hexadecimal so
----that the fields can easily be pulled apart. The mathcode of `+` in
----plain TeX is set as:
+---In math mode, the math atoms require more structure. Each symbol originates
+---from a different font and receives different spacing based on its class
+---(operator, binary infix, relation, etc.). Following the typical style of the
+---1970s, these properties are compactly packed into bit fields within a single
+---integer called a mathcode. The mathcode is usually expressed in hexadecimal
+---so that the fields can easily be pulled apart. The mathcode of `+` in plain
+---TeX is set as:
 ---
 ---```tex
 ---\mathcode`\+="202B
 ---```
 ---
----This means it is class 2 (binary infix) and fam0 (the Roman font).
----The character hex is `2B`, which is the decimal `43`, the character
----code for `+` in the Roman font encoding.
+---This means it is class 2 (binary infix) and fam0 (the Roman font). The
+---character hex is `2B`, which is the decimal `43`, the character code for `+`
+---in the Roman font encoding.
 ---
 ---The `mathcode` section in the
----[plain.tex](https://mirrors.ctan.org/macros/plain/base/plain.tex)
----format file:
+---[plain.tex](https://mirrors.ctan.org/macros/plain/base/plain.tex) format
+---file:
 ---
 ---```tex
 ---\mathcode`\^^?="1273 % \smallint
@@ -3990,7 +4033,7 @@ tex.mathcode = {}
 ---\scriptfont\ttfam=\seventt
 ---\scriptscriptfont\ttfam=\fivett
 ---\def\tt{\fam=\ttfam \tentt}
----```sevensy
+---sevensy
 ---\scriptscriptfont2=\fivesy
 ---\def\cal{\fam=2}
 ---%
@@ -4053,6 +4096,7 @@ tex.mathcode = {}
 ---@param class integer # The class to which a math character belongs (`0`: Ordinary, `1`: Large operator, `2`: Binary operation, `3`: Relation, `4`: Opening, `5`: Closing, `6`: Punctuation, `7`: Variable family).
 ---@param family integer # TeX uses fonts from one or more of the sixteen font families to typeset mathematical characters. Each font family consists of three fonts — textfont, scriptfont, and scriptscriptfont. (`0`: Roman, `1`: Math italic, `2`: Math symbol, `3`: Math extension, `4`: Italic text, `5`: Slanted text, `6`: Bold text, `7`: Typewriter)
 ---@param character integer # The character position
+---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 function tex.setmathcode(global, char_code, class, family, character) end
 
@@ -4143,7 +4187,7 @@ function tex.setmathcode(global, char_code, class, family, character) end
 ---\scriptfont\ttfam=\seventt
 ---\scriptscriptfont\ttfam=\fivett
 ---\def\tt{\fam=\ttfam \tentt}
----```sevensy
+---sevensy
 ---\scriptscriptfont2=\fivesy
 ---\def\cal{\fam=2}
 ---%
@@ -4206,6 +4250,7 @@ function tex.setmathcode(global, char_code, class, family, character) end
 ---@param class integer # The class to which a math character belongs (`0`: Ordinary, `1`: Large operator, `2`: Binary operation, `3`: Relation, `4`: Opening, `5`: Closing, `6`: Punctuation, `7`: Variable family).
 ---@param family integer # TeX uses fonts from one or more of the sixteen font families to typeset mathematical characters. Each font family consists of three fonts — textfont, scriptfont, and scriptscriptfont. (`0`: Roman, `1`: Math italic, `2`: Math symbol, `3`: Math extension, `4`: Italic text, `5`: Slanted text, `6`: Bold text, `7`: Typewriter)
 ---@param character integer # The character position
+---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 function tex.setmathcode(global, char_code, class, family, character) end
 
@@ -4218,6 +4263,7 @@ function tex.setmathcode(global, char_code, class, family, character) end
 ---@param global 'global' # It is possible to define values globally by using the string `global` as the first function argument.
 ---@param char_code integer # The ASCII or UNICODE charcater code point.
 ---@param math_code MathCode # A table with three integers (class, family, character).
+---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 function tex.setmathcode(global, char_code, math_code) end
 
@@ -4229,11 +4275,13 @@ function tex.setmathcode(global, char_code, math_code) end
 ---
 ---@param char_code integer  # The ASCII or UNICODE charcater code point.
 ---@param math_code MathCode # A table with three integers (class, family, character).
+---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 function tex.setmathcode(char_code, math_code) end
 
 ---
----Retrieve the math code of a character as a table with three integers (class, family, character).
+---Retrieve the math code of a character as a table with three integers (class,
+---family, character).
 ---
 ---__Examples from The TeXBook, page 154__:
 ---
@@ -4273,7 +4321,8 @@ function tex.setmathcode(char_code, math_code) end
 function tex.getmathcode(char_code) end
 
 ---
----Retrieve the math code of a character as three integers (class, family, character).
+---Retrieve the math code of a character as three integers (class, family,
+---character).
 ---
 ---__Examples from The TeXBook, page 154__:
 ---
@@ -4385,7 +4434,7 @@ function tex.getmathcode(char_code) end
 ---\scriptfont\ttfam=\seventt
 ---\scriptscriptfont\ttfam=\fivett
 ---\def\tt{\fam=\ttfam \tentt}
----```sevensy
+---sevensy
 ---\scriptscriptfont2=\fivesy
 ---\def\cal{\fam=2}
 ---%
@@ -4452,10 +4501,8 @@ function tex.getmathcode(char_code) end
 function tex.getmathcodes(char_code) end
 
 ---
----The *TeX*'s character code tables `delcode` (delimiter code) can be accessed and written to using
----a virtual subtable of the `tex` table.
----
-
+---The *TeX*'s character code tables `delcode` (delimiter code) can be accessed
+---and written to using a virtual subtable of the `tex` table.
 ---
 ---```lua
 ---for i=1,128 do
@@ -4487,8 +4534,8 @@ function tex.getmathcodes(char_code) end
 ---```
 ---
 ---The `delcode` section in the
----[plain.tex](https://mirrors.ctan.org/macros/plain/base/plain.tex)
----format file:
+---[plain.tex](https://mirrors.ctan.org/macros/plain/base/plain.tex) format
+---file:
 ---
 ---```tex
 ---% Finally, INITEX sets all \delcode values to -1, except \delcode`.=0
@@ -4514,7 +4561,8 @@ function tex.getmathcodes(char_code) end
 tex.delcode = {}
 
 ---
----The table for `delcode` (delimiter code) is an array with 4 numbers, like this:
+---The table for `delcode` (delimiter code) is an array with 4 numbers, like
+---this:
 ---
 ---```lua
 ---{
@@ -4541,15 +4589,7 @@ tex.delcode = {}
 ---@param large_family integer
 ---@param large_character integer
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
-function tex.setdelcode(
-  global,
-  char_code,
-  small_family,
-  small_character,
-  large_family,
-  large_character
-)
-end
+function tex.setdelcode(global, char_code, small_family, small_character, large_family, large_character) end
 
 ---
 ----__Reference:__
@@ -4562,16 +4602,12 @@ end
 ---@param small_character integer
 ---@param large_family integer
 ---@param large_character integer
+---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
-function tex.setdelcode(
-  char_code,
-  small_family,
-  small_character,
-  large_family,
-  large_character
-)
-end
+function tex.setdelcode(char_code, small_family, small_character, large_family, large_character) end
 
+---
+---__Reference:__
 ---
 ---* Corresponding C source code: [ltexlib.c#L1640-L1681](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L1640-L1681)
 ---* Corresponding plain TeX control sequence: [\delcode](https://www.tug.org/utilities/plain/cseq.html#delcode-rp)
@@ -4579,6 +4615,7 @@ end
 ---@param global 'global' # It is possible to define values globally by using the string `global` as the first function argument.
 ---@param char_code integer
 ---@param del_code DelCode
+---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 function tex.setdelcode(global, char_code, del_code) end
 
@@ -4590,9 +4627,12 @@ function tex.setdelcode(global, char_code, del_code) end
 ---
 ---@param char_code integer
 ---@param del_code DelCode
+---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 function tex.setdelcode(char_code, del_code) end
 
+---
+---__Reference:__
 ---
 ---* Corresponding C source code: [ltexlib.c#L1701-L1712](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L1701-L1712)
 ---* Corresponding plain TeX control sequence: [\delcode](https://www.tug.org/utilities/plain/cseq.html#delcode-rp)
@@ -4603,6 +4643,7 @@ function tex.setdelcode(char_code, del_code) end
 ---@return integer small_character
 ---@return integer large_family
 ---@return integer large_character
+---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 function tex.getdelcodes(char_code) end
 
@@ -4615,6 +4656,7 @@ function tex.getdelcodes(char_code) end
 ---@param char_code integer
 ---
 ---@return DelCode
+---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 function tex.getdelcode(char_code) end
 
@@ -4689,9 +4731,11 @@ function tex.getbox(register) end
 function tex.isbox(register) end
 
 ---
----Register a box for reuse (this is modelled after so
----called xforms in *PDF*). You can (re)use the box with `useboxresource` or
----by creating a rule node with subtype 2.
+---Register a box for reuse (this is modelled after so called xforms in *PDF*).
+---You can (re)use the box with `useboxresource` or by creating a rule node with
+---subtype 2.
+---
+---__Reference:__
 ---
 ---* Corresponding C source code: [ltexlib.c#L3217-L3278](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L3217-L3278)
 ---
@@ -4707,16 +4751,10 @@ function tex.isbox(register) end
 ---@return integer index
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
-function tex.saveboxresource(
-  n,
-  attributes,
-  resources,
-  immediate,
-  type,
-  margin
-)
-end
+function tex.saveboxresource(n, attributes, resources, immediate, type, margin) end
 
+---
+---__Reference:__
 ---
 ---* Corresponding Lua source code: [ltexlib.c#L3346-L3355](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L3346-L3355)
 ---
@@ -4730,6 +4768,8 @@ function tex.getboxresourcebox(n) end
 ---Generate the reference (a rule type).
 ---
 ---The dimensions are optional and the final ones are returned as extra values.
+---
+---__Reference:__
 ---
 ---* Corresponding C source code: [ltexlib.c#L3280-L3325](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L3280-L3325)
 ---
@@ -4750,8 +4790,9 @@ function tex.useboxresource(n, width, height, depth) end
 ---
 ---Return the width, height, depth and margin of the resource.
 ---
----No dimensions returned means that the resource is
----unknown.
+---No dimensions returned means that the resource is unknown.
+---
+---__Reference:__
 ---
 ---* Corresponding C source code: [ltexlib.c#L3327-L3344](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L3327-L3344)
 ---
@@ -4761,16 +4802,19 @@ function tex.useboxresource(n, width, height, depth) end
 ---@return integer|nil height
 ---@return integer|nil depth
 ---@return integer|nil margin
+---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 function tex.getboxresourcedimensions(n) end
 
 ---
----Call the internal
----function that build a page, given that there is something to build.
+---Call the internal function that build a page, given that there is something
+---to build.
 ---
 ---You should not expect to much from the `triggerbuildpage` helpers because
----often *TeX* doesn't do much if it thinks nothing has to be done, but it might be
----useful for some applications.
+---often *TeX* doesn't do much if it thinks nothing has to be done, but it might
+---be useful for some applications.
+---
+---__Reference:__
 ---
 ---* Corresponding C source code: [ltexlib.c#L3357-L3361](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L3357-L3361)
 ---
@@ -4780,8 +4824,11 @@ function tex.triggerbuildpage() end
 ---
 ---Split a box.
 ---
----The remainder is kept in the original box and a packaged vlist is returned. This
----operation is comparable to the `vsplit` operation. The mode can be `additional` or `exactly` and concerns the split off box.
+---The remainder is kept in the original box and a packaged vlist is returned.
+---This operation is comparable to the `vsplit` operation. The mode can be
+---`additional` or `exactly` and concerns the split off box.
+---
+---__Reference:__
 ---
 ---* Corresponding C source code: [ltexlib.c#L1282-L1308](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L1282-L1308)
 ---
@@ -4790,22 +4837,28 @@ function tex.triggerbuildpage() end
 ---@param mode 'additional' | 'exactly'
 ---
 ---@return Node|nil vlist
+---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 function tex.splitbox(n, height, mode) end
 
 ---
 ---Set the internal math parameters.
 ---
+---__Reference:__
+---
 ---* Corresponding C source code: [ltexlib.c#L1986-L2015](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L1986-L2015)
 ---
 ---@param math_param_name MathParamName
 ---@param math_style_name MathStyleName
 ---@param value integer
+---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 function tex.setmath(math_param_name, math_style_name, value) end
 
 ---
 ---Set the internal math parameters.
+---
+---__Reference:__
 ---
 ---* Corresponding C source code: [ltexlib.c#L1986-L2015](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L1986-L2015)
 ---
@@ -4813,11 +4866,14 @@ function tex.setmath(math_param_name, math_style_name, value) end
 ---@param math_param_name MathParamName
 ---@param math_style_name MathStyleName
 ---@param value integer|Node # The value is either a number (representing a dimension or number) or a glue spec node representing a muskip for `ordordspacing` and similar spacing parameters.
+---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 function tex.setmath(global, math_param_name, math_style_name, value) end
 
 ---
 ---Query the internal math parameters.
+---
+---__Reference:__
 ---
 ---* Corresponding C source code: [ltexlib.c#L2017-L2039](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L2017-L2039)
 ---
@@ -4831,6 +4887,8 @@ function tex.getmath(math_param_name, math_style_name) end
 
 ---
 ---The style name minus the trailing “style”.
+---
+---__Reference:__
 ---
 ---* Corresponding C source code: [texmath.c#L510-L516](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/tex/texmath.c#L510-L516)
 ---
@@ -4847,6 +4905,8 @@ function tex.getmath(math_param_name, math_style_name) end
 
 ---
 ---The parameter name minus the leading “Umath”.
+---
+---__Reference:__
 ---
 ---* Corresponding C source code: [texmath.c#L518-L558](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/tex/texmath.c#L518-L558)
 ---
@@ -5026,15 +5086,18 @@ tex.lists.page_discards_head = nil
 tex.lists.split_discards_head = nil
 
 ---
----You have
----to be careful with what you set as *TeX* can have expectations with regards to
----how a list is constructed or in what state it is.
+---You have to be careful with what you set as *TeX* can have expectations with
+---regards to how a list is constructed or in what state it is.
+---
+---__Reference:__
 ---
 ---* Corresponding C source code: [ltexlib.c#L2266-L2321](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L2266-L2321)
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 function tex.setlist() end
 
+---
+---__Reference:__
 ---
 ---* Corresponding C source code: [ltexlib.c#L2202-L2264](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L2202-L2264)
 ---
@@ -5044,13 +5107,14 @@ function tex.getlist() end
 ---
 ---The virtual table `nest` contains the currently active semantic nesting
 ---state. It has two main parts: a zero-based array of userdata for the semantic
----nest itself, and the numerical value `ptr`, which gives the highest
----available index. Neither the array items in `nest[]` nor `ptr` can be
----assigned to (as this would confuse the typesetting engine beyond repair), but you
----can assign to the individual values inside the array items, e.g. `tex.nest[tex.nest.ptr].prevdepth`.
+---nest itself, and the numerical value `ptr`, which gives the highest available
+---index. Neither the array items in `nest[]` nor `ptr` can be assigned to (as
+---this would confuse the typesetting engine beyond repair), but you can assign
+---to the individual values inside the array items, e.g.
+---`tex.nest[tex.nest.ptr].prevdepth`.
 ---
----`tex.nest[tex.nest.ptr]` is the current nest state, `nest[0]` the
----outermost (main vertical list) level.
+---`tex.nest[tex.nest.ptr]` is the current nest state, `nest[0]` the outermost
+---(main vertical list) level.
 ---
 ---__Reference:__
 ---
@@ -5062,18 +5126,18 @@ function tex.getlist() end
 tex.nest = {}
 
 ---
----highest
----available index.
+---highest available index.
 ---@type integer
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 tex.nest.ptr = 0
 
 ---
----The getter function is `getnest`. You
----can pass a number (which gives you a list), nothing or `top`, which returns
----the topmost list, or the string `ptr` which gives you the index of the
----topmost list.
+---The getter function is `getnest`. You can pass a number (which gives you a
+---list), nothing or `top`, which returns the topmost list, or the string `ptr`
+---which gives you the index of the topmost list.
+---
+---__Reference:__
 ---
 ---* Corresponding C source code: [ltexlib.c#L2422-L2455](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L2422-L2455)
 ---
@@ -5083,11 +5147,15 @@ tex.nest.ptr = 0
 function tex.getnest() end
 
 ---
+---__Reference:__
+---
 ---* Corresponding C source code: [ltexlib.c#L2457-L2461](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L2457-L2461)
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 function tex.setnest() end
 
+---
+---__Reference:__
 ---
 ---* Corresponding C source code: [ltexlib.c#L2325-L2361](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L2325-L2361)
 ---
@@ -5108,7 +5176,11 @@ function tex.setnest() end
 ---
 
 ---
----`tex.getmodevalues()` to get the mapping: positive values signal vertical, horizontal and math mode, while negative values indicate inner and inline variants (all modes).
+---`tex.getmodevalues()` to get the mapping: positive values signal vertical,
+---horizontal and math mode, while negative values indicate inner and inline
+---variants (all modes).
+---
+---__Reference:__
 ---
 ---* Corresponding C source code: [ltexlib.c#L3549-L3565](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L3549-L3565)
 ---
@@ -5155,9 +5227,9 @@ function tex.print(input_line, ...) end
 function tex.print(catcodetable_no, input_line, ...) end
 
 ---
----If there is a
----table argument instead of a list of strings, this has to be a consecutive array
----of strings to print (the first non-string value will stop the printing process).
+---If there is a table argument instead of a list of strings, this has to be a
+---consecutive array of strings to print (the first non-string value will stop
+---the printing process).
 ---
 ---see `LuaTeX` manual: 10.3.14.1 `print`
 ---
@@ -5196,7 +5268,9 @@ function tex.print(input_lines) end
 function tex.print(catcodetable_no, input_lines) end
 
 ---
----combines all of its arguments (or the elements of array argument) into a single input line for TeX. So any leading spaces will be treated as if they were typed, etc. (`s(ingle-input-line)print`).
+---combines all of its arguments (or the elements of array argument) into a
+---single input line for TeX. So any leading spaces will be treated as if they
+---were typed, etc. (`s(ingle-input-line)print`).
 ---
 ---Each string argument is treated by *TeX* as a special kind of input line that
 ---makes it suitable for use as a partial line input mechanism:
@@ -5212,25 +5286,25 @@ function tex.print(catcodetable_no, input_lines) end
 ---before\directlua{tex.sprint("\\relax")tex.sprint(" inbetween")}after
 ---```
 ---
----the space before `in between` will be gobbled as a result of the
----“normal” scanning of `\relax`.
+---the space before `in between` will be gobbled as a result of the “normal”
+---scanning of `\relax`.
 ---
 ---If there is a table argument instead of a list of strings, this has to be a
----consecutive array of strings to print (the first non-string value will stop the
----printing process).
+---consecutive array of strings to print (the first non-string value will stop
+---the printing process).
 ---
 ---The optional argument sets the catcode regime, as with `tex.print`. This
 ---influences the string arguments (or numbers turned into strings).
 ---
 ---Although this needs to be used with care, you can also pass token or node
----userdata objects. These get injected into the stream. Tokens had best be valid
----tokens, while nodes need to be around when they get injected. Therefore it is
----important to realize the following:
+---userdata objects. These get injected into the stream. Tokens had best be
+---valid tokens, while nodes need to be around when they get injected. Therefore
+---it is important to realize the following:
 ---
 ---* When you inject a token, you need to pass a valid token userdata object. This
 ---  object will be collected by *Lua* when it no longer is referenced. When it gets
 ---  printed to *TeX* the token itself gets copied so there is no interference with the
----  *Lua* garbage collection. You manage the object yourself. Because tokens are
+---  *Lua* garbage collection. You manage the object yourself. Because token are
 ---  actually just numbers, there is no real extra overhead at the *TeX* end.
 ---* When you inject a node, you need to pass a valid node userdata object. The
 ---  node related to the object will not be collected by *Lua* when it no longer
@@ -5239,18 +5313,18 @@ function tex.print(catcodetable_no, input_lines) end
 ---  around. There is no *Lua* garbage collection involved. Again, you manage the
 ---  object yourself. The node itself is freed when *TeX* is done with it.
 ---
----If you consider the last remark you might realize that we have a problem when a
----printed mix of strings, tokens and nodes is reused. Inside *TeX* the sequence
----becomes a linked list of input buffers. So, `"123"` or `"\foo{123`"}
+---If you consider the last remark you might realize that we have a problem when
+---a printed mix of strings, tokens and nodes is reused. Inside *TeX* the
+---sequence becomes a linked list of input buffers. So, `"123"` or `"\foo{123`"}
 ---gets read and parsed on the fly, while `<token userdata>` already is
 ---tokenized and effectively is a token list now. A `<node userdata>` is also
----tokenized into a token list but it has a reference to a real node. Normally this
----goes fine. But now assume that you store the whole lot in a macro: in that case
----the tokenized node can be flushed many times. But, after the first such flush the
----node is used and its memory freed. You can prevent this by using copies which is
----controlled by setting `luacopyinputnodes` to a non-zero value. This is one
----of these fuzzy areas you have to live with if you really mess with these low
----level issues.
+---tokenized into a token list but it has a reference to a real node. Normally
+---this goes fine. But now assume that you store the whole lot in a macro: in
+---that case the tokenized node can be flushed many times. But, after the first
+---such flush the node is used and its memory freed. You can prevent this by
+---using copies which is controlled by setting `luacopyinputnodes` to a non-zero
+---value. This is one of these fuzzy areas you have to live with if you really
+---mess with these low level issues.
 ---
 ---__Reference:__
 ---
@@ -5321,8 +5395,8 @@ function tex.sprint(catcodetable_no, input) end
 ---Print tables of strings to the input stream (`t(able)print`).
 ---
 ---This function is basically a shortcut for repeated calls to
----`tex.sprint(catcodetable_no,  input, ...)`, once for each of the
----supplied argument tables.
+---`tex.sprint(catcodetable_no,  input, ...)`, once for each of the supplied
+---argument tables.
 ---
 ---```tex
 ---\begingroup
@@ -5399,8 +5473,8 @@ function tex.cprint(catcode, input, ...) end
 function tex.cprint(catcode, input) end
 
 ---
----Print to the input stream using category code `12` (`other`) except
----for the space character, that has category code `10` (`space`).
+---Print to the input stream using category code `12` (`other`) except for the
+---space character, that has category code `10` (`space`).
 ---
 ---Each string argument is treated by *TeX* as a special kind of input line that
 ---makes it suitable for use as a quick way to dump information:
@@ -5424,8 +5498,8 @@ function tex.cprint(catcode, input) end
 function tex.write(input, ...) end
 
 ---
----Print to the input stream using category code `12` (`other`) except
----for the space character, that has category code `10` (`space`).
+---Print to the input stream using category code `12` (`other`) except for the
+---space character, that has category code `10` (`space`).
 ---
 ---Each string argument is treated by *TeX* as a special kind of input line that
 ---makes it suitable for use as a quick way to dump information:
@@ -5448,8 +5522,8 @@ function tex.write(input, ...) end
 function tex.write(input) end
 
 ---
----Rounds *Lua* number `o`, and returns a number that is in the range of a
----valid *TeX* register value. If the number starts out of range, it generates a
+---Rounds *Lua* number `o`, and returns a number that is in the range of a valid
+---*TeX* register value. If the number starts out of range, it generates a
 ---“number too big” error as well.
 ---
 ---__Reference:__
@@ -5464,15 +5538,16 @@ function tex.write(input) end
 function tex.round(o) end
 
 ---
----Multiplies the *Lua* numbers `o` and `delta`, and returns a rounded
----number that is in the range of a valid *TeX* register value. In the table
----version, it creates a copy of the table with all numeric top-level values scaled
----in that manner. If the multiplied number(s) are of range, it generates
----“number too big” error(s) as well.
+---Multiplies the *Lua* numbers `o` and `delta`, and returns a rounded number
+---that is in the range of a valid *TeX* register value. In the table version,
+---it creates a copy of the table with all numeric top-level values scaled in
+---that manner. If the multiplied number(s) are of range, it generates “number
+---too big” error(s) as well.
 ---
----Note: the precision of the output of this function will depend on your computer's
----architecture and operating system, so use with care! An interface to *LuaTeX*'s
----internal, 100% portable scale function will be added at a later date.
+---Note: the precision of the output of this function will depend on your
+---computer's architecture and operating system, so use with care! An interface
+---to *LuaTeX*'s internal, 100% portable scale function will be added at a later
+---date.
 ---
 ---__Reference:__
 ---
@@ -5525,8 +5600,7 @@ function tex.number(n) end
 function tex.romannumeral(n) end
 
 ---
----returns the `csname` string that matches a
----font id number (if there is one).
+---returns the `csname` string that matches a font id number (if there is one).
 ---
 ---__Reference:__
 ---
@@ -5554,8 +5628,8 @@ function tex.fontidentifier(font_id) end
 function tex.fontname(font_id) end
 
 ---
----Converts the number `o` that represents an explicit
----dimension into an integer number of scaled points.
+---Converts the number `o` that represents an explicit dimension into an integer
+---number of scaled points.
 ---
 ---see `LuaTeX` manual: 10.3.15.5 `sp`
 ---
@@ -5571,13 +5645,13 @@ function tex.fontname(font_id) end
 function tex.sp(o) end
 
 ---
----Convert a string `s` that represents an explicit
----dimension into an integer number of scaled points.
+---Convert a string `s` that represents an explicit dimension into an integer
+---number of scaled points.
 ---
 ---For parsing the string, the same scanning and conversion rules are used that
 ---*LuaTeX* would use if it was scanning a dimension specifier in its *TeX*-like
----input language (this includes generating errors for bad values), expect for the
----following:
+---input language (this includes generating errors for bad values), expect for
+---the following:
 ---
 ---* only explicit values are allowed, control sequences are not handled
 ---* infinite dimension units (`fil...`) are forbidden
@@ -5605,8 +5679,7 @@ function tex.sp(s) end
 -- Removed?
 
 ---
----Create an error like the combination of `\errhelp` and
----`\errmessage`.
+---Create an error like the combination of `\errhelp` and `\errmessage`.
 ---
 ---During this error, deletions are disabled.
 ---
@@ -5624,8 +5697,7 @@ function tex.sp(s) end
 function tex.error(message, help) end
 
 ---
----Show the current
----(expansion) context in case of an error.
+---Show the current (expansion) context in case of an error.
 ---
 ----__Reference:__
 ---
@@ -5637,13 +5709,12 @@ function tex.show_context() end
 ---
 ---Start the interpretation.
 ---
----A run normally
----boils down to *TeX* entering the so called main loop. A token is fetched and
----depending on it current meaning some actions takes place. Sometimes that actions
----comes immediately, sometimes more scanning is needed. Quite often tokens get
----pushed back into the input. This all means that the *TeX* scanner is constantly
----pushing and popping input states, but in the end after all the action is done
----returns to the main loop.
+---A run normally boils down to *TeX* entering the so called main loop. A token
+---is fetched and depending on it current meaning some actions takes place.
+---Sometimes that actions comes immediately, sometimes more scanning is needed.
+---Quite often tokens get pushed back into the input. This all means that the
+---*TeX* scanner is constantly pushing and popping input states, but in the end
+---after all the action is done returns to the main loop.
 ---
 ---__Reference:__
 ---
@@ -5663,24 +5734,24 @@ function tex.run() end
 function tex.finish() end
 
 ---
----Because of the fact that *TeX* is in a complex dance of expanding, dealing with
----fonts, typesetting paragraphs, messing around with boxes, building pages, and so
----on, you cannot easily run a nested *TeX* run (read nested main loop). However,
----there is an option to force a local run with `runtoks`. The content of the
----given token list register gets expanded locally after which we return to where we
----triggered this expansion, at the *Lua* end. Instead a function can get passed
----that does some work. You have to make sure that at the end *TeX* is in a sane
----state and this is not always trivial. A more complex mechanism would complicate
----*TeX* itself (and probably also harm performance) so this simple local expansion
----loop has to do.
+---Because of the fact that *TeX* is in a complex dance of expanding, dealing
+---with fonts, typesetting paragraphs, messing around with boxes, building
+---pages, and so on, you cannot easily run a nested *TeX* run (read nested main
+---loop). However, there is an option to force a local run with `runtoks`. The
+---content of the given token list register gets expanded locally after which we
+---return to where we triggered this expansion, at the *Lua* end. Instead a
+---function can get passed that does some work. You have to make sure that at
+---the end *TeX* is in a sane state and this is not always trivial. A more
+---complex mechanism would complicate *TeX* itself (and probably also harm
+---performance) so this simple local expansion loop has to do.
 ---
 ---When the `tracingnesting` parameter is set to a value larger than 2 some
 ---information is reported about the state of the local loop.
 ---
----Inside for instance an `\edef` the `runtoks` function behaves (at
----least tries to) like it were an `\the`. This prevents unwanted side
----effects: normally in such an definition tokens remain tokens and (for instance)
----characters don't become nodes.
+---Inside for instance an `\edef` the `runtoks` function behaves (at least tries
+---to) like it were an `\the`. This prevents unwanted side effects: normally in
+---such an definition tokens remain tokens and (for instance) characters don't
+---become nodes.
 ---
 ---__Example:__
 ---
@@ -5716,20 +5787,21 @@ function tex.runtoks(func) end
 
 ---
 ---You can quit the local loop with `\endlocalcontrol` or from the *Lua* end
----with `tex.quittoks`. In that case you end one level up! Of course in the
----end that can mean that you arrive at the main level in which case an extra end
+---with `tex.quittoks`. In that case you end one level up! Of course in the end
+---that can mean that you arrive at the main level in which case an extra end
 ---will trigger a redundancy warning (not an abort!).
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 function tex.quittoks() end
 
 ---
----An example of a (possible error triggering) complication is that *TeX* expects to
----be in some state, say horizontal mode, and you have to make sure it is when you
----start feeding back something from *Lua* into *TeX*. Normally a user will not run
----into issues but when you start writing tokens or nodes or have a nested run there
----can be situations that you need to run `forcehmode`. There is no recipe for
----this and intercepting possible cases would weaken *LuaTeX*'s flexibility.
+---An example of a (possible error triggering) complication is that *TeX*
+---expects to be in some state, say horizontal mode, and you have to make sure
+---it is when you start feeding back something from *Lua* into *TeX*. Normally a
+---user will not run into issues but when you start writing tokens or nodes or
+---have a nested run there can be situations that you need to run `forcehmode`.
+---There is no recipe for this and intercepting possible cases would weaken
+---*LuaTeX*'s flexibility.
 ---
 ---@param indented? boolean
 ---
@@ -5739,10 +5811,11 @@ function tex.forcehmode(indented) end
 ---
 ---Return a list of names.
 ---
----This can be useful for debugging, but note that this
----also reports control sequences that may be unreachable at this moment due to
----local redefinitions: it is strictly a dump of the hash table. You can use `token.create` to inspect properties, for instance when the `command` key
----in a created table equals `123`, you have the `cmdname` value `undefined_cs`.
+---This can be useful for debugging, but note that this also reports control
+---sequences that may be unreachable at this moment due to local redefinitions:
+---it is strictly a dump of the hash table. You can use `token.create` to
+---inspect properties, for instance when the `command` key in a created table
+---equals `123`, you have the `cmdname` value `undefined_cs`.
 ---
 ---```lua
 ---for i,v in pairs(tex.hashtokens()) do ... end
@@ -5756,9 +5829,9 @@ function tex.forcehmode(indented) end
 function tex.hashtokens() end
 
 ---
----Associates `csname` with the internal font number `fontid`. The
----definition is global if (and only if) `global` is specified and true (the
----setting of `globaldefs` is not taken into account).
+---Associates `csname` with the internal font number `fontid`. The definition is
+---global if (and only if) `global` is specified and true (the setting of
+---`globaldefs` is not taken into account).
 ---
 ---@param csname string
 ---@param fontid integer
@@ -5767,9 +5840,9 @@ function tex.hashtokens() end
 function tex.definefont(csname, fontid) end
 
 ---
----Associates `csname` with the internal font number `fontid`. The
----definition is global if (and only if) `global` is specified and true (the
----setting of `globaldefs` is not taken into account).
+---Associates `csname` with the internal font number `fontid`. The definition is
+---global if (and only if) `global` is specified and true (the setting of
+---`globaldefs` is not taken into account).
 ---
 ---@param global boolean
 ---@param csname string
@@ -5779,20 +5852,23 @@ function tex.definefont(csname, fontid) end
 function tex.definefont(global, csname, fontid) end
 
 ---
----This function accepts a prefix string and an array of primitive names. For each
----combination of “prefix” and “name”, the `tex.enableprimitives` first verifies that “name” is an actual primitive
----(it must be returned by one of the `tex.extraprimitives` calls explained
----below, or part of *TeX*82, or `directlua`). If it is not, `tex.enableprimitives` does nothing and skips to the next pair.
+---This function accepts a prefix string and an array of primitive names. For
+---each combination of “prefix” and “name”, the `tex.enableprimitives` first
+---verifies that “name” is an actual primitive (it must be returned by one of
+---the `tex.extraprimitives` calls explained below, or part of *TeX*82, or
+---`directlua`). If it is not, `tex.enableprimitives` does nothing and skips to
+---the next pair.
 ---
 ---But if it is, then it will construct a csname variable by concatenating the
----“prefix” and “name”, unless the “prefix” is already the
----actual prefix of “name”. In the latter case, it will discard the “prefix”, and just use “name”.
+---“prefix” and “name”, unless the “prefix” is already the actual prefix of
+---“name”. In the latter case, it will discard the “prefix”, and just use
+---“name”.
 ---
----Then it will check for the existence of the constructed csname. If the csname is
----currently undefined (note: that is not the same as `relax`), it will
+---Then it will check for the existence of the constructed csname. If the csname
+---is currently undefined (note: that is not the same as `relax`), it will
 ---globally define the csname to have the meaning: run code belonging to the
----primitive “name”. If for some reason the csname is already defined, it
----does nothing and tries the next pair.
+---primitive “name”. If for some reason the csname is already defined, it does
+---nothing and tries the next pair.
 ---
 ---An example:
 ---
@@ -5801,9 +5877,11 @@ function tex.definefont(global, csname, fontid) end
 ---```
 ---
 ---will define `\LuaTeXformatname` with the same intrinsic meaning as the
----documented primitive `formatname`, provided that the control sequences `\LuaTeXformatname` is currently undefined.
+---documented primitive `formatname`, provided that the control sequences
+---`\LuaTeXformatname` is currently undefined.
 ---
----When *LuaTeX* is run with `--ini` only the *TeX*82 primitives and `directlua` are available, so no extra primitives {\bf at all}.
+---When *LuaTeX* is run with `--ini` only the *TeX*82 primitives and `directlua`
+---are available, so no extra primitives {\bf at all}.
 ---
 ---If you want to have all the new functionality available using their default
 ---names, as it is now, you will have to add
@@ -5814,15 +5892,15 @@ function tex.definefont(global, csname, fontid) end
 ---\fi
 ---```
 ---
----near the beginning of your format generation file. Or you can choose different
----prefixes for different subsets, as you see fit.
+---near the beginning of your format generation file. Or you can choose
+---different prefixes for different subsets, as you see fit.
 ---
 ---Calling some form of `tex.enableprimitives` is highly important though,
----because if you do not, you will end up with a *TeX*82-lookalike that can run *Lua*
----code but not do much else. The defined csnames are (of course) saved in the
----format and will be available at runtime.
+---because if you do not, you will end up with a *TeX*82-lookalike that can run
+---*Lua* code but not do much else. The defined csnames are (of course) saved in
+---the format and will be available at runtime.
 ---
----*
+---__Reference:__
 ---
 ---* Corresponding C source code: [ltexlib.c#L2752-L2809](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L2752-L2809)
 ---
@@ -5840,19 +5918,20 @@ function tex.enableprimitives(prefix, primitive_names) end
 ---|'luatex'
 
 ---
----Return a list of the primitives that originate from the engine(s)
----given by the requested string value(s).
+---Return a list of the primitives that originate from the engine(s) given by
+---the requested string value(s).
 ---
----The possible values and their (current)
----return values are given in the following table. In addition the somewhat special
----primitives “\tex{ ”}, “\tex {/”} and “`-`” are defined.
+---The possible values and their (current) return values are given in the
+---following table. In addition the somewhat special primitives “\tex{ ”}, “\tex
+---{/”} and “`-`” are defined.
 ---
----Note that `luatex` does not contain `directlua`, as that is
----considered to be a core primitive, along with all the *TeX*82 primitives, so it is
----part of the list that is returned from `core`.
+---Note that `luatex` does not contain `directlua`, as that is considered to be
+---a core primitive, along with all the *TeX*82 primitives, so it is part of the
+---list that is returned from `core`.
 ---
----Running `tex.extraprimitives()` will give you the complete list of
----primitives `-ini` startup. It is exactly equivalent to `tex.extraprimitives("etex","luatex")`.
+---Running `tex.extraprimitives()` will give you the complete list of primitives
+---`-ini` startup. It is exactly equivalent to
+---`tex.extraprimitives("etex","luatex")`.
 ---
 ---* Corresponding C source code: [ltexlib.c#L2710-L2750](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L2710-L2750)
 ---
@@ -5866,6 +5945,8 @@ function tex.extraprimitives(...) end
 ---
 ---Return a list of all primitives that *LuaTeX* knows about.
 ---
+---__Reference:__
+---
 ---* Corresponding C source code: [ltexlib.c#L2691-L2708](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L2691-L2708)
 ---
 ---@return string[]
@@ -5876,9 +5957,12 @@ function tex.primitives() end
 ---
 ---Calculate the badness.
 ---
----This helper function is useful during linebreak calculations. The function returns the badness for when total `total`
----is supposed to be made from amounts that sum to `sum`. The returned number is
----a reasonable approximation of `100(total/sum)^3`.
+---This helper function is useful during linebreak calculations. The function
+---returns the badness for when total `total` is supposed to be made from
+---amounts that sum to `sum`. The returned number is a reasonable approximation
+---of `100(total/sum)^3`.
+---
+---__Reference:__
 ---
 ---* Corresponding C source code: [ltexlib.c#L3069-L3075](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L3069-L3075)
 ---* Corresponding C source code: [arithmetic.c#L275-L300](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/tex/arithmetic.c#L275-L300)
@@ -5887,12 +5971,14 @@ function tex.primitives() end
 ---@param sum integer # scaled values
 ---
 ---@return integer badness
+---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 function tex.badness(total, sum) end
 
 ---
----Reset the parameters that *TeX* normally resets when a new paragraph
----is seen.
+---Reset the parameters that *TeX* normally resets when a new paragraph is seen.
+---
+---__Reference:__
 ---
 ---* Corresponding C source code: [ltexlib.c#L3054-L3059](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L3054-L3059)
 ---
@@ -5930,13 +6016,13 @@ function tex.resetparagraph() end
 ---
 
 ---
----Note that there is no interface for `displaywidowpenalties`, you have to
----pass the right choice for `widowpenalties` yourself.
+---Note that there is no interface for `displaywidowpenalties`, you have to pass
+---the right choice for `widowpenalties` yourself.
 ---
 ---It is your own job to make sure that `listhead` is a proper paragraph list:
----this function does not add any nodes to it. To be exact, if you want to replace
----the core line breaking, you may have to do the following (when you are not
----actually working in the `pre_linebreak_filter` or `linebreak_filter`
+---this function does not add any nodes to it. To be exact, if you want to
+---replace the core line breaking, you may have to do the following (when you
+---are not actually working in the `pre_linebreak_filter` or `linebreak_filter`
 ---callbacks, or when the original list starting at listhead was generated in
 ---horizontal mode):
 ---
@@ -5950,9 +6036,9 @@ function tex.resetparagraph() end
 ---
 ---* make sure all the `prev` pointers are OK
 ---
----The result is a node list, it still needs to be vpacked if you want to assign it
----to a `vbox`. The returned `info` table contains four values that are
----all numbers:
+---The result is a node list, it still needs to be vpacked if you want to assign
+---it to a `vbox`. The returned `info` table contains four values that are all
+---numbers:
 ---
 --- name       explanation
 ---
@@ -5961,10 +6047,10 @@ function tex.resetparagraph() end
 --- looseness  the actual looseness value in the broken paragraph
 --- demerits   the total demerits of the chosen solution
 ---
----Note there are a few things you cannot interface using this function: You cannot
----influence font expansion other than via `pdfadjustspacing`, because the
----settings for that take place elsewhere. The same is true for hbadness and hfuzz
----etc. All these are in the `hpack` routine, and that fetches its own
+---Note there are a few things you cannot interface using this function: You
+---cannot influence font expansion other than via `pdfadjustspacing`, because
+---the settings for that take place elsewhere. The same is true for hbadness and
+---hfuzz etc. All these are in the `hpack` routine, and that fetches its own
 ---variables via globals.
 ---
 ---@param listhead Node
@@ -5990,21 +6076,19 @@ function tex.shipout() end
 function tex.getpagestate() end
 
 ---
----This integer reports the current level of the local loop. It's only useful for
----debugging and the (relative state) numbers can change with the implementation.
+---This integer reports the current level of the local loop. It's only useful
+---for debugging and the (relative state) numbers can change with the
+---implementation.
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 function tex.getlocallevel() end
 
--- { "uniform_rand",tex_unif_rand },
--- { "normal_rand", tex_norm_rand },
--- { "lua_math_randomseed", tex_init_rand }, /* syntactic sugar  */
-
 ---
 ---Initialize a new seed.
 ---
----`lua_math_randomseed` is
----equivalent to this function.
+---`lua_math_randomseed` is equivalent to this function.
+---
+---__Reference:__
 ---
 ---* Corresponding C source code: [ltexlib.c#L3132-L3142](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L3132-L3142)
 ---
@@ -6018,8 +6102,9 @@ function tex.init_rand(seed) end
 ---
 ---Initialize a new seed.
 ---
----`init_rand` is
----equivalent to this function.
+---`init_rand` is equivalent to this function.
+---
+---__Reference:__
 ---
 ---* Corresponding C source code: [ltexlib.c#L3132-L3142](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L3132-L3142)
 ---
@@ -6027,16 +6112,17 @@ function tex.init_rand(seed) end
 ---
 ---@param seed integer
 ---
----You can
----initialize with a new seed with `lua_math_randomseed` (`init_rand` is
+---You can initialize with a new seed with `lua_math_randomseed` (`init_rand` is
 ---equivalent to this one.)
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 function tex.lua_math_randomseed(seed) end
 
 ---
----For practical reasons *LuaTeX* has its own random number generator. This is the original
----*Lua* random function.
+---For practical reasons *LuaTeX* has its own random number generator. This is
+---the original *Lua* random function.
+---
+---__Reference:__
 ---
 ---* Corresponding C source code: [ltexlib.c#L3164-L3192](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L3164-L3192)
 ---
@@ -6048,8 +6134,10 @@ function tex.lua_math_randomseed(seed) end
 function tex.lua_math_random(lower, upper) end
 
 ---
----For practical reasons *LuaTeX* has its own random number generator. This is the original
----*Lua* random function.
+---For practical reasons *LuaTeX* has its own random number generator. This is
+---the original *Lua* random function.
+---
+---__Reference:__
 ---
 ---* Corresponding C source code: [ltexlib.c#L3164-L3192](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L3164-L3192)
 ---
@@ -6062,6 +6150,8 @@ function tex.lua_math_random(upper) end
 ---
 ---no argument is used
 ---
+---__Reference:__
+---
 ---* Corresponding C source code: [ltexlib.c#L3156-L3160](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L3156-L3160)
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
@@ -6069,6 +6159,8 @@ function tex.normal_rand() end
 
 ---
 ---takes a number that will get rounded before being used
+---
+---__Reference:__
 ---
 ---* Corresponding C source code: [ltexlib.c#L3144-L3154](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L3144-L3154)
 ---
@@ -6083,6 +6175,8 @@ function tex.uniform_rand() end
 ---```
 ---
 ---will give a random number between zero and one.
+---
+---__Reference:__
 ---
 ---* Corresponding C source code: [ltexlib.c#L2051-L2054](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L2051-L2054)
 ---
@@ -6101,6 +6195,8 @@ function tex.uniformdeviate(n) end
 ---|4 # sets only glyph modes
 
 ---
+---__Reference:__
+---
 ---* Corresponding C source code: [ltexlib.c#L3377-L3382](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L3377-L3382)
 ---
 ---@param mode SyntexMode
@@ -6110,6 +6206,8 @@ function tex.set_synctex_mode(mode) end
 
 ---
 ---Return the current mode.
+---
+---__Reference:__
 ---
 ---* Corresponding C source code: [ltexlib.c#L3383-L3387](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L3383-L3387)
 ---
@@ -6121,6 +6219,8 @@ function tex.get_synctex_mode() end
 ---
 ---Set the current tag (file) value (obeys save stack).
 ---
+---__Reference:__
+---
 ---* Corresponding C source code: [ltexlib.c#L3389-L3394](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L3389-L3394)
 ---
 ---@param tag integer
@@ -6130,6 +6230,8 @@ function tex.set_synctex_tag(tag) end
 
 ---
 ---Get the currently set value of a tag (file).
+---
+---__Reference:__
 ---
 ---* Corresponding C source code: [ltexlib.c#L3396-L3400](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L3396-L3400)
 ---
@@ -6141,6 +6243,8 @@ function tex.get_synctex_tag() end
 ---
 ---Overload the tag (file) value  (`0` resets).
 ---
+---__Reference:__
+---
 ---* Corresponding C source code: [ltexlib.c#L3402-L3407](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L3402-L3407)
 ---
 ---@param tag integer
@@ -6150,6 +6254,8 @@ function tex.force_synctex_tag(tag) end
 
 ---
 ---Set the current line value (obeys save stack).
+---
+---__Reference:__
 ---
 ---* Corresponding C source code: [ltexlib.c#L3416-L3421](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L3416-L3421)
 ---
@@ -6161,14 +6267,19 @@ function tex.set_synctex_line(line) end
 ---
 ---Get the currently set value of a line.
 ---
+---__Reference:__
+---
 ---* Corresponding C source code: [ltexlib.c#L3423-L3427](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L3423-L3427)
 ---
 ---@return integer line
+---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/tex.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 function tex.get_synctex_line() end
 
 ---
 ---Overload the line value (`0` resets)
+---
+---__Reference:__
 ---
 ---* Corresponding C source code: [L3409-L3414](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L3409-L3414)
 ---
@@ -6179,6 +6290,8 @@ function tex.force_synctex_line(line) end
 
 ---
 ---Disable synctex file logging.
+---
+---__Reference:__
 ---
 ---* Corresponding C source code: [ltexlib.c#L3429-L3434](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/ltexlib.c#L3429-L3434)
 ---

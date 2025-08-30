@@ -17,9 +17,6 @@
 --
 -- -----------------------------------------------------------------------------
 
--- A helper table to better navigate through the documentation using the
--- outline: https://github.com/Josef-Friedrich/LuaTeX_Lua-API#navigation-table-_n
-
 ---
 ---@meta
 
@@ -29,8 +26,8 @@
 ---This library provides a set of functions for reading numbers from a file and
 ---in addition to the regular `io` library functions.
 ---
----There are eight additional little endian variants for the `cardinal[1-4]`
----and `integer[1-4]` readers: `cardinal[1-4]le` and `integer[1-4]le`.
+---There are eight additional little endian variants for the `cardinal[1-4]` and
+---`integer[1-4]` readers: `cardinal[1-4]le` and `integer[1-4]le`.
 ---
 ---__Reference:__
 ---
@@ -413,6 +410,7 @@ function fio.readinteger3(file) end
 ---  f:close()
 ---end
 ---```
+---
 ---__Reference:__
 ---
 ---* Corresponding C source code: [liolibext.c#L580-593](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/liolibext.c#L580-593)
@@ -484,6 +482,8 @@ function fio.readintegertable(file, number, bytes) end
 ---  f:close()
 ---end
 ---```
+---
+---__Reference:__
 ---
 ---* Corresponding C source code: [liolibext.c#L432-L442](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/liolibext.c#L432-L442)
 ---
@@ -754,6 +754,7 @@ function fio.getposition(file) end
 ---  f:close()
 ---end
 ---```
+---
 ---__Reference:__
 ---
 ---* Corresponding C source code: [liolibext.c#L912-921](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/liolibext.c#L912-921)

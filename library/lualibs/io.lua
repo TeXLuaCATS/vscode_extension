@@ -13,7 +13,10 @@ io = {}
 function io.readall(f) end
 
 ---
----A wrapper for `io.open`. Automatically supplies the `r` flag and handles opening and closing, returns the complete content of file `filename`. The optional argument `textmode` when non-nil|false triggers non-binary mode in certain operating systems.
+---A wrapper for `io.open`. Automatically supplies the `r` flag and handles
+---opening and closing, returns the complete content of file `filename`. The
+---optional argument `textmode` when non-nil|false triggers non-binary mode in
+---certain operating systems.
 ---
 ---__Example:__
 ---
@@ -50,7 +53,10 @@ function io.loaddata(filename, textmode) end
 function io.copydata(source, target, action) end
 
 ---
----Writes `data` to file `filename`. Handles opening and closing routines automatically. `data` can be generic data, a list or a function. Lists are joined prior to write, using the optional separator as separator (nice for CSV output). Functions are applied to the file object.
+---Writes `data` to file `filename`. Handles opening and closing routines
+---automatically. `data` can be generic data, a list or a function. Lists are
+---joined prior to write, using the optional separator as separator (nice for
+---CSV output). Functions are applied to the file object.
 ---
 ---__Example:__
 ---
@@ -201,7 +207,11 @@ function io.noflines(object) end
 ---@alias CharacterGroup -4|-2|1|2|4
 
 ---
----Returns an iterator over the one-byte characters of a file object `object`. The optional argument `group` accepts a signed integer which determines the number and byte order of the characters returned simultaneously. Possible values are -4, -2, 1, 2, and 4. Negative values result in the order of the characters to be reversed.
+---Returns an iterator over the one-byte characters of a file object `object`.
+---The optional argument `group` accepts a signed integer which determines the
+---number and byte order of the characters returned simultaneously. Possible
+---values are -4, -2, 1, 2, and 4. Negative values result in the order of the
+---characters to be reversed.
 ---
 ---__Example:__
 ---
@@ -245,7 +255,11 @@ function io.noflines(object) end
 function io.characters(object, group) end
 
 ---
----Returns an iterator over the bytes of a file `object`. As with io.characters, the optional argument `group` specifies the number and order of the bytes returned simultaneously. If there fewer bytes left at the end of a file than the absolute of `group`, then the remainder is ignored. Thus to process the whole file make sure that its size is a multiple of `group`.
+---Returns an iterator over the bytes of a file `object`. As with io.characters,
+---the optional argument `group` specifies the number and order of the bytes
+---returned simultaneously. If there fewer bytes left at the end of a file than
+---the absolute of `group`, then the remainder is ignored. Thus to process the
+---whole file make sure that its size is a multiple of `group`.
 ---
 ---__Example:__
 ---
@@ -281,7 +295,12 @@ function io.characters(object, group) end
 function io.bytes(object, group) end
 
 ---
----Interrupts the program flow to wait for user input. Prints the string `question` to stdout and returns the string given by the user. If a string `default` is given, it is printed in brackets and returned if the user input is empty. `options` has to be a list of valid input strings which are then printed in brackets as well; no other strings are accepted if `options` is specified.
+---Interrupts the program flow to wait for user input. Prints the string
+---`question` to stdout and returns the string given by the user. If a string
+---`default` is given, it is printed in brackets and returned if the user input
+---is empty. `options` has to be a list of valid input strings which are then
+---printed in brackets as well; no other strings are accepted if `options` is
+---specified.
 ---
 ---__Example:__
 ---
@@ -316,7 +335,11 @@ function io.bytes(object, group) end
 function io.ask(question, default, options) end
 
 ---
----Reads `count` next bytes from a file `object`, optionally starting at byte `offset`. The bytes are treated as representing a single integer which is then returned in base 10. Valid byte counts are 1, 2, 4, 8, and 12; throws an error when there are fewer bytes left from the current position to the end of file than count.
+---Reads `count` next bytes from a file `object`, optionally starting at byte
+---`offset`. The bytes are treated as representing a single integer which is
+---then returned in base 10. Valid byte counts are 1, 2, 4, 8, and 12; throws an
+---error when there are fewer bytes left from the current position to the end of
+---file than count.
 ---
 ---__Example:__
 ---
@@ -347,7 +370,11 @@ function io.ask(question, default, options) end
 function io.readnumber(object, offset, count) end
 
 ---
----Reads `count` next bytes from a file `object`, optionally starting at byte `offset`. The bytes are treated as representing a single integer which is then returned in base 10. Valid byte counts are 1, 2, 4, 8, and 12; throws an error when there are fewer bytes left from the current position to the end of file than count.
+---Reads `count` next bytes from a file `object`, optionally starting at byte
+---`offset`. The bytes are treated as representing a single integer which is
+---then returned in base 10. Valid byte counts are 1, 2, 4, 8, and 12; throws an
+---error when there are fewer bytes left from the current position to the end of
+---file than count.
 ---
 ---__Example:__
 ---
@@ -377,7 +404,8 @@ function io.readnumber(object, offset, count) end
 function io.readnumber(object, count) end
 
 ---
----Returns the next `length` bytes from `object`, starting from the current position or, optionally, the `byte` offset.
+---Returns the next `length` bytes from `object`, starting from the current
+---position or, optionally, the `byte` offset.
 ---
 ---__Example:__
 ---
@@ -404,7 +432,8 @@ function io.readnumber(object, count) end
 function io.readstring(object, offset, length) end
 
 ---
----Returns the next `length` bytes from `object`, starting from the current position or, optionally, the `byte` offset.
+---Returns the next `length` bytes from `object`, starting from the current
+---position or, optionally, the `byte` offset.
 ---
 ---__Example:__
 ---

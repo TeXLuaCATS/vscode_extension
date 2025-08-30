@@ -208,9 +208,11 @@ function os.weekday(day, month, year) end
 function os.validdate(year, month, day) end
 
 ---
----Return a string or a table containing date and time, formatted according to the given string format.
+---Return a string or a table containing date and time, formatted according to
+---the given string format.
 ---
----If the parameter `format` is missing the format string `%Y-%m-%d %H:%M` is used.
+---If the parameter `format` is missing the format string `%Y-%m-%d %H:%M` is
+---used.
 ---
 ---__Reference:__
 ---

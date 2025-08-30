@@ -17,19 +17,15 @@
 --
 -- -----------------------------------------------------------------------------
 
--- A helper table to better navigate through the documentation using the
--- outline: https://github.com/Josef-Friedrich/LuaTeX_Lua-API#navigation-table-_n
-
 ---
 ---@meta
 
 ---
 ---# Hashes conform `sha2`
 ---
----This library is a side effect of the `pdfe` library that needs such
----helpers. The `sha2.digest256`, `sha2.digest384` and
----`sha2.digest512` functions accept a string and return a string with the
----hash.
+---This library is a side effect of the `pdfe` library that needs such helpers.
+---The `sha2.digest256`, `sha2.digest384` and `sha2.digest512` functions accept
+---a string and return a string with the hash.
 ---
 ---https://github.com/contextgarden/pplib
 ---https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/libs/pplib/pplib-src/src/util/utilsha.c

@@ -17,9 +17,6 @@
 --
 -- -----------------------------------------------------------------------------
 
--- A helper table to better navigate through the documentation using the
--- outline: https://github.com/Josef-Friedrich/LuaTeX_Lua-API#navigation-table-_n
-
 ---
 ---@meta
 
@@ -108,9 +105,8 @@ local MpInstance = {}
 function mplib.new(args) end
 
 ---
----There are
----four fields, giving the maximum number of used items in each of four allocated
----object classes.
+---There are four fields, giving the maximum number of used items in each of
+---four allocated object classes.
 ---
 
 ---
@@ -130,9 +126,9 @@ function mplib.new(args) end
 ---
 ---This function returns the vital statistics for an *MPlib* instance.
 ---
----Note that in the new version of *MPlib*, this is informational only. The objects
----are all allocated dynamically, so there is no chance of running out of space
----unless the available system memory is exhausted.
+---Note that in the new version of *MPlib*, this is informational only. The
+---objects are all allocated dynamically, so there is no chance of running out
+---of space unless the available system memory is exhausted.
 ---
 ---__Reference:__
 ---
@@ -151,9 +147,9 @@ function mplib.statistics(mp) end
 ---
 ---This function returns the vital statistics for an *MPlib* instance.
 ---
----Note that in the new version of *MPlib*, this is informational only. The objects
----are all allocated dynamically, so there is no chance of running out of space
----unless the available system memory is exhausted.
+---Note that in the new version of *MPlib*, this is informational only. The
+---objects are all allocated dynamically, so there is no chance of running out
+---of space unless the available system memory is exhausted.
 ---
 ---__Reference:__
 ---
@@ -168,17 +164,19 @@ function MpInstance:statistics() end
 ---
 ---Execute metapost code in the instance.
 ---
----You can ask the *MetaPost* interpreter to run a chunk of code by calling mp.execute()
+---You can ask the *MetaPost* interpreter to run a chunk of code by calling
+---mp.execute()
 ---
----for various bits of *MetaPost* language input. Be sure to check the `rettable.status` (see below) because when a fatal *MetaPost* error occurs the
----*MPlib* instance will become unusable thereafter.
+---for various bits of *MetaPost* language input. Be sure to check the
+---`rettable.status` (see below) because when a fatal *MetaPost* error occurs
+---the *MPlib* instance will become unusable thereafter.
 ---
 ---Generally speaking, it is best to keep your chunks small, but beware that all
 ---chunks have to obey proper syntax, like each of them is a small file. For
 ---instance, you cannot split a single statement over multiple chunks.
 ---
----In contrast with the normal stand alone `mpost` command, there is
----`no` implied “input” at the start of the first chunk.
+---In contrast with the normal stand alone `mpost` command, there is `no`
+---implied “input” at the start of the first chunk.
 ---
 ---__Reference:__
 ---
@@ -196,17 +194,19 @@ function mplib.execute(mp, code) end
 ---
 ---Execute metapost code in the instance.
 ---
----You can ask the *MetaPost* interpreter to run a chunk of code by calling mp.execute()
+---You can ask the *MetaPost* interpreter to run a chunk of code by calling
+---mp.execute()
 ---
----for various bits of *MetaPost* language input. Be sure to check the `rettable.status` (see below) because when a fatal *MetaPost* error occurs the
----*MPlib* instance will become unusable thereafter.
+---for various bits of *MetaPost* language input. Be sure to check the
+---`rettable.status` (see below) because when a fatal *MetaPost* error occurs
+---the *MPlib* instance will become unusable thereafter.
 ---
 ---Generally speaking, it is best to keep your chunks small, but beware that all
 ---chunks have to obey proper syntax, like each of them is a small file. For
 ---instance, you cannot split a single statement over multiple chunks.
 ---
----In contrast with the normal stand alone `mpost` command, there is
----`no` implied “input” at the start of the first chunk.
+---In contrast with the normal stand alone `mpost` command, there is `no`
+---implied “input” at the start of the first chunk.
 ---
 ---__Reference:__
 ---
@@ -223,11 +223,11 @@ function MpInstance:execute(code) end
 ---
 ---Finish a metapost instance.
 ---
----If for some reason you want to stop using an *MPlib* instance while processing is
----not yet actually done, you can call `finish`. Eventually, used memory
----will be freed and open files will be closed by the *Lua* garbage collector, but
----an explicit `finish` is the only way to capture the final part of the
----output streams.
+---If for some reason you want to stop using an *MPlib* instance while
+---processing is not yet actually done, you can call `finish`. Eventually, used
+---memory will be freed and open files will be closed by the *Lua* garbage
+---collector, but an explicit `finish` is the only way to capture the final part
+---of the output streams.
 ---
 ---__Reference:__
 ---
@@ -243,11 +243,11 @@ function mplib.finish(mp) end
 ---
 ---Finish a metapost instance.
 ---
----If for some reason you want to stop using an *MPlib* instance while processing is
----not yet actually done, you can call `finish`. Eventually, used memory
----will be freed and open files will be closed by the *Lua* garbage collector, but
----an explicit `finish` is the only way to capture the final part of the
----output streams.
+---If for some reason you want to stop using an *MPlib* instance while
+---processing is not yet actually done, you can call `finish`. Eventually, used
+---memory will be freed and open files will be closed by the *Lua* garbage
+---collector, but an explicit `finish` is the only way to capture the final part
+---of the output streams.
 ---
 ---__Reference:__
 ---
@@ -266,8 +266,8 @@ function MpInstance:finish() end
 ---|3 # fatal error
 
 ---
----The return value of `execute` and `finish` is a table with a
----few possible keys (only `status` is always guaranteed to be present).
+---The return value of `execute` and `finish` is a table with a few possible
+---keys (only `status` is always guaranteed to be present).
 ---
 ---__Reference:__
 ---
@@ -294,11 +294,10 @@ function MpInstance:finish() end
 local MpFig = {}
 
 ---
----Return the bounding box, as an array of 4 values.
----number.
+---Return the bounding box, as an array of 4 values. number.
 ---
----When the boundingbox represents a “negated rectangle”, i.e. when the
----first set of coordinates is larger than the second set, the picture is empty.
+---When the boundingbox represents a “negated rectangle”, i.e. when the first
+---set of coordinates is larger than the second set, the picture is empty.
 ---
 ---__Reference:__
 ---
@@ -310,7 +309,8 @@ function MpFig.boundingbox() end
 ---
 ---Return a string that is the ps output of the `fig`.
 ---
----this function accepts two optional integer arguments for specifying the values of `prologues` (first argument) and `procset` (second argument)
+---this function accepts two optional integer arguments for specifying the
+---values of `prologues` (first argument) and `procset` (second argument)
 ---
 ---__Reference:__
 ---
@@ -324,7 +324,8 @@ function MpFig.postscript(prologues, procset) end
 ---
 ---Return a string that is the svg output of the `fig`.
 ---
----This function accepts an optional integer argument for specifying the value of `prologues`.
+---This function accepts an optional integer argument for specifying the value
+---of `prologues`.
 ---
 ---__Reference:__
 ---
@@ -348,8 +349,7 @@ function MpFig.png(options) end
 ---
 ---Return the actual array of graphic objects in this `fig`.
 ---
----Note: you can call `fig:objects()` only once for any one `fig`
----object!
+---Note: you can call `fig:objects()` only once for any one `fig` object!
 ---
 ---__Reference:__
 ---
@@ -368,7 +368,8 @@ function MpFig.objects() end
 function MpFig.copy_objects() end
 
 ---
----The filename this `fig`'s *PostScript* output would have written to in stand alone mode
+---The filename this `fig`'s *PostScript* output would have written to in stand
+---alone mode
 ---
 ---__Reference:__
 ---
@@ -439,8 +440,7 @@ function MpFig.charcode() end
 ---@field type string
 
 ---
----Get the list of
----accessible values for a particular object.
+---Get the list of accessible values for a particular object.
 ---
 ---__Reference:__
 ---
@@ -519,8 +519,8 @@ function mplib.fields(obj) end
 ---@field path table # the list of knots
 
 ---
----Paths and pens (that are really just a special type of paths as far as mplib is
----concerned) are represented by an array where each entry is a table that
+---Paths and pens (that are really just a special type of paths as far as mplib
+---is concerned) are represented by an array where each entry is a table that
 ---represents a knot.
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/mplib.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
@@ -534,9 +534,9 @@ function mplib.fields(obj) end
 ---@field right_x number # X coordinate of the postcontrol point of this knot
 ---@field right_y number # Y coordinate of the postcontrol point of this knot
 ---
----There is one special case: pens that are (possibly transformed) ellipses have an
----extra string-valued key `type` with value `elliptical` besides the
----array part containing the knot list.
+---There is one special case: pens that are (possibly transformed) ellipses have
+---an extra string-valued key `type` with value `elliptical` besides the array
+---part containing the knot list.
 ---
 
 ---
@@ -546,15 +546,16 @@ function mplib.fields(obj) end
 ---
 ---A color is an integer array with 0, 1, 3 or 4 values:
 ---
---- field   type  explanation
----
---- `0`  marking only  no values
---- `1`  greyscale     one value in the range `(0,1)`, “black” is `0`
---- `3`  \RGB          three values in the range `(0,1)`, “black” is `0,0,0`
---- `4`  \CMYK         four values in the range `(0,1)`, “black” is `0,0,0,1`
+---| field | type         | explanation                                            |
+---|-------|--------------|--------------------------------------------------------|
+---|`0`    | marking only | no values                                              |
+---|`1`    | greyscale    | one value in the range `(0,1)`, “black” is `0`         |
+---|`3`    | \RGB         | three values in the range `(0,1)`, “black” is `0,0,0`  |
+---|`4`    | \CMYK        | four values in the range `(0,1)`, “black” is `0,0,0,1` |
 ---
 ---If the color model of the internal object was `uninitialized`, then it was
----initialized to the values representing “black” in the colorspace `defaultcolormodel` that was in effect at the time of the `shipout`.
+---initialized to the values representing “black” in the colorspace
+---`defaultcolormodel` that was in effect at the time of the `shipout`.
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/mplib.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 ---@alias MpColor integer[]
@@ -574,8 +575,8 @@ function mplib.fields(obj) end
 
 ---
 ---Each `dash` is two-item hash, using the same model as *PostScript* for the
----representation of the dashlist. `dashes` is an array of “on” and
----“off”, values, and `offset` is the phase of the pattern.
+---representation of the dashlist. `dashes` is an array of “on” and “off”,
+---values, and `offset` is the phase of the pattern.
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/mplib.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 ---@class MpDash
@@ -583,8 +584,8 @@ function mplib.fields(obj) end
 ---@field offset integer # the starting offset value
 
 ---
----There is helper function (`pen_info(obj)`) that returns a table containing
----a bunch of vital characteristics of the used pen (all values are floats):
+---There is helper function (`pen_info(obj)`) that returns a table containing a
+---bunch of vital characteristics of the used pen (all values are floats):
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/mplib.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 ---@class PenInfo
@@ -612,9 +613,9 @@ function mplib.pen_info(obj) end
 ---
 ---Report a character's width.
 ---
----This function finds the size of a glyph in a defined font. The `fontname`
----is the same name as the argument to `infont`; the `char` is a glyph
----id in the range 0 to 255; the returned `width` is in AFM units.
+---This function finds the size of a glyph in a defined font. The `fontname` is
+---the same name as the argument to `infont`; the `char` is a glyph id in the
+---range 0 to 255; the returned `width` is in AFM units.
 ---
 ---__Reference:__
 ---
@@ -632,9 +633,9 @@ function mplib.char_width(mp, fontname, char) end
 ---
 ---Report a character's width.
 ---
----This function finds the size of a glyph in a defined font. The `fontname`
----is the same name as the argument to `infont`; the `char` is a glyph
----id in the range 0 to 255; the returned `width` is in AFM units.
+---This function finds the size of a glyph in a defined font. The `fontname` is
+---the same name as the argument to `infont`; the `char` is a glyph id in the
+---range 0 to 255; the returned `width` is in AFM units.
 ---
 ---__Reference:__
 ---
@@ -651,9 +652,9 @@ function MpInstance:char_width(fontname, char) end
 ---
 ---Report a character's height.
 ---
----This function finds the size of a glyph in a defined font. The `fontname`
----is the same name as the argument to `infont`; the `char` is a glyph
----id in the range 0 to 255; the returned `height` is in AFM units.
+---This function finds the size of a glyph in a defined font. The `fontname` is
+---the same name as the argument to `infont`; the `char` is a glyph id in the
+---range 0 to 255; the returned `height` is in AFM units.
 ---
 ---__Reference:__
 ---
@@ -671,9 +672,9 @@ function mplib.char_height(mp, fontname, char) end
 ---
 ---Report a character's height.
 ---
----This function finds the size of a glyph in a defined font. The `fontname`
----is the same name as the argument to `infont`; the `char` is a glyph
----id in the range 0 to 255; the returned `height` is in AFM units.
+---This function finds the size of a glyph in a defined font. The `fontname` is
+---the same name as the argument to `infont`; the `char` is a glyph id in the
+---range 0 to 255; the returned `height` is in AFM units.
 ---
 ---__Reference:__
 ---
@@ -690,9 +691,9 @@ function MpInstance:char_height(fontname, char) end
 ---
 ---Report a character's depth.
 ---
----This function finds the size of a glyph in a defined font. The `fontname`
----is the same name as the argument to `infont`; the `char` is a glyph
----id in the range 0 to 255; the returned `depth` is in AFM units.
+---This function finds the size of a glyph in a defined font. The `fontname` is
+---the same name as the argument to `infont`; the `char` is a glyph id in the
+---range 0 to 255; the returned `depth` is in AFM units.
 ---
 ---__Reference:__
 ---
@@ -710,9 +711,9 @@ function mplib.char_depth(mp, fontname, char) end
 ---
 ---Report a character's depth.
 ---
----This function finds the size of a glyph in a defined font. The `fontname`
----is the same name as the argument to `infont`; the `char` is a glyph
----id in the range 0 to 255; the returned `depth` is in AFM units.
+---This function finds the size of a glyph in a defined font. The `fontname` is
+---the same name as the argument to `infont`; the `char` is a glyph id in the
+---range 0 to 255; the returned `depth` is in AFM units.
 ---
 ---__Reference:__
 ---

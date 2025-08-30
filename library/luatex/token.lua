@@ -17,24 +17,18 @@
 --
 -- -----------------------------------------------------------------------------
 
--- A helper table to better navigate through the documentation using the
--- outline: https://github.com/Josef-Friedrich/LuaTeX_Lua-API#navigation-table-_n
-
--- A helper table to better navigate through the documentation using the
--- outline: https://github.com/Josef-Friedrich/LuaTeX_Lua-API#navigation-table-_n
-
 ---
 ---@meta
 
 ---
----The token library provides means to intercept the input and deal with it at the
----Lua level. The library provides a basic scanner infrastructure that can be used
----to write macros that accept a wide range of arguments. This interface is on
----purpose kept general and as performance is quite ok. One can build additional
----parsers without too much overhead. It's up to macro package writers to see how
----they can benefit from this as the main principle behind LuaTeX is to provide a
----minimal set of tools and no solutions. The scanner functions are probably the
----most intriguing.
+---The token library provides means to intercept the input and deal with it at
+---the Lua level. The library provides a basic scanner infrastructure that can
+---be used to write macros that accept a wide range of arguments. This interface
+---is on purpose kept general and as performance is quite ok. One can build
+---additional parsers without too much overhead. It's up to macro package
+---writers to see how they can benefit from this as the main principle behind
+---LuaTeX is to provide a minimal set of tools and no solutions. The scanner
+---functions are probably the most intriguing.
 ---
 ---__Reference:__
 ---
@@ -49,7 +43,8 @@ token = {}
 ---
 ---Scan and gobble a given keyword.
 ---
----As with the regular *TeX* keyword scanner this is case insensitive (and ASCII based).
+---As with the regular *TeX* keyword scanner this is case insensitive (and ASCII
+---based).
 ---
 ---__Example:__
 ---
@@ -124,7 +119,8 @@ function token.scan_keyword_cs(keyword) end
 function token.scan_int() end
 
 ---
----Scan and gobble a floating point number that cannot have an exponent (`1E10` is scanned as `1.0`).
+---Scan and gobble a floating point number that cannot have an exponent (`1E10`
+---is scanned as `1.0`).
 ---
 ---__Example:__
 ---
@@ -152,7 +148,8 @@ function token.scan_int() end
 function token.scan_real() end
 
 ---
----Scan and gobble a floating point number that can be provided with an exponent (e. g. `1E10`).
+---Scan and gobble a floating point number that can be provided with an exponent
+---(e. g. `1E10`).
 ---
 ---__Example:__
 ---
@@ -180,7 +177,8 @@ function token.scan_real() end
 function token.scan_float() end
 
 ---
----Returns a number representing a dimension and or two numbers being the filler and order
+---Returns a number representing a dimension and or two numbers being the filler
+---and order
 ---
 ---__Example:__
 ---
@@ -199,8 +197,7 @@ function token.scan_float() end
 ---```tex
 ---\directlua{token.scan_dimen(false, true)}1mu % 65536
 ---\directlua{token.scan_dimen(false, true)}1cm % Illegal unit of measure (mu inserted).
----```
----__Reference:__
+---``` __Reference:__
 ---
 ---* Corresponding C source code: [lnewtokenlib.c#L535-L557](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/lnewtokenlib.c#L535-L557)
 ---
@@ -276,7 +273,8 @@ function token.scan_glue(mu_units) end
 function token.scan_toks(definer, expand) end
 
 ---
----Return a character if its category is in the given bitset (representing catcodes)
+---Return a character if its category is in the given bitset (representing
+---catcodes)
 ---
 ---__Reference:__
 ---
@@ -288,9 +286,9 @@ function token.scan_code(bitset) end
 ---
 ---Scan and gobble a string.
 ---
----The string scanner scans for something between curly braces and expands on the
----way, or when it sees a control sequence it will return its meaning. Otherwise it
----will scan characters with catcode `letter` or `other`.
+---The string scanner scans for something between curly braces and expands on
+---the way, or when it sees a control sequence it will return its meaning.
+---Otherwise it will scan characters with catcode `letter` or `other`.
 ---
 ---__Example:__
 ---
@@ -319,11 +317,11 @@ function token.scan_string() end
 ---
 ---Scan and gobble an argument.
 ---
----This function is simular to `token.scan_string` but also accepts a `\cs`.
----It expands the given argument. When a braced
----argument is scanned, expansion can be prohibited by passing `false`
----(default is `true`). In case of a control sequence passing `false`
----will result in a one-level expansion (the meaning of the macro).
+---This function is simular to `token.scan_string` but also accepts a `\cs`. It
+---expands the given argument. When a braced argument is scanned, expansion can
+---be prohibited by passing `false` (default is `true`). In case of a control
+---sequence passing `false` will result in a one-level expansion (the meaning of
+---the macro).
 ---
 ---__Example:__
 ---
@@ -386,8 +384,8 @@ function token.scan_list() end
 ---
 ---Scan and gobble the next token.
 ---
----The different scanner functions of the `token` library look for a
----sequence of tokens. This function scans just the next token.
+---The different scanner functions of the `token` library look for a sequence of
+---tokens. This function scans just the next token.
 ---
 ---__Reference:__
 ---
@@ -400,9 +398,7 @@ function token.scan_list() end
 function token.get_next() end
 
 ---
----Use `scan_token`
----if you want to
----enforce expansion first you can.
+---Use `scan_token` if you want to enforce expansion first you can.
 ---
 ---__Reference:__
 ---
@@ -414,12 +410,11 @@ function token.get_next() end
 function token.scan_token() end
 
 ---
----Trigger expansion of the next token in the
----input.
+---Trigger expansion of the next token in the input.
 ---
----This can be quite unpredictable but when you call it you probably know
----enough about *TeX* not to be too worried about that. It basically is a call to
----the internal expand related function.
+---This can be quite unpredictable but when you call it you probably know enough
+---about *TeX* not to be too worried about that. It basically is a call to the
+---internal expand related function.
 ---
 ---__Reference:__
 ---
@@ -594,17 +589,16 @@ function token.expand() end
 ---| 'data'
 
 ---
----A token object has the properties of the `relax`
----primitive.
+---A token object has the properties of the `relax` primitive.
 ---
----Alternatively you can use a getter `get_<fieldname>` to access a property
----of a token.
+---Alternatively you can use a getter `get_<fieldname>` to access a property of
+---a token.
 ---
----The numbers that represent a catcode are the same as in *TeX* itself, so using
----this information assumes that you know a bit about *TeX*'s internals. The other
----numbers and names are used consistently but are not frozen. So, when you use them
----for comparing you can best query a known primitive or character first to see the
----values.
+---The numbers that represent a catcode are the same as in *TeX* itself, so
+---using this information assumes that you know a bit about *TeX*'s internals.
+---The other numbers and names are used consistently but are not frozen. So,
+---when you use them for comparing you can best query a known primitive or
+---character first to see the values.
 ---
 ---__Reference:__
 ---
@@ -640,7 +634,9 @@ function token.expand() end
 function token.get_command(t) end
 
 ---
----Return the type of the command (for instance the catcode in case of a character or the classifier that determines the internal treatment, for example `letter`.
+---Return the type of the command (for instance the catcode in case of a
+---character or the classifier that determines the internal treatment, for
+---example `letter`.
 ---
 ---__Reference:__
 ---
@@ -656,7 +652,8 @@ function token.get_command(t) end
 function token.get_cmdname(t) end
 
 ---
----Return the associated control sequence (if applicable), for example `bigskip`.
+---Return the associated control sequence (if applicable), for example
+---`bigskip`.
 ---
 ---__Reference:__
 ---
@@ -702,7 +699,8 @@ function token.get_id(t) end
 function token.get_tok(t) end
 
 ---
----Return a boolean indicating the active state of the token, for example `true`.
+---Return a boolean indicating the active state of the token, for example
+---`true`.
 ---
 ---__Reference:__
 ---
@@ -766,7 +764,8 @@ function token.get_protected(t) end
 function token.get_mode(t) end
 
 ---
----Return a number running from `0x0000` upto `0xFFFF` indicating a TeX register index.
+---Return a number running from `0x0000` upto `0xFFFF` indicating a TeX register
+---index.
 ---
 ---__Reference:__
 ---
@@ -798,8 +797,8 @@ function token.get_index(t) end
 function token.get_macro(name) end
 
 ---
----Get the meaning of a macro including the argument
----specification (as usual in *TeX* separated by `->`).
+---Get the meaning of a macro including the argument specification (as usual in
+---*TeX* separated by `->`).
 ---
 ---__Reference:__
 ---
@@ -959,8 +958,8 @@ function token.set_macro(csname, content, global) end
 function token.set_macro(catcodetable, csname, content, global) end
 
 ---
----Do a `chardef` at the
----*Lua* end, where invalid assignments are silently ignored.
+---Do a `chardef` at the *Lua* end, where invalid assignments are silently
+---ignored.
 ---
 ---__Example:__
 ---
@@ -986,8 +985,8 @@ function token.set_char(csname, number, global) end
 
 ---
 ---Create a token that refers to a *Lua* function with an entry in the table
----that you can access with `lua.get_functions_table`. It is the companion
----to `luadef`.
+---that you can access with `lua.get_functions_table`. It is the companion to
+---`luadef`.
 ---
 ---__Example:__
 ---

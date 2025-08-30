@@ -5,15 +5,18 @@ node = {}
 node.direct = {}
 
 ---
----Create a new `vlist` by packaging the list that begins at node `head` into a vertical box.
+---Create a new `vlist` by packaging the list that begins at node `head` into a
+---vertical box.
 ---
----With only a single argument, this box is created using
----the natural height of its components.
+---With only a single argument, this box is created using the natural height of
+---its components.
 ---
 ---Caveat: there can be unexpected side-effects to this function, like updating
----some of the `marks` and `\inserts`. Also note that the content of
----`new_head` is the original node list `head`: if you call `node.free(new_head)`
----you will also free the node list itself, unless you explicitly set the `list` field to `nil` beforehand. And in a similar way, calling `node.free(head)` will invalidate `new_head` as well!
+---some of the `marks` and `\inserts`. Also note that the content of `new_head`
+---is the original node list `head`: if you call `node.free(new_head)` you will
+---also free the node list itself, unless you explicitly set the `list` field to
+---`nil` beforehand. And in a similar way, calling `node.free(head)` will
+---invalidate `new_head` as well!
 ---
 ---__Reference:__
 ---

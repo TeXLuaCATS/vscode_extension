@@ -17,9 +17,6 @@
 --
 -- -----------------------------------------------------------------------------
 
--- A helper table to better navigate through the documentation using the
--- outline: https://github.com/Josef-Friedrich/LuaTeX_Lua-API#navigation-table-_n
-
 ---
 ---@meta
 
@@ -47,11 +44,11 @@ lua.version = ""
 
 ---
 ---Use the `bytecode` table to store *Lua* code chunks. The accepted values for
----assignments are functions and `nil`. Likewise, the retrieved value is
----either a function or `nil`.
+---assignments are functions and `nil`. Likewise, the retrieved value is either
+---a function or `nil`.
 ---
----The contents of the `lua.bytecode` array is stored inside the format file
----as actual *Lua* bytecode, so it can also be used to preload *Lua* code. The
+---The contents of the `lua.bytecode` array is stored inside the format file as
+---actual *Lua* bytecode, so it can also be used to preload *Lua* code. The
 ---function must not contain any upvalues.
 ---@type table<integer, function|nil>
 ---
@@ -102,7 +99,8 @@ function lua.setbytecode(n, f) end
 function lua.getbytecode(n) end
 
 ---
----Return two numbers, one for the command handler and one for the graphical user interface (on Microsoft Windows).
+---Return two numbers, one for the command handler and one for the graphical
+---user interface (on Microsoft Windows).
 ---
 ---__Reference:__
 ---
@@ -133,9 +131,8 @@ lua.name = {}
 ---
 ---Set a Lua chunk name.
 ---
----When a chunk name starts with
----a `@` it will be displayed as a file name. This is a side effect of the way Lua implements error
----handling.
+---When a chunk name starts with a `@` it will be displayed as a file name. This
+---is a side effect of the way Lua implements error handling.
 ---
 ---__Reference:__
 ---
@@ -170,7 +167,11 @@ function lua.getluaname(index) end
 ---
 ---Create a new empty table and push it onto the stack.
 ---
----Parameter `index` is a hint for how many elements the table will have as a sequence; parameter `hash` is a hint for how many other elements the table will have. Lua may use these hints to preallocate memory for the new table. This preallocation is useful for performance when you know in advance how many elements the table will have.
+---Parameter `index` is a hint for how many elements the table will have as a
+---sequence; parameter `hash` is a hint for how many other elements the table
+---will have. Lua may use these hints to preallocate memory for the new table.
+---This preallocation is useful for performance when you know in advance how
+---many elements the table will have.
 ---
 ---__Reference:__
 ---
@@ -186,11 +187,9 @@ function lua.getluaname(index) end
 function lua.newtable(index, hash) end
 
 ---
----Return a number indicating
----how much nesting is going on.
+---Return a number indicating how much nesting is going on.
 ---
----It is only of use as a breakpoint when
----checking some mechanism going haywire.
+---It is only of use as a breakpoint when checking some mechanism going haywire.
 ---
 ---__Reference:__
 ---
@@ -203,11 +202,9 @@ function lua.newtable(index, hash) end
 function lua.getstacktop() end
 
 ---
----Return a number indicating
----how much nesting is going on.
+---Return a number indicating how much nesting is going on.
 ---
----It is only of use as a breakpoint when
----checking some mechanism going haywire.
+---It is only of use as a breakpoint when checking some mechanism going haywire.
 ---
 ---__Reference:__
 ---
@@ -223,8 +220,9 @@ function lua.getcalllevel() end
 ---The `\directlua` commands involves tokenization of its argument (after
 ---picking up an optional name or number specification). The tokenlist is then
 ---converted into a string and given to *Lua* to turn into a function that is
----called. The overhead is rather small but when you have millions of calls it can
----have some impact. For this reason there is a variant call available: `\luafunction`. This command is used as follows:
+---called. The overhead is rather small but when you have millions of calls it
+---can have some impact. For this reason there is a variant call available:
+---`\luafunction`. This command is used as follows:
 ---
 ---```tex
 ---\directlua {
@@ -237,11 +235,12 @@ function lua.getcalllevel() end
 ---\luafunction2
 ---```
 ---
----Of course the functions can also be defined in a separate file. There is no limit
----on the number of functions apart from normal *Lua* limitations. Of course there
----is the limitation of no arguments but that would involve parsing and thereby give
----no gain. The function, when called in fact gets one argument, being the index, so
----in the following example the number `8` gets typeset.
+---Of course the functions can also be defined in a separate file. There is no
+---limit on the number of functions apart from normal *Lua* limitations. Of
+---course there is the limitation of no arguments but that would involve parsing
+---and thereby give no gain. The function, when called in fact gets one
+---argument, being the index, so in the following example the number `8` gets
+---typeset.
 ---
 ---```tex
 ---\directlua {
@@ -249,15 +248,14 @@ function lua.getcalllevel() end
 ---    t[8] = function(slot) tex.print(slot) end
 ---}
 ---```
---- ---
 ---
 ---```lua
 ---token.set_lua("mycode", id)
 ---token.set_lua("mycode", id, "global", "protected")
 ---```
 ---
----This creates a token that refers to a *Lua* function with an entry in the table
----that you can access with `lua.get_functions_table`. It is the companion
+---This creates a token that refers to a *Lua* function with an entry in the
+---table that you can access with `lua.get_functions_table`. It is the companion
 ---to `luadef`.
 ---
 ---__Reference:__

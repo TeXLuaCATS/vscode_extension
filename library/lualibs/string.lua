@@ -54,7 +54,8 @@ function string.quoted(text) end
 function string.quote(text) end
 
 ---
----Return `text` with surrounding quotes removed if they are of the same kind (ascii single/double quote only).
+---Return `text` with surrounding quotes removed if they are of the same kind
+---(ascii single/double quote only).
 ---
 ---__Example:__
 ---
@@ -80,7 +81,8 @@ function string.quote(text) end
 function string.unquoted(text) end
 
 ---
----Return `text` with surrounding quotes removed if they are of the same kind (ascii single/double quote only).
+---Return `text` with surrounding quotes removed if they are of the same kind
+---(ascii single/double quote only).
 ---
 ---__Example:__
 ---
@@ -131,7 +133,8 @@ function string.unquote(text) end
 function string.count(text, pattern) end
 
 ---
----Returns the `text` capped at position `max` (minus the byte count of `tail`) with tail appended. The optional `tail` defaults to "...".
+---Returns the `text` capped at position `max` (minus the byte count of `tail`)
+---with tail appended. The optional `tail` defaults to "...".
 ---
 ---__Example:__
 ---
@@ -155,7 +158,8 @@ function string.count(text, pattern) end
 function string.limit(text, max, tail) end
 
 ---
----Yields `text` with leading and trailing whitespace (spaces ` `, horizontal `\t` and vertical tabs `\v`, form feeds `\f`) removed.
+---Yields `text` with leading and trailing whitespace (spaces ` `, horizontal
+---`\t` and vertical tabs `\v`, form feeds `\f`) removed.
 ---
 ---__Example:__
 ---
@@ -181,7 +185,9 @@ function string.limit(text, max, tail) end
 function string.strip(text) end
 
 ---
----Yields `text` with leading and trailing whitespace (line feeds `\n`, carriage returns `\r`, spaces ` `, horizontal `\t` and vertical tabs `\v`, form feeds `\f`) removed.
+---Yields `text` with leading and trailing whitespace (line feeds `\n`, carriage
+---returns `\r`, spaces ` `, horizontal `\t` and vertical tabs `\v`, form feeds
+---`\f`) removed.
 ---
 ---__Example:__
 ---
@@ -280,7 +286,8 @@ function string.longtostring(str) end
 function string.is_empty(str) end
 
 ---
----Escape all occurences of the characters `-`, `.`, `+`, `*`, `%`, `(`, `)`, `[`, and `]` using percent signs (`%`).
+---Escape all occurences of the characters `-`, `.`, `+`, `*`, `%`, `(`, `)`,
+---`[`, and `]` using percent signs (`%`).
 ---
 ---__Example:__
 ---
@@ -394,9 +401,9 @@ function toboolean(text, tolerant) end
 function string.toboolean(text, tolerant) end
 
 ---
----Interpret the strings `true`, `yes`, `on` and `t` as
----`true` and `false`, `no`, `off` and `f` as `false`. Otherwise `nil` is returned, unless a default value is given,
----in which case that is returned.
+---Interpret the strings `true`, `yes`, `on` and `t` as `true` and `false`,
+---`no`, `off` and `f` as `false`. Otherwise `nil` is returned, unless a default
+---value is given, in which case that is returned.
 ---
 ---__Reference:__
 ---
@@ -415,7 +422,9 @@ function string.is_boolean(text, default, strict) end
 ---
 ---Return a list of substrings of `string` delimited by `separator`.
 ---
----Consecutive separators result in the empty string; its counterpart `string.checkedsplit` does not match these sequences, returning `nil` instead.
+---Consecutive separators result in the empty string; its counterpart
+---`string.checkedsplit` does not match these sequences, returning `nil`
+---instead.
 ---
 ---__Example:__
 ---

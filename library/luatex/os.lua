@@ -17,25 +17,21 @@
 --
 -- -----------------------------------------------------------------------------
 
--- A helper table to better navigate through the documentation using the
--- outline: https://github.com/Josef-Friedrich/LuaTeX_Lua-API#navigation-table-_n
-
 ---
 ---@meta
 
 ---
 ---# Extra `os` library functions
 ---
----The `os` library has a few extra functions and variables: `os.selfdir`, `os.exec`, `os.spawn`, `os.setenv`,
----`os.env`, `os.gettimeofday`, `os.times`, `os.tmpdir`, `os.type`, `os.name` and `os.uname`,
----that we will discuss here.
+---The `os` library has a few extra functions and variables: `os.selfdir`,
+---`os.exec`, `os.spawn`, `os.setenv`, `os.env`, `os.gettimeofday`, `os.times`,
+---`os.tmpdir`, `os.type`, `os.name` and `os.uname`, that we will discuss here.
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/os.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 os = {}
 
 ---
----A variable that holds the directory path of the
----actual executable.
+---A variable that holds the directory path of the actual executable.
 ---
 ---__Example:__
 ---
@@ -56,8 +52,7 @@ os.selfdir = ""
 ---
 ---A variation on `os.execute`.
 ---
----Here
----`commandline` can be either a single string or a single table.
+---Here `commandline` can be either a single string or a single table.
 ---
 ---* If the argument is a table *LuaTeX* first checks if there is a value at
 ---  integer index zero. If there is, this is the command to be executed.
@@ -78,12 +73,13 @@ os.selfdir = ""
 ---
 ---This function normally does not return control back to the *Lua* script: the
 ---command will replace the current process. However, it will return the two
----values `nil` and `error` if there was a problem while
----attempting to execute the command.
+---values `nil` and `error` if there was a problem while attempting to execute
+---the command.
 ---
----On *MS Windows*, the current process is actually kept in memory until after the
----execution of the command has finished. This prevents crashes in situations
----where *TeXLua* scripts are run inside integrated *TeX* environments.
+---On *MS Windows*, the current process is actually kept in memory until after
+---the execution of the command has finished. This prevents crashes in
+---situations where *TeXLua* scripts are run inside integrated *TeX*
+---environments.
 ---
 ---The original reason for this command is that it cleans out the current
 ---process before starting the new one, making it especially useful for use in
@@ -117,8 +113,8 @@ os.selfdir = ""
 function os.exec(commandline) end
 
 ---
----A returning version of `os.exec`,
----with otherwise identical calling conventions.
+---A returning version of `os.exec`, with otherwise identical calling
+---conventions.
 ---
 ---If the command ran ok, then the return value is the exit status of the
 ---command. Otherwise, it will return the two values `nil` and `error`.
@@ -150,8 +146,8 @@ function os.exec(commandline) end
 function os.spawn(commandline) end
 
 ---
----This function is similar to `io.popen`
----but with a preliminary check of the command by mean of `kpse.check_permission`
+---This function is similar to `io.popen` but with a preliminary check of the
+---command by mean of `kpse.check_permission`
 ---
 ---If the command ran ok, then the return value is the same of `io.popen`;
 ---otherwise it will return the two values `nil` and `error`.
@@ -175,8 +171,7 @@ function os.kpsepopen(commandline, mode) end
 ---
 ---Set a variable in the environment.
 ---
----Passing
----`nil` instead of a value string will remove the variable.
+---Passing `nil` instead of a value string will remove the variable.
 ---
 ---__Reference:__
 ---
@@ -189,11 +184,10 @@ function os.kpsepopen(commandline, mode) end
 function os.setenv(key, value) end
 
 ---
----A hash table containing a dump of the variables and
----values in the process environment at the start of the run.
+---A hash table containing a dump of the variables and values in the process
+---environment at the start of the run.
 ---
----It is writeable,
----but the actual environment is `not` updated automatically.
+---It is writeable, but the actual environment is `not` updated automatically.
 ---
 ---__Reference:__
 ---
@@ -251,11 +245,10 @@ os.env = {}
 function os.sleep(interval, unit) end
 
 ---
----Return the current “UNIX time”, but as a
----float.
+---Return the current “UNIX time”, but as a float.
 ---
----This function is not available on the *SunOS* platforms, so do not use
----this function for portable documents.
+---This function is not available on the *SunOS* platforms, so do not use this
+---function for portable documents.
 ---
 ---__Example:__
 ---
@@ -281,12 +274,11 @@ function os.gettimeofday() end
 ---@field utime number # User time
 
 ---
----Return the current process times according to the
----UNIX C library function “times”.
+---Return the current process times according to the UNIX C library function
+---“times”.
 ---
----This function is not available on
----the MS Windows and *SunOS* platforms, so do not use this function for
----portable documents.
+---This function is not available on the MS Windows and *SunOS* platforms, so do
+---not use this function for portable documents.
 ---
 ---```lua
 ---{
@@ -317,13 +309,12 @@ function os.gettimeofday() end
 function os.times() end
 
 ---
----Create a directory in the “current directory”
----with the name `luatex.XXXXXX` where the `X`-es are replaced by a
----unique string.
+---Create a directory in the “current directory” with the name `luatex.XXXXXX`
+---where the `X`-es are replaced by a unique string.
 ---
----The function also returns this string, so you can `lfs.chdir()` into it, or `nil` if it failed to create the directory.
----The user is responsible for cleaning up at the end of the run, it does not
----happen automatically.
+---The function also returns this string, so you can `lfs.chdir()` into it, or
+---`nil` if it failed to create the directory. The user is responsible for
+---cleaning up at the end of the run, it does not happen automatically.
 ---
 ---__Example:__
 ---
@@ -360,11 +351,10 @@ function os.times() end
 function os.tmpdir(template) end
 
 ---
----A string that gives a global indication of the class of
----operating system.
+---A string that gives a global indication of the class of operating system.
 ---
----The possible values are currently `windows`, `unix`, and `msdos` (you are unlikely to find this value “in the
----wild”).
+---The possible values are currently `windows`, `unix`, and `msdos` (you are
+---unlikely to find this value “in the wild”).
 ---
 ---__Example:__
 ---
@@ -382,13 +372,15 @@ function os.tmpdir(template) end
 os.type = ""
 
 ---
----A string that gives a more precise indication of the
----operating system.
+---A string that gives a more precise indication of the operating system.
 ---
----These possible values are not yet fixed, and for `os.type` values `windows` and `msdos`, the `os.name`
----values are simply `windows` and `msdos`
+---These possible values are not yet fixed, and for `os.type` values `windows`
+---and `msdos`, the `os.name` values are simply `windows` and `msdos`
 ---
----The list for the type `unix` is more precise: `linux`, `freebsd`, `kfreebsd`, `cygwin`, `openbsd`, `solaris`, `sunos` (pre-solaris), `hpux`, `irix`, `macosx`, `gnu` (hurd), `bsd` (unknown, but BSD-like), `sysv` (unknown, but SYSV-like), `generic` (unknown).
+---The list for the type `unix` is more precise: `linux`, `freebsd`, `kfreebsd`,
+---`cygwin`, `openbsd`, `solaris`, `sunos` (pre-solaris), `hpux`, `irix`,
+---`macosx`, `gnu` (hurd), `bsd` (unknown, but BSD-like), `sysv` (unknown, but
+---SYSV-like), `generic` (unknown).
 ---
 ---__Example:__
 ---
@@ -414,8 +406,8 @@ os.name = ""
 ---@field nodename string # for example `mypc`
 
 ---
----Return a table with specific operating system
----information acquired at runtime.
+---Return a table with specific operating system information acquired at
+---runtime.
 ---
 ---__Example:__
 ---
@@ -448,8 +440,8 @@ function os.uname() end
 ---
 ---Freeze the program execution during a given amount of time.
 ---
----This function is a duplicate of `socket.sleep()` and is always available.
----The socket library can be nil in some setups.
+---This function is a duplicate of `socket.sleep()` and is always available. The
+---socket library can be nil in some setups.
 ---
 ---__Example:__
 ---
@@ -473,8 +465,8 @@ function os.socketsleep(time) end
 ---
 ---Return the UNIX time in seconds.
 ---
----You should subtract the values returned by this function
----to get meaningful values.
+---You should subtract the values returned by this function to get meaningful
+---values.
 ---
 ---This function is a duplicate of `socket.gettime()` and is always available.
 ---The socket library can be nil in some setups.

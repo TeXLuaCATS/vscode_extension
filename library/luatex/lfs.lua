@@ -1,7 +1,10 @@
 ---
----The definitions are developed in this repository: https://github.com/LuaCATS/luafilesystem
----https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/luafilesystem/src/lfs.c
----Changes to upstream: global lfs table
+---Corresponding directory in the LuaTeX repository:
+---https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/master/source/texk/web2c/luatexdir/luafilesystem
+---Corresponding file in the LuaTeX repository:
+---https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/master/source/texk/web2c/luatexdir/luafilesystem/src/lfs.c
+---
+---Changes to the upstream project: global lfs table
 
 ---
 ---@meta
@@ -70,7 +73,8 @@ In case of any errors it returns nil and the error message. In particular, if th
 function lfs.lock_dir(path, seconds_stale) end
 
 ---
----Returns a string with the current working directory or nil plus an error string.
+---Returns a string with the current working directory or nil plus an error
+---string.
 ---@return string
 function lfs.currentdir() end
 

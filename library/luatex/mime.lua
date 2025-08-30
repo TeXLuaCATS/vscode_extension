@@ -1,9 +1,36 @@
--- A helper table to better navigate through the documentation using the
--- outline: https://github.com/Josef-Friedrich/LuaTeX_Lua-API#navigation-table-_n
-
 ---
----https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/trunk/source/texk/web2c/luatexdir/luasocket/src/mime.lua
----Changes to upstream: global mime table
+---Corresponding directory in the LuaTeX repository:
+---https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/master/source/texk/web2c/luatexdir/luasocket
+---Corresponding file in the LuaTeX repository:
+---https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/master/source/texk/web2c/luatexdir/luasocket/src/mime.lua
+---
+---Changes to the upstream project: global mime table
+
+-- -----------------------------------------------------------------------------
+-- Copyright (c) 2023-2025 by Josef Friedrich <josef@friedrich.rocks>
+-- -----------------------------------------------------------------------------
+--
+-- MIT License
+--
+-- Permission is hereby granted, free of charge, to any person obtaining a copy
+-- of this software and associated documentation files (the "Software"), to deal
+-- in the Software without restriction, including without limitation the rights
+-- to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+-- copies of the Software, and to permit persons to whom the Software is
+-- furnished to do so, subject to the following conditions:
+--
+-- The above copyright notice and this permission notice shall be included in
+-- all copies or substantial portions of the Software.
+--
+-- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+-- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+-- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+-- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+-- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+-- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+-- SOFTWARE.
+--
+-- -----------------------------------------------------------------------------
 
 ---
 ---@meta
@@ -12,19 +39,12 @@
 ---
 ---https://lunarmodules.github.io/luasocket/mime.html
 ---
----The `mime` namespace offers filters that apply and remove common
----content transfer encodings, such as Base64 and Quoted-Printable.
----It also provides functions to break text into lines and change
----the end-of-line convention.
----MIME is described mainly in
----RFC 2045,
----2046,
----2047,
----2048, and
----2049.
+---The `mime` namespace offers filters that apply and remove common content
+---transfer encodings, such as Base64 and Quoted-Printable. It also provides
+---functions to break text into lines and change the end-of-line convention.
+---MIME is described mainly in RFC 2045, 2046, 2047, 2048, and 2049.
 ---
----All functionality provided by the MIME module
----follows the ideas presented in
+---All functionality provided by the MIME module follows the ideas presented in
 ---
 ---LTN012, Filters sources and sinks.
 ---
@@ -39,12 +59,11 @@
 mime = {}
 
 ---
----Returns a filter that decodes data from a given transfer content
----encoding.
+---Returns a filter that decodes data from a given transfer content encoding.
 ---
 ---In the Quoted-Printable case, the user can specify whether the data is
----textual or binary, by passing the `mode` strings "`text`" or
----"`binary`". `Mode` defaults to "`text`".
+---textual or binary, by passing the `mode` strings "`text`" or "`binary`".
+---`Mode` defaults to "`text`".
 ---
 ---@param name 'base64'|'quoted-printable'
 ---
@@ -56,8 +75,8 @@ function mime.decode(name) end
 ---encoding.
 ---
 ---In the Quoted-Printable case, the user can specify whether the data is
----textual or binary, by passing the `mode` strings "`text`" or
----"`binary`". `Mode` defaults to "`text`".
+---textual or binary, by passing the `mode` strings "`text`" or "`binary`".
+---`Mode` defaults to "`text`".
 ---
 ---@param name 'base64'|'quoted-printable'
 ---@param mode? 'text'|'binary'
@@ -68,18 +87,18 @@ function mime.encode(name, mode) end
 ---
 ---Converts most common end-of-line markers to a specific given marker.
 ---
----`Marker` is the new marker. It defaults to CRLF, the canonic
----end-of-line marker defined by the MIME standard.
+---`Marker` is the new marker. It defaults to CRLF, the canonic end-of-line
+---marker defined by the MIME standard.
 ---
 ---The function returns a filter that performs the conversion.
 ---
 ---Note: There is no perfect solution to this problem. Different end-of-line
----markers are an evil that will probably plague developers forever.
----This function, however, will work perfectly for text created with any of
----the most common end-of-line markers, i.e. the Mac OS (CR), the Unix (LF),
----or the DOS (CRLF) conventions. Even if the data has mixed end-of-line
----markers, the function will still work well, although it doesn't
----guarantee that the number of empty lines will be correct.
+---markers are an evil that will probably plague developers forever. This
+---function, however, will work perfectly for text created with any of the most
+---common end-of-line markers, i.e. the Mac OS (CR), the Unix (LF), or the DOS
+---(CRLF) conventions. Even if the data has mixed end-of-line markers, the
+---function will still work well, although it doesn't guarantee that the number
+---of empty lines will be correct.
 ---
 ---@param marker string
 ---
@@ -89,9 +108,8 @@ function mime.normalize(marker) end
 ---
 ---Creates and returns a filter that performs stuffing of SMTP messages.
 ---
----Note: The `smtp.send`function
----uses this filter automatically. You don't need to chain it with your
----source, or apply it to your message body.
+---Note: The `smtp.send`function uses this filter automatically. You don't need
+---to chain it with your source, or apply it to your message body.
 ---
 ---😱 [Types](https://github.com/LuaCATS/luasocket/blob/main/library/mime.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/LuaCATS/luasocket/pulls)
 function mime.stuff() end
@@ -99,16 +117,15 @@ function mime.stuff() end
 ---
 ---Returns a filter that breaks data into lines.
 ---
----The "`text`" line-wrap filter simply breaks text into lines by
----inserting CRLF end-of-line markers at appropriate positions.
----`Length` defaults 76.
----The "`base64`" line-wrap filter works just like the default
----"`text`" line-wrap filter with default length.
----The function can also wrap "`quoted-printable`" lines, taking care
----not to break lines in the middle of an escaped character. In that case, the
----line length is fixed at 76.
+---The "`text`" line-wrap filter simply breaks text into lines by inserting CRLF
+---end-of-line markers at appropriate positions. `Length` defaults 76. The
+---"`base64`" line-wrap filter works just like the default "`text`" line-wrap
+---filter with default length. The function can also wrap "`quoted-printable`"
+---lines, taking care not to break lines in the middle of an escaped character.
+---In that case, the line length is fixed at 76.
 ---
----For example, to create an encoding filter for the Quoted-Printable transfer content encoding of text data, do the following:
+---For example, to create an encoding filter for the Quoted-Printable transfer
+---content encoding of text data, do the following:
 ---
 ---```
 ---qp = ltn12.filter.chain(
@@ -118,8 +135,8 @@ function mime.stuff() end
 ---)
 ---```
 ---
----Note: To break into lines with a different end-of-line convention, apply
----a normalization filter after the line break filter.
+---Note: To break into lines with a different end-of-line convention, apply a
+---normalization filter after the line break filter.
 ---
 ---@param name 'text'|'base64'|'quoted-printable'
 ---@param length integer
@@ -130,8 +147,8 @@ function mime.wrap(name, length) end
 ---
 ---Low-level filter to perform Base64 encoding.
 ---
----If `D` is `nil`, `A` is padded with
----the encoding of the remaining bytes of `C`.
+---If `D` is `nil`, `A` is padded with the encoding of the remaining bytes of
+---`C`.
 ---
 ---Note: The simplest use of this function is to encode a string into it's
 ---Base64 transfer content encoding. Notice the extra parenthesis around the
@@ -152,21 +169,19 @@ function mime.wrap(name, length) end
 function mime.b64(C, D) end
 
 ---
----Low-level filter to perform SMTP stuffing and enable transmission of
----messages containing the sequence "CRLF.CRLF".
+---Low-level filter to perform SMTP stuffing and enable transmission of messages
+---containing the sequence "CRLF.CRLF".
 ---
----Note: The message body is defined to begin with
----an implicit CRLF. Therefore, to stuff a message correctly, the
----first `m` should have the value 2.
+---Note: The message body is defined to begin with an implicit CRLF. Therefore,
+---to stuff a message correctly, the first `m` should have the value 2.
 ---
 ---```
 ---print((string.gsub(mime.dot(2, ".\r\nStuffing the message.\r\n.\r\n."), "\r\n", "\\n")))
 -----&gt; ..\nStuffing the message.\n..\n..
 ---```
 ---
----Note: The `smtp.send`function
----uses this filter automatically. You don't need to
----apply it again.
+---Note: The `smtp.send`function uses this filter automatically. You don't need
+---to apply it again.
 ---
 ---@param m integer - '`m`' should tell the same, but for the previous chunk.
 ---@param B? string
@@ -180,11 +195,11 @@ function mime.dot(m, B) end
 ---
 ---A, B = mime.eol(C [, D, marker])
 ---
----Low-level filter to perform end-of-line marker translation.
----For each chunk, the function needs to know if the last character of the
----previous chunk could be part of an end-of-line marker or not. This is the
----context the function receives besides the chunk.  An updated version of
----the context is returned after each new chunk.
+---Low-level filter to perform end-of-line marker translation. For each chunk,
+---the function needs to know if the last character of the previous chunk could
+---be part of an end-of-line marker or not. This is the context the function
+---receives besides the chunk.  An updated version of the context is returned
+---after each new chunk.
 ---
 ---```
 ----- translates the end-of-line marker to UNIX
@@ -205,8 +220,8 @@ function mime.eol(C, D, marker) end
 ---Low-level filter to perform Quoted-Printable encoding.
 ---
 ---Note: The simplest use of this function is to encode a string into it's
----Quoted-Printable transfer content encoding.
----Notice the extra parenthesis around the call to `mime.qp`, to discard the second return value.
+---Quoted-Printable transfer content encoding. Notice the extra parenthesis
+---around the call to `mime.qp`, to discard the second return value.
 ---
 ---```
 ---print((mime.qp("ma��")))
@@ -243,12 +258,12 @@ function mime.qpwrp(n, B, length) end
 ---
 ---Low-level filter to perform Base64 decoding.
 ---
----If `D` is `nil`, `A` is the empty string
----and `B` returns whatever couldn't be decoded.
+---If `D` is `nil`, `A` is the empty string and `B` returns whatever couldn't be
+---decoded.
 ---
 ---Note: The simplest use of this function is to decode a string from it's
----Base64 transfer content encoding.
----Notice the extra parenthesis around the call to `mime.unqp`, to discard the second return value.
+---Base64 transfer content encoding. Notice the extra parenthesis around the
+---call to `mime.unqp`, to discard the second return value.
 ---
 ---```
 ---print((mime.unb64("ZGllZ286cGFzc3dvcmQ=")))
@@ -269,8 +284,8 @@ function mime.unb64(C, D) end
 ---from data.
 ---
 ---Note: The simplest use of this function is to decode a string from it's
----Quoted-Printable transfer content encoding.
----Notice the extra parenthesis around the call to `mime.unqp`, to discard the second return value.
+---Quoted-Printable transfer content encoding. Notice the extra parenthesis
+---around the call to `mime.unqp`, to discard the second return value.
 ---
 ---```
 ---print((mime.qp("ma=E7=E3=")))
@@ -287,12 +302,11 @@ function mime.unb64(C, D) end
 function mime.unqp(C, D) end
 
 ---
----Low-level filter to break text into lines with CRLF marker.
----Text is assumed to be in the `normalize` form.
+---Low-level filter to break text into lines with CRLF marker. Text is assumed
+---to be in the `normalize` form.
 ---
----Note: This function only breaks lines that are bigger than
----`length` bytes. The resulting line length does not include the CRLF
----marker.
+---Note: This function only breaks lines that are bigger than `length` bytes.
+---The resulting line length does not include the CRLF marker.
 ---
 ---@param n integer `n` should tell how many bytes are left for the first line of `B`
 ---@param B? string

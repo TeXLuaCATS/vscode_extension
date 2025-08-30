@@ -17,9 +17,6 @@
 --
 -- -----------------------------------------------------------------------------
 
--- A helper table to better navigate through the documentation using the
--- outline: https://github.com/Josef-Friedrich/LuaTeX_Lua-API#navigation-table-_n
-
 ---
 ---@meta
 
@@ -33,14 +30,16 @@ pdf = {}
 ---
 ---Modify the map-file.
 ---
----This function modifies the map-file by adding, replacing, or removing all entries (lines) of <map_file>.
+---This function modifies the map-file by adding, replacing, or removing all
+---entries (lines) of <map_file>.
 ---
 ---@param map_file string # File name of map-file.
----The first character of <map_file> has a special meaning:
---- * `'+'`  Add new entries, if they do not exist already.
---- * `'='`  Replace existing entries.
---- * `'-'`  Remove entries, if they exist.
---- * `''`   Flush map file first, then insert new entries.
+---The first character of <map_line> has a special meaning:
+---
+---* `'+'`: Insert new entry, if it doesn't exist already.
+---* `'='`: Replace existing entry.
+---* `'-'`: Remove entry, if it exists.
+---* `''`: Flush map file first, then insert new entry.
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/pdf.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 function pdf.mapfile(map_file) end
@@ -48,14 +47,16 @@ function pdf.mapfile(map_file) end
 ---
 ---Modify the map-file.
 ---
----This function modifies the map-file by adding, replacing, or removing exactly one entry (line).
+---This function modifies the map-file by adding, replacing, or removing exactly
+---one entry (line).
 ---
 ---@param map_line string # Entry (line) to be added, replace, or removed.
 ---The first character of <map_line> has a special meaning:
---- * `'+'`  Insert new entry, if it doesn't exist already.
---- * `'='`  Replace existing entry.
---- * `'-'`  Remove entry, if it exists.
---- * `''`   Flush map file first, then insert new entry.
+---
+---* `'+'`: Insert new entry, if it doesn't exist already.
+---* `'='`: Replace existing entry.
+---* `'-'`: Remove entry, if it exists.
+---* `''`: Flush map file first, then insert new entry.
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/pdf.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 function pdf.mapline(map_line) end
@@ -64,8 +65,8 @@ function pdf.mapline(map_line) end
 ---Insert string <catalog> into the `/Catalog` dictionary.
 ---
 ---This function complements the corresponding *PDF* backend token lists dealing
----with metadata. The value is written to the *PDF*
----file directly after the token registers set at the *TeX* end are written.
+---with metadata. The value is written to the *PDF* file directly after the
+---token registers set at the *TeX* end are written.
 ---
 ---__Reference:__
 ---
@@ -82,8 +83,8 @@ function pdf.setcatalog(catalog) end
 ---Return string <catalog> that was set by `pdf.setcatalog()`.
 ---
 ---This function complements the corresponding *PDF* backend token lists dealing
----with metadata. The value is written to the *PDF*
----file directly after the token registers set at the *TeX* end are written.
+---with metadata. The value is written to the *PDF* file directly after the
+---token registers set at the *TeX* end are written.
 ---
 ---@see pdf.setcatalog
 ---
@@ -96,8 +97,8 @@ function pdf.getcatalog() end
 ---Insert string <info> into the `/Info` dictionary.
 ---
 ---This function complements the corresponding *PDF* backend token lists dealing
----with metadata. The value is written to the *PDF*
----file directly after the token registers set at the *TeX* end are written.
+---with metadata. The value is written to the *PDF* file directly after the
+---token registers set at the *TeX* end are written.
 ---
 ---__Reference:__
 ---
@@ -114,8 +115,8 @@ function pdf.setinfo(info) end
 ---Return string <info> that was set by `pdf.setinfo()`.
 ---
 ---This function complements the corresponding *PDF* backend token lists dealing
----with metadata. The value is written to the *PDF*
----file directly after the token registers set at the *TeX* end are written.
+---with metadata. The value is written to the *PDF* file directly after the
+---token registers set at the *TeX* end are written.
 ---
 ---@see pdf.setinfo
 ---
@@ -128,8 +129,8 @@ function pdf.getinfo() end
 ---Insert string <names> into the `/Names` dictionary of the `/Catalog`.
 ---
 ---This function complements the corresponding *PDF* backend token lists dealing
----with metadata. The value is written to the *PDF*
----file directly after the token registers set at the *TeX* end are written.
+---with metadata. The value is written to the *PDF* file directly after the
+---token registers set at the *TeX* end are written.
 ---
 ---__Reference:__
 ---
@@ -146,8 +147,8 @@ function pdf.setnames(names) end
 ---Return string <names> that was set by `pdf.setnames()`.
 ---
 ---This function complements the corresponding *PDF* backend token lists dealing
----with metadata. The value is written to the *PDF*
----file directly after the token registers set at the *TeX* end are written.
+---with metadata. The value is written to the *PDF* file directly after the
+---token registers set at the *TeX* end are written.
 ---
 ---@see pdf.setnames
 ---
@@ -160,8 +161,8 @@ function pdf.getnames() end
 ---Insert string <trailer> into the `trailer` dictionary.
 ---
 ---This function complements the corresponding *PDF* backend token lists dealing
----with metadata. The value is written to the *PDF*
----file directly after the token registers set at the *TeX* end are written.
+---with metadata. The value is written to the *PDF* file directly after the
+---token registers set at the *TeX* end are written.
 ---
 ---__Reference:__
 ---
@@ -179,8 +180,8 @@ function pdf.settrailer(trailer) end
 ---Return string <trailer> that was set by `pdf.settrailer()`.
 ---
 ---This function complements the corresponding *PDF* backend token lists dealing
----with metadata. The value is written to the *PDF*
----file directly after the token registers set at the *TeX* end are written.
+---with metadata. The value is written to the *PDF* file directly after the
+---token registers set at the *TeX* end are written.
 ---
 ---@see pdf.settrailer
 ---
@@ -193,11 +194,12 @@ function pdf.gettrailer() end
 ---Insert string <attributes> into the current `/Page` dictionary.
 ---
 ---This function complements the corresponding *PDF* backend token lists dealing
----with page resources. The variables have no interaction with the corresponding *PDF*
----backend token register. They are written to the *PDF* file directly after the
----token registers set at the *TeX* end are written.
+---with page resources. The variables have no interaction with the corresponding
+---*PDF* backend token register. They are written to the *PDF* file directly
+---after the token registers set at the *TeX* end are written.
 ---
-------* Corresponding C source code: [lpdflib.c#L610](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/lpdflib.c#L610)
+------* Corresponding C source code:
+---[lpdflib.c#L610](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/lpdflib.c#L610)
 ---
 ---@see pdf.getpageattributes
 ---
@@ -210,9 +212,9 @@ function pdf.setpageattributes(attributes) end
 ---Return string <attributes> that was set by `pdf.setpageattributes()`.
 ---
 ---This function complements the corresponding *PDF* backend token lists dealing
----with page resources. The variables have no interaction with the corresponding *PDF*
----backend token register. They are written to the *PDF* file directly after the
----token registers set at the *TeX* end are written.
+---with page resources. The variables have no interaction with the corresponding
+---*PDF* backend token register. They are written to the *PDF* file directly
+---after the token registers set at the *TeX* end are written.
 ---
 ---@see pdf.setpageattributes
 ---
@@ -222,12 +224,13 @@ function pdf.setpageattributes(attributes) end
 function pdf.getpageattributes() end
 
 ---
----Insert string <resources> into the `/Resources` dictionary of the current page.
+---Insert string <resources> into the `/Resources` dictionary of the current
+---page.
 ---
 ---This function complements the corresponding *PDF* backend token lists dealing
----with page resources. The variables have no interaction with the corresponding *PDF*
----backend token register. They are written to the *PDF* file directly after the
----token registers set at the *TeX* end are written.
+---with page resources. The variables have no interaction with the corresponding
+---*PDF* backend token register. They are written to the *PDF* file directly
+---after the token registers set at the *TeX* end are written.
 ---
 ---__Reference:__
 ---
@@ -244,9 +247,9 @@ function pdf.setpageresources(resources) end
 ---Return string <resources> that was set by `pdf.setpageresources()`.
 ---
 ---This function complements the corresponding *PDF* backend token lists dealing
----with page resources. The variables have no interaction with the corresponding *PDF*
----backend token register. They are written to the *PDF* file directly after the
----token registers set at the *TeX* end are written.
+---with page resources. The variables have no interaction with the corresponding
+---*PDF* backend token register. They are written to the *PDF* file directly
+---after the token registers set at the *TeX* end are written.
 ---
 ---@see pdf.setpageresources
 ---
@@ -259,9 +262,9 @@ function pdf.getpageresources() end
 ---Insert string <attributes> into the `/Pages` dictionary of the `/Catalog`.
 ---
 ---This function complements the corresponding *PDF* backend token lists dealing
----with page resources. The variables have no interaction with the corresponding *PDF*
----backend token register. They are written to the *PDF* file directly after the
----token registers set at the *TeX* end are written.
+---with page resources. The variables have no interaction with the corresponding
+---*PDF* backend token register. They are written to the *PDF* file directly
+---after the token registers set at the *TeX* end are written.
 ---
 ---__Reference:__
 ---
@@ -278,9 +281,9 @@ function pdf.setpagesattributes(attributes) end
 ---Return string <attributes> that was set by `pdf.setpageattributes()`.
 ---
 ---This function complements the corresponding *PDF* backend token lists dealing
----with page resources. The variables have no interaction with the corresponding *PDF*
----backend token register. They are written to the *PDF* file directly after the
----token registers set at the *TeX* end are written.
+---with page resources. The variables have no interaction with the corresponding
+---*PDF* backend token register. They are written to the *PDF* file directly
+---after the token registers set at the *TeX* end are written.
 ---
 ---@see pdf.setpageattributes
 ---
@@ -344,18 +347,20 @@ function pdf.getxformresources() end
 ---
 ---Set major version number of the PDF file format.
 ---
----Note: This function sets the version number of the file header. It does not set the `/Version` key of the `/Catalog` as recommended for PDF-1.4 and later.
+---Note: This function sets the version number of the file header. It does not
+---set the `/Version` key of the `/Catalog` as recommended for PDF-1.4 and
+---later.
 ---
----The major version is
----normally 1 but when set to 2 some data will not be written to the file in order
----to comply with the standard. What minor version you set depends on what *PDF*
----features you use. This is out of control of *LuaTeX*.
+---The major version is normally 1 but when set to 2 some data will not be
+---written to the file in order to comply with the standard. What minor version
+---you set depends on what *PDF* features you use. This is out of control of
+---*LuaTeX*.
 ---
----One can set the major version number to 2 but we cannot guarantee that the engine
----adapts itself correctly, because there is no public and free specification that
----we know of. Also, user constructed annotations are not checked and just passed
----to the file. On the other hand, the *PDF* that the engine generated is rather
----simple and not that version depending.
+---One can set the major version number to 2 but we cannot guarantee that the
+---engine adapts itself correctly, because there is no public and free
+---specification that we know of. Also, user constructed annotations are not
+---checked and just passed to the file. On the other hand, the *PDF* that the
+---engine generated is rather simple and not that version depending.
 ---
 ---@see pdf.getmajorversion
 ---
@@ -377,7 +382,9 @@ function pdf.getmajorversion() end
 ---
 ---Set minor version number of the PDF file format.
 ---
----Note: This function sets the version number of the file header. It does not set the `/Version` key of the `/Catalog` as recommended for PDF-1.4 and later.
+---Note: This function sets the version number of the file header. It does not
+---set the `/Version` key of the `/Catalog` as recommended for PDF-1.4 and
+---later.
 ---
 ---@see pdf.getmajorversion
 ---
@@ -407,9 +414,12 @@ function pdf.getcreationdate() end
 ---
 ---Set error level for inserting *PDF* files.
 ---
----A warning/error is issued if the inserted *PDF* file has a newer version number than the main *PDF* file.
---- * `level <= 0`: Issue a warning.
---- * `level > 0`: Issue an error.
+---A warning/error is issued if the inserted *PDF* file has a newer version
+---number than the main *PDF* file.
+---
+---* `level <= 0`: Issue a warning.
+---* `level > 0`: Issue an error.
+---
 ---@param level integer
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/pdf.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
@@ -427,9 +437,12 @@ function pdf.getinclusionerrorlevel() end
 
 ---
 ---Set <ignore> status for inserting images.
---- * `ignore ~= 0`: Issue a warning if image file type is unknown.
---- * `ignore == 0`: Issue an error if image file type is unknown.
+---
+---* `ignore ~= 0`: Issue a warning if image file type is unknown.
+---* `ignore == 0`: Issue an error if image file type is unknown.
+---
 ---LuaTeX can handle these file types: pdf, png, jpg, jbig2
+---
 ---@param ignore integer # Ignore image.
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/pdf.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
@@ -449,20 +462,20 @@ function pdf.getignoreunknownimages() end
 ---Set bit field suppressing certain informational keys in the *PDF* file.
 ---
 ---@param flags integer # Bit field.
---- --------------------------------------------------------------
---- Bit  Meaning
---- ---  ---------------------------------------------------------
----   1  `/PTEX.FullBanner` in `/Info` dictionary of the trailer.
----   2  `/PTEX.FileName` in `/XObject` dictionary of an image. (1)
----   4  `/PTEX.PageNumber` in `/XObject` dictionary of an image.
----   8  `/PTEX.InfoDict` in `/XObject` dictionary of an image.
----  16  `/Creator` in `/Info` dictionary of the trailer.
----  32  `/CreationDate` in `/Info` dictionary of the trailer.
----  64  `/ModDate` in `/Info` dictionary of the trailer.
---- 128  `/Producer` in `/Info` dictionary of the trailer.
---- 256  `/Trapped` in `/Info` dictionary of the trailer.
---- 512  `/ID` of the trailer.
---- --------------------------------------------------------------
+---
+---| Bit | Meaning                                                    |
+---|-----| -----------------------------------------------------------|
+---|  1  | `/PTEX.FullBanner` in `/Info` dictionary of the trailer.   |
+---|  2  | `/PTEX.FileName` in `/XObject` dictionary of an image. (1) |
+---|  4  | `/PTEX.PageNumber` in `/XObject` dictionary of an image.   |
+---|  8  | `/PTEX.InfoDict` in `/XObject` dictionary of an image.     |
+---| 16  | `/Creator` in `/Info` dictionary of the trailer.           |
+---| 32  | `/CreationDate` in `/Info` dictionary of the trailer.      |
+---| 64  | `/ModDate` in `/Info` dictionary of the trailer.           |
+---| 128 | `/Producer` in `/Info` dictionary of the trailer.          |
+---| 256 | `/Trapped` in `/Info` dictionary of the trailer.           |
+---| 512 | `/ID` of the trailer.                                      |
+---
 --- (1) Seems to work only if '\pdfvariable imageaddfilename = 1'
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/pdf.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
@@ -496,8 +509,9 @@ function pdf.gettrailerid() end
 
 ---
 ---Add or remove `/CIDSet` entry in `/FontDescriptor`.
---- * `n ~= 0`: Remove `/CIDSet` entry.
---- * `n == 0`: Add `/CIDSet` entry.
+---
+---* `n ~= 0`: Remove `/CIDSet` entry.
+---* `n == 0`: Add `/CIDSet` entry.
 ---
 ---@param n integer
 ---
@@ -516,8 +530,9 @@ function pdf.getomitcidset() end
 
 ---
 ---Add or remove `/CharSet` entry in `/FontDescriptor`.
---- * `n ~= 0`: Remove `/CharSet` entry.
---- * `n == 0`: Add `/CharSet` entry.
+---
+---* `n ~= 0`: Remove `/CharSet` entry.
+---* `n == 0`: Add `/CharSet` entry.
 ---
 ---@param n integer
 ---
@@ -570,6 +585,7 @@ function pdf.getobjcompresslevel() end
 ---Switch for recompressing streams of `/XObject`s.
 ---
 ---@param switch integer # 0: don't recompress, 1: do recompress.
+---
 ---FIXME: pdf.setrecompress() not working. Bug?
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/pdf.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
@@ -587,9 +603,12 @@ function pdf.getrecompress() end
 ---Add or remove `/ToUnicode` entry in a font dictionary.
 ---
 ---@param n integer
---- * `n ~= 0`: Add `/ToUnicode` entry.
---- * `n == 0`: Remove `/ToUnicode` entry.
---- Note: Use `\pdfextension glyphtounicode` to add a CMap mapping from character codes to Unicode values.
+---
+---* `n ~= 0`: Add `/ToUnicode` entry.
+---* `n == 0`: Remove `/ToUnicode` entry.
+---
+---Note: Use `\pdfextension glyphtounicode` to add a CMap mapping from character
+---codes to Unicode values.
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/pdf.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 function pdf.setgentounicode(n) end
@@ -604,7 +623,8 @@ function pdf.setgentounicode(n) end
 function pdf.getgentounicode() end
 
 ---
----Set number of decimal digits used for writing numbers (floats) in the *PDF* file.
+---Set number of decimal digits used for writing numbers (floats) in the *PDF*
+---file.
 ---
 ---@param ndigits integer # Number of decimal digits.
 ---
@@ -647,7 +667,8 @@ function pdf.getpkresolution() end
 function pdf.getlastobj() end
 
 ---
----Return object number of latest created `/Annot` object (subtype `/Link`) that was created by `/pdfextension startlink`.
+---Return object number of latest created `/Annot` object (subtype `/Link`) that
+---was created by `/pdfextension startlink`.
 ---
 ---@return integer objnum # Object number.
 ---
@@ -655,7 +676,8 @@ function pdf.getlastobj() end
 function pdf.getlastlink() end
 
 ---
----Return object number of latest created `/Annot` object that was created by `pdf.reserveobj('annot')`.
+---Return object number of latest created `/Annot` object that was created by
+---`pdf.reserveobj('annot')`.
 ---
 ---@return integer objnum # Number of latest created object.
 ---
@@ -663,8 +685,7 @@ function pdf.getlastlink() end
 function pdf.getlastannot() end
 
 ---
----Warning! Undocumented code!<p>
----TODO: Please contribute
+---Warning! Undocumented code!<p> TODO: Please contribute
 ---https://github.com/Josef-Friedrich/LuaTeX_Lua-API#how-to-contribute
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/pdf.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
@@ -687,10 +708,10 @@ function pdf.getmaxobjnum() end
 function pdf.getobjtype(objnum) end
 
 ---
----Return the number of the font resource name.
----The `/Font` entry of a `/Resource` dictionary maps resource names to font dictionaries.
----LuaTeX uses resource names like `/F36` or `/F52`, where the number corresponds to
----the font ID.
+---Return the number of the font resource name. The `/Font` entry of a
+---`/Resource` dictionary maps resource names to font dictionaries. LuaTeX uses
+---resource names like `/F36` or `/F52`, where the number corresponds to the
+---font ID.
 ---
 ---@param id integer # Font ID.
 ---
@@ -720,8 +741,7 @@ function pdf.getfontobjnum(id) end
 function pdf.getfontsize(id) end
 
 ---
----Warning! Undocumented code!<p>
----TODO: Please contribute
+---Warning! Undocumented code!<p> TODO: Please contribute
 ---https://github.com/Josef-Friedrich/LuaTeX_Lua-API#how-to-contribute
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/pdf.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
@@ -751,11 +771,12 @@ function pdf.getorigin() end
 ---Set default resolution of a bitmap image.
 ---
 ---@param dpi integer # Resolution.
---- LuaTeX determines the size of an image as follows:
---- 1. It uses <width> and <height> parameter of `\useimageresource`.
---- 2. If (1) is missing, it uses the resolution given in the metadata of the image.
---- 3. If (2) is missing, it uses the resolution given by this function.
---- 4. If (3) is missing, it uses a resolution of 72 dpi.
+---LuaTeX determines the size of an image as follows:
+---
+---1. It uses <width> and <height> parameter of `\useimageresource`.
+---2. If (1) is missing, it uses the resolution given in the metadata of the image.
+---3. If (2) is missing, it uses the resolution given by this function.
+---4. If (3) is missing, it uses a resolution of 72 dpi.
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/pdf.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 function pdf.setimageresolution(dpi) end
@@ -824,23 +845,22 @@ function pdf.setthreadmargin(margin) end
 function pdf.getthreadmargin() end
 
 ---
----Warning! Undocumented code!<p>
----TODO: Please contribute
+---Warning! Undocumented code!<p> TODO: Please contribute
 ---https://github.com/Josef-Friedrich/LuaTeX_Lua-API#how-to-contribute
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/pdf.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 function pdf.setxformmargin() end
 
 ---
----Warning! Undocumented code!<p>
----TODO: Please contribute
+---Warning! Undocumented code!<p> TODO: Please contribute
 ---https://github.com/Josef-Friedrich/LuaTeX_Lua-API#how-to-contribute
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/pdf.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 function pdf.getxformmargin() end
 
 ---
----Return coordinates of the current position. The origin of the coordinate system is at the lower left corner of the page.
+---Return coordinates of the current position. The origin of the coordinate
+---system is at the lower left corner of the page.
 ---
 ---@return integer h # Horizontal position in scaled points.
 ---@return integer v # Vertical position in scaled points.
@@ -851,7 +871,8 @@ function pdf.getxformmargin() end
 function pdf.getpos() end
 
 ---
----Return horizontal coordinate of the current position. The origin of the coordinate system is at the lower left corner of the page.
+---Return horizontal coordinate of the current position. The origin of the
+---coordinate system is at the lower left corner of the page.
 ---
 ---@return integer h # Horizontal position in scaled points.
 ---Note: This function is mainly used inside `\latelua` calls.
@@ -860,7 +881,8 @@ function pdf.getpos() end
 function pdf.gethpos() end
 
 ---
----Return vertical coordinate of the current position. The origin of the coordinate system is at the lower left corner of the page.
+---Return vertical coordinate of the current position. The origin of the
+---coordinate system is at the lower left corner of the page.
 ---
 ---@return integer v # Vertical position in scaled points.
 ---
@@ -881,24 +903,30 @@ function pdf.hasmatrix() end
 
 ---
 ---Return the CTM (current transformation matrix) at the current position.
+---
+---```
 --- ┌         ┐
 --- │ a  b  0 │
 --- │ c  d  0 │
 --- │ e  f  1 │
 --- └         ┘
+---```
+---
 ---@return integer a
 ---@return integer b
 ---@return integer c
 ---@return integer d
 ---@return integer e
 ---@return integer f
+---
 ---Note: This function is mainly used inside `\latelua` calls.
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/pdf.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 function pdf.getmatrix() end
 
 ---
----Write a string into the contents stream of the current page. If LuaTeX is currently inside a text block (**BT**...**ET**), close the text block first.
+---Write a string into the contents stream of the current page. If LuaTeX is
+---currently inside a text block (**BT**...**ET**), close the text block first.
 ---
 ---@param str string # String.
 ---
@@ -912,12 +940,15 @@ function pdf.print(str) end
 ---
 ---@param type string # Type.
 ---@param str string # String.
+---
 ---Parameter <type> determines how the string is written:
---- * `text`: String <str> is written inside a text block (**BT**...**ET**).
---- * `page`: String <str> is written outside a text block (**BT**...**ET**).
---- * `origin`: Like `page` but the CTM is inserted just before the string <str>.
---- * `direct`: String <str> is written directly, independ of whether this is inside or outside a text block.
---- * `raw`: Like `direct`.
+---
+---* `text`: String <str> is written inside a text block (**BT**...**ET**).
+---* `page`: String <str> is written outside a text block (**BT**...**ET**).
+---* `origin`: Like `page` but the CTM is inserted just before the string <str>.
+---* `direct`: String <str> is written directly, independ of whether this is inside or outside a text block.
+---* `raw`: Like `direct`.
+---
 ----Note: This function is mainly used inside `\latelua` calls.
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/pdf.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
@@ -927,9 +958,13 @@ function pdf.print(type, str) end
 ---Create an object and write it immediately to the pdf file.
 ---
 ---The created object looks like this:
+---
+---```
 --->  <objnum> 0 obj
 --->    <str>
 --->  endobj
+---```
+---
 ---@param objnum? integer # Object number (optional argument).
 ---@param str string # Contents of the object.
 ---
@@ -939,11 +974,15 @@ function pdf.print(type, str) end
 function pdf.immediateobj(str) end
 
 ---
----Create an object and write it immediately to the pdf file.
----The created object looks like this:
+---Create an object and write it immediately to the pdf file. The created object
+---looks like this:
+---
+---```
 --->  <objnum> 0 obj
 --->    <contents of file <filename>>
 --->  endobj
+---```
+---
 ---@param objnum? integer # Object number (optional argument).
 ---@param file string # Literal string `"file"`.
 ---@param filename string # File name.
@@ -957,6 +996,8 @@ function pdf.immediateobj(objnum, file, filename) end
 ---Create an object and write it immediately to the pdf file.
 ---
 ---The created object looks like this:
+---
+---```
 --->   <objnum> 0 obj
 --->   <<
 --->   <streamdict>
@@ -965,6 +1006,8 @@ function pdf.immediateobj(objnum, file, filename) end
 --->   <streamcontents>
 --->   endstream
 --->   endobj
+---```
+---
 ---@param objnum? integer # Object number (optional argument).
 ---@param stream string # Literal string `"stream"`.
 ---@param streamcontents string # Contents of the stream.
@@ -979,6 +1022,8 @@ function pdf.immediateobj(stream, streamcontents, streamdict) end
 ---Create an object and write it immediately to the pdf file.
 ---
 ---The created object looks like this:
+---
+---```
 --->   <objnum> 0 obj
 --->   <<
 --->   <contents of `file` <filename>>
@@ -987,6 +1032,8 @@ function pdf.immediateobj(stream, streamcontents, streamdict) end
 --->   <streamcontents>
 --->   endstream
 --->   endobj
+---```
+---
 ---@param objnum? integer # Object number (optional argument).
 ---@param streamfile string # Literal string `"streamfile"`.
 ---@param filename string # File name.
@@ -999,11 +1046,15 @@ function pdf.immediateobj(streamfile, filename, streamdict) end
 ---
 ---Create an object.
 ---
----This object is written to the pdf file only if it is referenced later by `pdf.refobj()`
----The created object looks like this:
+---This object is written to the pdf file only if it is referenced later by
+---`pdf.refobj()` The created object looks like this:
+---
+---```
 --->  <objnum> 0 obj
 --->    <str>
 --->  endobj
+---```
+---
 ---@param objnum? integer # Object number (optional argument).
 ---@param str string # Contents of the object.
 ---
@@ -1015,11 +1066,14 @@ function pdf.obj(str) end
 ---
 ---Create an object.
 ---
----This object is written to the pdf file only if it is referenced later by `pdf.refobj()`
----The created object looks like this:
+---This object is written to the pdf file only if it is referenced later by
+---`pdf.refobj()` The created object looks like this:
+---
+---```
 --->  <objnum> 0 obj
 --->    <contents of file <filename>>
 --->  endobj
+---```
 ---
 ---@param objnum? integer # Object number (optional argument).
 ---@param file string # Literal string `"file"`.
@@ -1033,8 +1087,10 @@ function pdf.obj(objnum, file, filename) end
 ---
 ---Create an object.
 ---
----This object is written to the pdf file only if it is referenced later by `pdf.refobj()`
----The created object looks like this:
+---This object is written to the pdf file only if it is referenced later by
+---`pdf.refobj()` The created object looks like this:
+---
+---```
 --->   <objnum> 0 obj
 --->   <<
 --->   <streamdict>
@@ -1043,6 +1099,8 @@ function pdf.obj(objnum, file, filename) end
 --->   <streamcontents>
 --->   endstream
 --->   endobj
+---```
+---
 ---@param objnum? integer # Object number (optional argument).
 ---@param stream string # Literal string `"stream"`.
 ---@param streamcontents string # Contents of the stream.
@@ -1056,8 +1114,10 @@ function pdf.obj(stream, streamcontents, streamdict) end
 ---
 ---Create an object.
 ---
----This object is written to the pdf file only if it is referenced later by `pdf.refobj()`
----The created object looks like this:
+---This object is written to the pdf file only if it is referenced later by
+---`pdf.refobj()` The created object looks like this:
+---
+---```
 --->   <objnum> 0 obj
 --->   <<
 --->   <contents of `file` <filename>>
@@ -1066,6 +1126,7 @@ function pdf.obj(stream, streamcontents, streamdict) end
 --->   <streamcontents>
 --->   endstream
 --->   endobj
+---```
 ---@param objnum? integer # Object number (optional argument).
 ---@param streamfile string # Literal string `"streamfile"`.
 ---@param filename string # File name.
@@ -1080,6 +1141,8 @@ function pdf.obj(streamfile, filename, streamdict) end
 ---Create an object.
 ---
 ---@param keyvals table # Object specification.
+---
+---```
 ---> keyvals = {
 --->    type           = <string>, -- `'stream'` (stream object), `'raw'` (non-stream object)
 --->    immediate      = <boolean>,
@@ -1091,8 +1154,11 @@ function pdf.obj(streamfile, filename, streamdict) end
 --->    string         = <string>, -- contents of object/stream
 --->    nolength       = <boolean>, -- omit `/Length` entry of stream dictionary
 ---> }
---- Keys `string` and `file` are mutual exclusive.
---- Key `nolength` omits `/Length` entry of the stream dictionary only if a `/Length` entry is given in the `attr` key.
+---```
+---
+---Keys `string` and `file` are mutual exclusive. Key `nolength` omits `/Length`
+---entry of the stream dictionary only if a `/Length` entry is given in the
+---`attr` key.
 ---
 ---@return integer objnum # Object number.
 ---
@@ -1123,7 +1189,8 @@ function pdf.reserveobj() end
 ---
 ---Create a annotation object.
 ---
----Annotation object are not written to file directly but must be registered with `pdf.registerannot()`.
+---Annotation object are not written to file directly but must be registered
+---with `pdf.registerannot()`.
 ---
 ---@param annot string # Literal string `'annot'`.
 ---
@@ -1136,7 +1203,8 @@ function pdf.reserveobj(annot) end
 ---
 ---Return object number of page <pagenum>.
 ---
----This can be a forwar reference, i.e. page <pagenum> doesn't have to be created yet.
+---This can be a forwar reference, i.e. page <pagenum> doesn't have to be
+---created yet.
 ---
 ---@param pagenum integer # Page number.
 ---
@@ -1154,8 +1222,8 @@ function pdf.getpageref(pagenum) end
 function pdf.registerannot(objnum) end
 
 ---
----Allocate a new color stack and returns it's id. The arguments
----are the same as for the similar backend extension primitive.
+---Allocate a new color stack and returns it's id. The arguments are the same as
+---for the similar backend extension primitive.
 ---
 ---```
 ---pdf.newcolorstack("0 g","page",true) --
@@ -1177,8 +1245,8 @@ function pdf.newcolorstack(s, literal_mode, page_start) end
 ---
 ---Force some additional code into the font resource.
 ---
----It can for
----instance be used to add a custom `ToUnicode` vector to a bitmap file.
+---It can for instance be used to add a custom `ToUnicode` vector to a bitmap
+---file.
 ---
 ---__Reference:__
 ---

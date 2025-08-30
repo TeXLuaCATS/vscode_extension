@@ -17,25 +17,22 @@
 --
 -- -----------------------------------------------------------------------------
 
--- A helper table to better navigate through the documentation using the
--- outline: https://github.com/Josef-Friedrich/LuaTeX_Lua-API#navigation-table-_n
-
 ---
 ---@meta
 
 ---
 ---This library provides two separate, but nearly identical interfaces to the
 ---`kpathsea` file search functionality: there is a “normal” procedural
----interface that shares its kpathsea instance with *LuaTeX* itself, and an object
----oriented interface that is completely on its own.
+---interface that shares its kpathsea instance with *LuaTeX* itself, and an
+---object oriented interface that is completely on its own.
 ---
 ---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/kpse.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
 kpse = {}
 
 ---
 ---The way the library looks up variables is driven by the `texmf.cmf` file
----where the currently set program name acts as filter. You can check what file is
----used by with `default_texmfcnf`.
+---where the currently set program name acts as filter. You can check what file
+---is used by with `default_texmfcnf`.
 ---
 ---__Reference:__
 ---
@@ -47,22 +44,28 @@ kpse = {}
 function kpse.default_texmfcnf() end
 
 ---
----Initialize the kpathsea library by setting the program name. The optional string allows explicit `progname` setting.
+---Initialize the kpathsea library by setting the program name. The optional
+---string allows explicit `progname` setting.
 ---
----Before the search library can be used at all, its database has to be initialized.
----There are three possibilities, two of which belong to the procedural interface.
+---Before the search library can be used at all, its database has to be
+---initialized. There are three possibilities, two of which belong to the
+---procedural interface.
 ---
----First, when *LuaTeX* is used to typeset documents, this initialization happens
----automatically and the `kpathsea` executable and program names are set to `luatex` (that is, unless explicitly prohibited by the user's startup script.)
+---First, when *LuaTeX* is used to typeset documents, this initialization
+---happens automatically and the `kpathsea` executable and program names are set
+---to `luatex` (that is, unless explicitly prohibited by the user's startup
+---script.)
 ---
----Second, in *TeX*LUA mode, the initialization has to be done explicitly via the
----`kpse.set_program_name` function, which sets the `kpathsea` executable
+---Second, in *TeX*LUA mode, the initialization has to be done explicitly via
+---the `kpse.set_program_name` function, which sets the `kpathsea` executable
 ---(and optionally program) name.
 ---
----The second argument controls the use of the “dotted” values in the `texmf.cnf` configuration file, and defaults to the first argument.
+---The second argument controls the use of the “dotted” values in the
+---`texmf.cnf` configuration file, and defaults to the first argument.
 ---
----Third, if you prefer the object oriented interface, you have to call a different
----function. It has the same arguments, but it returns a userdata variable.
+---Third, if you prefer the object oriented interface, you have to call a
+---different function. It has the same arguments, but it returns a userdata
+---variable.
 ---
 ---* Corresponding C source code: [lkpselib.c#L832-852](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/lkpselib.c#L832-852)
 ---
@@ -92,8 +95,8 @@ function kpse.new(name, progname) end
 ---
 ---Register used files.
 ---
----Because callbacks can load
----files themselves you might need these helpers (if you use recording at all).
+---Because callbacks can load files themselves you might need these helpers (if
+---you use recording at all).
 ---
 ---__Reference:__
 ---
@@ -107,8 +110,8 @@ function kpse.record_input_file(name) end
 ---
 ---Register used files.
 ---
----Because callbacks can load
----files themselves you might need these helpers (if you use recording at all).
+---Because callbacks can load files themselves you might need these helpers (if
+---you use recording at all).
 ---
 ---__Reference:__
 ---
@@ -187,12 +190,16 @@ function kpse.record_output_file(name) end
 ---
 ---Find a file.
 ---
----The optional string is the file type as supported by the standalone `kpsewhich` program (default is ``tex`, no autodiscovery takes place). The optional boolean indicates wether the file must exist. The optional number is the dpi value for PK files.
+---The optional string is the file type as supported by the standalone
+---`kpsewhich` program (default is ``tex`, no autodiscovery takes place). The
+---optional boolean indicates wether the file must exist. The optional number is
+---the dpi value for PK files.
 ---
 ---The most often used function in the library is `find_file`:
 ---
 ---If `--output-directory` is specified and the value is a relative pathname,
----the file is searched first here and if it fails it will be searched in the standard tree.
+---the file is searched first here and if it fails it will be searched in the
+---standard tree.
 ---
 ---__References:__
 ---
@@ -208,12 +215,16 @@ function kpse.find_file(filename) end
 ---
 ---Find a file.
 ---
----The optional string is the file type as supported by the standalone `kpsewhich` program (default is ``tex`, no autodiscovery takes place). The optional boolean indicates wether the file must exist. The optional number is the dpi value for PK files.
+---The optional string is the file type as supported by the standalone
+---`kpsewhich` program (default is ``tex`, no autodiscovery takes place). The
+---optional boolean indicates wether the file must exist. The optional number is
+---the dpi value for PK files.
 ---
 ---The most often used function in the library is `find_file`:
 ---
 ---If `--output-directory` is specified and the value is a relative pathname,
----the file is searched first here and if it fails it will be searched in the standard tree.
+---the file is searched first here and if it fails it will be searched in the
+---standard tree.
 ---
 ---__References:__
 ---
@@ -230,12 +241,16 @@ function kpse.find_file(filename, ftype) end
 ---
 ---Find a file.
 ---
----The optional string is the file type as supported by the standalone `kpsewhich` program (default is ``tex`, no autodiscovery takes place). The optional boolean indicates wether the file must exist. The optional number is the dpi value for PK files.
+---The optional string is the file type as supported by the standalone
+---`kpsewhich` program (default is ``tex`, no autodiscovery takes place). The
+---optional boolean indicates wether the file must exist. The optional number is
+---the dpi value for PK files.
 ---
 ---The most often used function in the library is `find_file`:
 ---
 ---If `--output-directory` is specified and the value is a relative pathname,
----the file is searched first here and if it fails it will be searched in the standard tree.
+---the file is searched first here and if it fails it will be searched in the
+---standard tree.
 ---
 ---__References:__
 ---
@@ -253,12 +268,16 @@ function kpse.find_file(filename, ftype, mustexist) end
 ---
 ---Find a file.
 ---
----The optional string is the file type as supported by the standalone `kpsewhich` program (default is ``tex`, no autodiscovery takes place). The optional boolean indicates wether the file must exist. The optional number is the dpi value for PK files.
+---The optional string is the file type as supported by the standalone
+---`kpsewhich` program (default is ``tex`, no autodiscovery takes place). The
+---optional boolean indicates wether the file must exist. The optional number is
+---the dpi value for PK files.
 ---
 ---The most often used function in the library is `find_file`:
 ---
 ---If `--output-directory` is specified and the value is a relative pathname,
----the file is searched first here and if it fails it will be searched in the standard tree.
+---the file is searched first here and if it fails it will be searched in the
+---standard tree.
 ---
 ---__References:__
 ---
@@ -297,8 +316,8 @@ function kpse.find_file(filename, ftype, dpi) end
 ---
 ---Find a file (extended interface).
 ---
----A more powerful (but slower) generic method for finding files is also available.
----It returns a string for each found file.
+---A more powerful (but slower) generic method for finding files is also
+---available. It returns a string for each found file.
 ---
 ---If `--output-directory` is specified and the value is a relative pathname,
 ---the file is searched first here and then in the standard tree.
@@ -316,7 +335,8 @@ function kpse.find_file(filename, ftype, dpi) end
 function kpse.lookup(filename, options) end
 
 ---
----Initialize a PK generation program. The optional string is the metafont mode fallback name.
+---Initialize a PK generation program. The optional string is the metafont mode
+---fallback name.
 ---
 ---Extra initialization for programs that need to generate bitmap fonts.
 ---
@@ -351,8 +371,10 @@ function kpse.readable_file(name) end
 ---
 ---Expand a path.
 ---
----Output the complete expansion of string, with each element separated by the usual path separator on the current system (`;` on Windows, `:` otherwise). This may be useful to construct a custom search path for a format not otherwise supported.
----Like `kpsewhich`’s `-expand-path`.
+---Output the complete expansion of string, with each element separated by the
+---usual path separator on the current system (`;` on Windows, `:` otherwise).
+---This may be useful to construct a custom search path for a format not
+---otherwise supported. Like `kpsewhich`’s `-expand-path`.
 ---
 ---__References:__
 ---
@@ -369,7 +391,10 @@ function kpse.expand_path(s) end
 ---
 ---Expand a variable.
 ---
----Output the variable and tilde expansion of string. For example, with the usual texmf.cnf, `kpse.expand_var('$TEXMF')` returns the TeX system hierarchy root(s). The specified string can contain anything, though, not just variable references. This calls kpse_var_expand (see Programming with config files).
+---Output the variable and tilde expansion of string. For example, with the
+---usual texmf.cnf, `kpse.expand_var('$TEXMF')` returns the TeX system hierarchy
+---root(s). The specified string can contain anything, though, not just variable
+---references. This calls kpse_var_expand (see Programming with config files).
 ---Like `kpsewhich`’s  `-expand-var`:
 ---
 ---__References:__
@@ -387,7 +412,8 @@ function kpse.expand_var(s) end
 ---
 ---Expand the braces in a variable.
 ---
----Output variable, tilde, and brace expansion of string, which is assumed to be a single path element. Like `kpsewhich`’s `-expand-braces`
+---Output variable, tilde, and brace expansion of string, which is assumed to be
+---a single path element. Like `kpsewhich`’s `-expand-braces`
 ---
 ---__References:__
 ---
@@ -404,7 +430,9 @@ function kpse.expand_braces(s) end
 ---
 ---List the search path for a specific file type.
 ---
----Show the path that would be used for file lookups of file type name. Either a filename extension (`pk`, `.vf`, etc.) or an integer can be used, just as with `--format`, described in the previous section.
+---Show the path that would be used for file lookups of file type name. Either a
+---filename extension (`pk`, `.vf`, etc.) or an integer can be used, just as
+---with `--format`, described in the previous section.
 ---
 ---Like `kpsewhich`’s `-show-path`
 ---
@@ -423,7 +451,11 @@ function kpse.show_path(file_type) end
 ---
 ---Return the value of a variable.
 ---
----Outputs the value of variable (a simple identifier like `TEXMFDIST`, with no `$` or other constructs), expanding `$` (see Variable expansion) and `~` (see Tilde expansion) constructs in the value. ‘~` expansion happens at the beginning of the overall value and at the beginning of a variable expansion, but not arbitrarily within the string. Braces are not expanded.
+---Outputs the value of variable (a simple identifier like `TEXMFDIST`, with no
+---`$` or other constructs), expanding `$` (see Variable expansion) and `~` (see
+---Tilde expansion) constructs in the value. ‘~` expansion happens at the
+---beginning of the overall value and at the beginning of a variable expansion,
+---but not arbitrarily within the string. Braces are not expanded.
 ---
 ---Like `kpsewhich’`s `-var-value`
 ---
