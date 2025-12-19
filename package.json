@@ -4,7 +4,7 @@
   "description": "Extension for the LuaTeX development.",
   "version": "0.18.0",
   "engines": {
-    "vscode": "^1.89.0"
+    "vscode": "^1.107.0"
   },
   "publisher": "JosefFriedrich",
   "categories": [
@@ -130,14 +130,14 @@
     "test": "node ./out/test/runTest.js"
   },
  "devDependencies": {
-    "@types/vscode": "^1.89.0",
+    "@types/vscode": "^1.107.0",
     "@types/mocha": "^10.0.10",
-    "@types/node": "20.x",
-    "@typescript-eslint/eslint-plugin": "^8.22.0",
-    "@typescript-eslint/parser": "^8.22.0",
-    "eslint": "^9.19.0",
-    "typescript": "^5.7.3",
-    "@vscode/test-cli": "^0.0.10",
-    "@vscode/test-electron": "^2.4.1"
+    "@types/node": "25.x",
+    "@typescript-eslint/eslint-plugin": "^8.50.0",
+    "@typescript-eslint/parser": "^8.50.0",
+    "eslint": "^9.39.2",
+    "typescript": "^5.9.3",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2"
   }
 }
