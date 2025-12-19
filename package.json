@@ -27,10 +27,10 @@
   "icon": "images/luatex.png",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Josef-Friedrich/vscode_LuaTeX_Lua-API"
+    "url": "https://github.com/TeXLuaCATS/vscode_extension"
   },
   "bugs": {
-    "url": "https://github.com/Josef-Friedrich/vscode_LuaTeX_Lua-API/issues",
+    "url": "https://github.com/TeXLuaCATS/vscode_extension/issues",
     "email": "josef@friedrich.rocks"
   },
   "main": "./out/extension.js",

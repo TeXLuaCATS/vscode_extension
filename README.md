@@ -4,8 +4,8 @@
 
 Extension for the `LuaTeX` development.
 
-This extension brings the [LuaTeX
-API](https://github.com/Josef-Friedrich/LuaTeX_Lua-API) into Visual Studio Code.
+This extension brings the [LuaTeX related
+APIs](https://github.com/TeXLuaCATS) into Visual Studio Code.
 
 This project is also an extension package for the most important extensions related to LuaTeX development:
 [lua-language-server](https://marketplace.visualstudio.com/items?itemName=sumneko.lua) and
@@ -26,13 +26,13 @@ This project is also an extension package for the most important extensions rela
 }
 ```
 
-## Other methods to use the [LuaTeX API](https://github.com/Josef-Friedrich/LuaTeX_Lua-API):
+## Other methods to use the [LuaTeX API](https://github.com/TeXLuaCATS/LuaTeX):
 
 ### Lua Langauge Server Addon manager
 
 In the meantime you can use the [Addon manager](https://luals.github.io/wiki/addons/#addon-manager) of the [Lua Language Server](https://github.com/LuaLS/lua-language-server). All LuaTeX related libraries are included:
 
-![Addon-Manager](https://github.com/Josef-Friedrich/vscode_LuaTeX_Lua-API/assets/545838/8c02d85a-3e34-4d1e-8165-66ae65e02aa8)
+![Addon-Manager](https://github.com/TeXLuaCATS/vscode_extension/assets/545838/8c02d85a-3e34-4d1e-8165-66ae65e02aa8)
 
 ### Git clone
 
