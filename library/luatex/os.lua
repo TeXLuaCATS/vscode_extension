@@ -50,6 +50,33 @@ os = {}
 os.selfdir = ""
 
 ---
+---Passes command to be executed by an operating system shell.
+---
+---[Although LuaTeX uses Lua 5.3, it's `os.execute` still behaves like that in Lua 5.1.](https://tug.org/pipermail/luatex/2015-November/005536.html)
+---
+---__Example:__
+---
+---```lua
+---local exit, second, third = os.execute("/usr/bin/uname -a")
+---assert.equals(exit, 0)
+---assert.is_nil(second)
+---assert.is_nil(third)
+---```
+---
+---__Reference:__
+---
+---* Corresponding C source code: [loslibext.c#L1080](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/loslibext.c#L1080)
+---* Corresponding C source code: [loslibext.c#L1000-1047](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/loslibext.c#L1000-1047)
+---
+---@param command? string
+---
+---@return integer|nil exit_status
+---@return string|nil error
+---
+---😱 [Types](https://github.com/TeXLuaCATS/LuaTeX/blob/main/library/os.lua) incomplete or incorrect? 🙏 [Please contribute!](https://github.com/TeXLuaCATS/LuaTeX/pulls)
+function os.execute(command) end
+
+---
 ---A variation on `os.execute`.
 ---
 ---Here `commandline` can be either a single string or a single table.
@@ -100,7 +127,7 @@ os.selfdir = ""
 ---
 ---__Reference:__
 ---
----* Corresponding C source code: [loslibext.c#L429-L501](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/loslibext.c#L429-L501)
+---* Corresponding C source code: [loslibext.c#L429-L501](https://gitlab.lisn.upsaclay.fr/texlive/luatex/-/blob/f52b099f3e01d53dc03b315e1909245c3d5418d3/source/texk/web2c/luatexdir/lua/loslibext.c#L429-501)
 ---
 ---@see os.execute
 ---
